@@ -1,6 +1,5 @@
 import React from 'react';
 import {Box,Stack,Badge,IconButton} from '@mui/material'
-
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import logo from './logo.jpg'
 import {Link} from 'react-router-dom'
@@ -21,11 +20,21 @@ const Header = () => {
              <Link to='/about' style={style}>About</Link>
              </Stack>
              <Box width='13%' > 
-<IconButton aria-label='cart' size='large' p={5} color='warning' >
-      <Badge badgeContent={4} color='primary'>
-        <ShoppingCartIcon  />
-      </Badge>
-    </IconButton>
+
+        <IconButton
+              aria-label='cart' 
+              size='large'
+              p={5}  >
+          <Link style={style} to='/cart'>
+           <Badge badgeContent={3}
+                  color='primary'>
+                  
+            <ShoppingCartIcon  />
+      
+           </Badge>
+           </Link>
+        </IconButton>
+     
              </Box>
             </Stack>
         </Box>
