@@ -1,4 +1,6 @@
-export const = '';
-export const   = '';
-export const  = '';
-export const  = ''
+export const  GET_BRAND_PRODUCTS = 'GET_BRAND_PRODUCTS';
+export const  ADD_CART = 'ADD_CART';
+export const GET_CART_PRODUCTS = 'GET_CART_PRODUCTS';
+export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
+export const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
+
