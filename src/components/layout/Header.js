@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {Box,Stack,Badge,IconButton} from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import logo from './logo.jpg'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
+import context from '../../context/AppContext'
 
 const Header = () => {
   
+  const {cart} = useContext(context)
    return (
         <Box p={4} px={8} >
            <Stack direction='row' justifyContent='space-between' 
@@ -15,9 +17,9 @@ const Header = () => {
              </Box>
              <Stack direction='row' justifyContent='space-between'
              width='30%'>
-             <Link to='/' style={style}>Home</Link>
-             <Link to='/brands' style={style}>Brands</Link>
-             <Link to='/about' style={style}>About</Link>
+             <NavLink to='/' style={style}>Home</NavLink>
+             <NavLink to='/brands' style={style}>Brands</NavLink>
+             <NavLink to='/about' style={style}>About</NavLink>
              </Stack>
              <Box width='13%' > 
 
@@ -25,14 +27,14 @@ const Header = () => {
               aria-label='cart' 
               size='large'
               p={5}  >
-          <Link style={style} to='/cart'>
-           <Badge badgeContent={3}
+          <NavLink style={{color:'orange'}} to='/cart'>
+           <Badge badgeContent={cart.length}
                   color='primary'>
                   
             <ShoppingCartIcon  />
       
            </Badge>
-           </Link>
+           </NavLink>
         </IconButton>
      
              </Box>
@@ -42,11 +44,12 @@ const Header = () => {
         )
   
 }
-const style={
-  fontWieght: '800px',
+const style = ({isActive}) => {
+ return { fontWieght: '800px',
   fontSize: '1.3rem',
   textDecoration: 'none',
   color: 'orange',
-  
+  borderBottom: isActive ? '3px solid orange' :''
+ }
 }
 export default Header;

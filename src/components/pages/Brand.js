@@ -11,7 +11,7 @@ const Brands = () => {
           Brands
         </Typography>
         <BrandItem />
-         <Products />
+        <Products /> 
      
      </Box>
        )

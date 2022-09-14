@@ -1,37 +1,45 @@
-import React from 'react';
-import {Paper,Grid,Typography,Box,Rating,Button,Stack} from '@mui/material'
-import ItemImage from './product.jpeg'
+import React,{useContext} from 'react';
+import {Grid,Typography,Box,Rating,Button,Stack} from '@mui/material'
+import context from '../../context/AppContext'
 
-const ProductItem = () => {
+const ProductItem = ({product}) => {
   
+  const {name,img,price,rating,brand} =product
+  const {addToCart} = useContext(context);
+  let shoeName = name.slice(0,14)
     return (
       
      <Grid item  >
         
-      <img src={ItemImage} alt='shoe' width='166px' height='123px' style={img} />
+      <img src={img} alt='shoe' width='166px' height='123px' style={style} />
             <Stack 
           direction='column'
           justifyContent='space-evenly'>
         
          <Box sx={sx}>
-              <Typography varaint='h3' fontWeight='bold'>
-                 air nike jordan 
+              <Typography variant='h6' fontWeight='300'
+                fontSize='1rem'>
+                 {shoeName }
                  </Typography>
  
-                  <Typography varaint='h6' color ='primary'>
-                  $159
+                  <Typography
+                  variant='p' 
+                  color ='primary'>
+                   $ {price}
                    </Typography>
              </Box>
              
             <Box sx={sx}>
-                   <Rating value={3.4}  precision={0.5} readOnly/>
-                <Typography variant='span'  fontSize='13px' fontWeight='390' >
-                    Nike
+                   <Rating value={rating}  precision={0.5} readOnly/>
+                <Typography variant='span'  fontSize='12px' fontWeight='390' >
+                    {brand}
                  </Typography>
                  </Box>
-          {/*Add product into cart button */}       
+          {/*Add product into cart */}       
              <Box mt={1}>
-         <Button variant='contained' 
+         <Button 
+               onClick={()=>addToCart(product)}
+                 variant='contained' 
                  size='small' 
                  style={{backgroundColor:'orange',
                    width:'100%'}}>
@@ -50,7 +58,7 @@ const sx = {
    alignItems: 'center',
    justifyContent: 'space-between'
 }
-const img={
+const style={
   borderRadius: '0.8rem'
 }
 

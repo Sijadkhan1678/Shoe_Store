@@ -19,7 +19,7 @@ const shoesList = [{
     id: 'afg125fg',
     name: 'Navy Basketball 365',
     price: 40,
-    rating: 4.0
+    rating: 4.0,
     brand: 'Addidas',
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkobKAHwswKg-KF2A0iTCnHIZsn8p_dAvZOA&usqp=CAU"
   },
@@ -51,7 +51,7 @@ const shoesList = [{
     id: 'afg129fg',
     name:'Sneaker NMD 2020',
     price: 33,
-    rating: 3.6
+    rating: 3.6,
     brand: 'Addidas',
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmomo_ZZ-piCuZOn5Iabs8GTfuwOSFyNO1Lg&usqp=CAU"
   },
@@ -376,7 +376,7 @@ const shoesList = [{
     id : '23pp23af',
     name: 'Card B Reebok',
     price: 43,
-    rating: 3.6
+    rating: 3.6,
     brand: 'Reebok',
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpcbDReWfUgDpUi_OJ1WZ-E_cdtokONLM_8A&usqp=CAU"
   },
