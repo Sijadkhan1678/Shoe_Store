@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import Brand from './components/pages/Brand'
 import About from './components/pages/About'
 import Cart  from './components/pages/Cart'
+import NotFound from './components/pages/NotFound'
 import AppState from './context/AppState'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 
@@ -24,6 +25,7 @@ const  App = () => {
      <Route path="brands" element={<Brand />} />
       <Route path="about" element={<About />} />
       <Route path="cart"  element={<Cart />} />
+      <Route path="*"     element={<NotFound />} />
     </Routes>
    </Container>
   
