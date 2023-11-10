@@ -4,21 +4,19 @@ import context from '../../context/AppContext'
 
 const ProductItem = ({product}) => {
   
-  const {name,img,price,rating,brand} =product
+  const {name,img,price,rating,brand} = product
   const {addToCart} = useContext(context);
   let shoeName = name.slice(0,14)
     return (
       
-     <Grid item  >
+     <Grid item lg={4} md={4} sm={4} xs={12}>
+      <Box width="100%" style={{'&:hover':{transform:'scale(1.5)'}}}>  
+       <img src={img} alt='shoe' width='100%' height={250}  style={style} />
+        </Box>
+        <Stack  direction='column' justifyContent='space-evenly'>
         
-      <img src={img} alt='shoe' width='166px' height='123px' style={style} />
-            <Stack 
-          direction='column'
-          justifyContent='space-evenly'>
-        
-         <Box sx={sx}>
-              <Typography variant='h6' fontWeight='300'
-                fontSize='1rem'>
+         <Box sx={productsx}>
+              <Typography variant='h6' color="#1c1c1c" fontWeight='500' fontSize='1rem'>
                  {shoeName }
                  </Typography>
  
@@ -29,14 +27,14 @@ const ProductItem = ({product}) => {
                    </Typography>
              </Box>
              
-            <Box sx={sx}>
+            <Box sx={star$brand_sx}>
                    <Rating value={rating}  precision={0.5} readOnly/>
-                <Typography variant='span'  fontSize='12px' fontWeight='390' >
+                <Typography variant='span'  fontSize='14px' fontWeight='300' >
                     {brand}
                  </Typography>
                  </Box>
           {/*Add product into cart */}       
-             <Box mt={1}>
+             <Box mt={3}>
          <Button 
                onClick={()=>addToCart(product)}
                  variant='contained' 
@@ -52,14 +50,28 @@ const ProductItem = ({product}) => {
         
       )
 }
-const sx = {
-   mt: '0.4rem',
+const productsx = {
+   pt: '1.5rem',
+   pb: '1rem',
+   pr: '0.4rem',
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'space-between'
 }
+const star$brand_sx = {
+  pt: '0rem',
+  pb: '0.5rem',
+  pr: '0.4rem',
+  ml: '-0.23rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between'
+}
+
 const style={
-  borderRadius: '0.8rem'
+  borderRadius: '0.8rem',
+  objectFit: 'cover',
+  
 }
 
 export default ProductItem;
