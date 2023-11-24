@@ -25,8 +25,9 @@ const Hero = () => {
   };
 
   return (
-    <Container>
-      <Box width='100%' px={{ lg: '2rem', md: '2.5rem', sm: '2.5rem', xs: '0rem' }} pt="0rem" boxSizing="border-box" pb="3rem">
+    <Container> 
+      <Box px={{ lg: '2rem', md: '2.5rem', sm: '1rem', xs: '0rem' }} pl={{xs:'0.3rem'}} pt="0rem" boxSizing="border-box" 
+           pb={{lg:"3rem",md:'3rem',sm:'3rem',xs:'2rem'}}>
         <Stack direction='row' justifyContent='space-between' >
           <Box sx={{ width: '50%', marginTop: { md: '1.5rem', sm: '1.5rem', xs: '1.7rem' } }}>
 
@@ -59,7 +60,7 @@ const Hero = () => {
           </Box>
         </Stack>
       </Box>
-    </Container>
+    </Container> 
   )
 
 }
