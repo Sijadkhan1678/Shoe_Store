@@ -1,27 +1,34 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext } from 'react';
 import context from '../../context/AppContext'
 import { Container, Grid, Box, Typography } from '@mui/material'
 import ProductItem from './ProductItem'
 
 const Products = () => {
 
-  const { products, brandProducts, selectedBrand } = useContext(context);
+  const { products } = useContext(context);
 
+  const Extract_hightRatingProducts = () => {
 
-  const selectedProducts = selectedBrand === 'All' || selectedBrand === 'Home' ? products : brandProducts
+    const highRatingProducts = products.filter((product) => product.rating > 4.5)
+    highRatingProducts.pop()
+    return highRatingProducts
 
+  }
+
+  const highRatingProducts = Extract_hightRatingProducts()
 
   return (
-    <Box  pt="4rem" pb="3rem">
+
+    <Box pt="4rem" pb="3rem">
       <Container>
-      <Typography variant='h2' pb="3rem" fontWeight='800' lineHeight="55px" fontSize="40px">  Products </Typography>
-        <Grid container justifyContent='space-between' spacing={4}>
+        <Typography variant='h2' pb="3rem" fontWeight='800' lineHeight="55px" fontSize="40px">  Products </Typography>
+        <Grid container spacing={4}>
           {
-          
-          selectedProducts && selectedProducts.map( (product) => (<ProductItem key={product.id} product={product} />))
-          
+
+            highRatingProducts.map(product => (<ProductItem key={product.id} product={product} />))
+
           }
- 
+
         </Grid>
       </Container>
     </Box>
