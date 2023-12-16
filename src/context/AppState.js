@@ -60,11 +60,13 @@ item.id === product.id ? product.id : null
       })
   }
   // function  decrease productItem qunatity in cart 
-  const decreaseQuantity = id => {
+  const decreaseQuantity = ({id,quantity}) => {
+    
     dispatch({
       type: DECREASE_QUANTITY,
-      payload: id
+      payload: {id,quantity}
     })
+
   }
   // function to change brand name 
   const changeBrand = (brand) => {

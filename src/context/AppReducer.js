@@ -22,10 +22,14 @@ const AppReducer = (state,action) => {
           ...state,cart: state.cart.filter(item=> item.id !== action.payload ? item: item.quantity++ )
           
         }
-      case DECREASE_QUANTITY:
-        return {
-          ...state,cart: state.cart.filter(item=> item.id !== action.payload ? item: item.quantity-- )
-        }
+        case DECREASE_QUANTITY:
+
+          if (action.payload.quantity > 1) 
+    
+            return {
+              ...state, cart: state.cart.map(product => product.id !== action.payload.id ? product : { ...product, quantity: action.payload.quantity - 1 })
+            }
+            
       case CHANGE_BRAND:
         return {
           ...state, selectedBrand: action.payload

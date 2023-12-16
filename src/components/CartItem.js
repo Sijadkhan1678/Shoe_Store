@@ -46,7 +46,7 @@ const CartItem = ({ item }) => {
                {/* variant='contained' */}
                {/* size='large' */}
                {/* color='secondary'> */}
-               <RemoveCircleIcon disabled onClick={() => decreaseQuantity(id)} style={{ color: '#d32f2f', paddingLeft: '1rem' }} />
+               <RemoveCircleIcon disabled onClick={() => decreaseQuantity({ id, quantity })} style={{ color: '#d32f2f', paddingLeft: '1rem' }} />
                {/* </IconButton> */}
 
             </Stack>
