@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { TableRow, TableCell, Stack, Box, IconButton, Typography } from '@mui/material'
+import { TableRow, TableCell, Stack, Box,Typography } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/AddCircle'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
@@ -31,23 +31,12 @@ const CartItem = ({ item }) => {
          <TableCell>
 
             <Stack direction='row' justifyContent='space-between' alignItems='center'>
-
-               {/* <IconButton p="0px" onClick={() => increaseQuantity(id)} */}
-               {/* variant='contained' size='large' */}
-               {/* color='primary'> */}
+           
                <AddIcon onClick={() => increaseQuantity(id)} style={{ color: '#834e00bd', paddingRight: '1rem' }} />
-               {/* </IconButton> */}
-               {/* <Typography variant='h6'> */}
+               
                {quantity}
-               {/* </Typography> */}
-               {/* <IconButton */}
-               {/* style={{padding:'0px'}} */}
-               {/* onClick={() => decreaseQuantity(id)} */}
-               {/* variant='contained' */}
-               {/* size='large' */}
-               {/* color='secondary'> */}
+               
                <RemoveCircleIcon disabled onClick={() => decreaseQuantity({ id, quantity })} style={{ color: '#d32f2f', paddingLeft: '1rem' }} />
-               {/* </IconButton> */}
 
             </Stack>
          </TableCell>
