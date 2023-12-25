@@ -13,10 +13,9 @@ const AppReducer = (state, action) => {
 
     case ADD_TO_CART:
 
-      const productIds = state.cart.map(product => product.id);
-      const isIdExsist = productIds.find(id => id === action.payload.id);
+      const isProduct = state.cart.find( product => product.id === action.payload.id);
       
-      if (!isIdExsist) { 
+      if (!isProduct) { 
         
         return { ...state, cart: [...state.cart, { ...action.payload }] }
 
@@ -26,7 +25,7 @@ const AppReducer = (state, action) => {
 
         return {
 
-          ...state, cart: state.cart.map(product => product.id !== isIdExsist ? product : { ...product, quantity: product.quantity + 1 })
+          ...state, cart: state.cart.map(product => product.id !== isProduct.id ? product : { ...product, quantity: product.quantity + 1 })
         }
 
       }
@@ -60,3 +59,4 @@ const AppReducer = (state, action) => {
 }
 
 export default AppReducer;
+
