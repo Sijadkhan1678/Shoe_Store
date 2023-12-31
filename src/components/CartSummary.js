@@ -1,46 +1,49 @@
-import React, { useContext } from 'react'
+import React, { useContext,useRef, useState } from 'react'
 import context from '../context/AppContext';
-import { Grid, Box, Stack, Typography, FormControl, InputBase, Button } from '@mui/material'
-import { styled } from '@mui/material/styles';
+import { Grid, Box, Stack, Typography, FormControl,InputBase, Button } from '@mui/material'
+
 
 const CartSummary = () => {
 
-
-    const PromoInput = styled(InputBase)(() => ({
-        '& .MuiInputBase-input': {
-
-            border: '1px solid #EDF1FF',
-            fontSize: '1rem',
-            padding: '12px 12px',
-
-        }
-
-    }))
-
-    const { cart } = useContext(context)
-
-    const subTotal = cart.reduce((currentTotal, item) => (item.price + currentTotal) * item.quantity, 0)
-
     
+    const [promoCode,setPromoCode] = useState('')
+
+    const applyPromodCode = () => {}
+
+    const handleChange = (e) => setPromoCode(e.target.value)
+    
+
+    const { cart } = useContext(context);
+
+    const subTotal = cart.reduce((total, item) => (item.price * item.quantity) + total, 0)
+
+    const shippingPrice = 4.00;
+
+    const totalPrice = cart.reduce((total, product) => {
+
+        return (product.price * product.quantity) + (product.quantity * shippingPrice) + total;
+
+    }, 0)
 
 
     return (
 
-
         <Grid container>
 
             <Grid item lg={7} md={6} sm={9} xs={6}>
-                <FormControl fullWidth variant='standard'>
+                <FormControl /*fullWidth*/ variant='standard'>
 
-                    <PromoInput placeholder="Promo Code" />
+                     <InputBase placeholder="Promo Code" type='text' value={promoCode}  onChange={handleChange} sx={{border: '1px solid #EDF1FF',
+            fontSize: '1rem',
+            padding: '8px 12px',}} /> 
 
                 </FormControl>
 
             </Grid>
 
             <Grid item lg={5} md={6} sm={3} xs={6} >
-                <Button fullWidth variant="contained" sx={{
-                    color: "#000000", p: '12px 0px', boxShadow: '0', borderRadius: '0px', bgcolor: "#ffa71f", '& hover': { color: 'whitesmoke !important' }
+                <Button fullWidth onClick={()=>applyPromodCode()} variant="contained" sx={{
+                    color: "#000000", p: '13px 0px', boxShadow: '0', borderRadius: '0px', bgcolor: "#ffa71f", '& hover': { color: 'whitesmoke !important' }
                 }}
                     size="medium"> Apply coupon</Button>
             </Grid>
@@ -56,40 +59,43 @@ const CartSummary = () => {
                 </Box>
                 <Box borderLeft='1px solid' borderRight='1px solid' borderBottom='1px solid' borderColor='rgb(237, 241, 255)'>
                     <Box p='1.4rem'>
-                        <Stack direction='row' justifyContent='space-between' pt='0.25rem' mb='1rem'>
-                            <Typography variant='h6' fontSize="1rem">
 
+                        <Stack direction='row' justifyContent='space-between' pt='0.25rem' mb='1rem'>
+                           
+                            <Typography variant='h6' fontSize="1rem">
                                 Subtotal
                             </Typography>
+
                             <Typography variant='h6' fontSize="1rem">
-                                value
+                                ${subTotal.toFixed(2)}
                             </Typography>
 
                         </Stack>
 
                         <Stack direction='row' justifyContent='space-between'>
+
                             <Typography variant='h6' fontSize="1rem">
                                 Shipping
-
                             </Typography>
+
                             <Typography variant='h6' fontSize="1rem">
-                                value
+                                ${shippingPrice}
                             </Typography>
 
                         </Stack>
 
                     </Box>
 
-
                     <Box p='0.75rem 1.25rem' borderTop='1px solid rgb(237, 241, 255)'>
 
                         <Stack direction='row' mt='0.5rem' justifyContent='space-between'>
+                            
                             <Typography variant='h4' fontSize="1.25rem" fontWeight={700}>
                                 Total
-
                             </Typography>
+
                             <Typography variant='h4' fontSize="1.25rem" fontWeight={700}>
-                                value
+                                {totalPrice.toFixed(2)}
                             </Typography>
 
                         </Stack>
