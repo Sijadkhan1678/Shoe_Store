@@ -1,7 +1,9 @@
 import { GET_BRAND_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
 
 const AppReducer = (state, action) => {
-  
+
+  state.cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+
   switch (action.type) {
 
     case GET_BRAND_PRODUCTS:
@@ -59,4 +61,3 @@ const AppReducer = (state, action) => {
 }
 
 export default AppReducer;
-

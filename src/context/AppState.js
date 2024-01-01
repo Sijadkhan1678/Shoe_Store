@@ -9,15 +9,19 @@ const AppState = ({ children }) => {
   const initalState = {
     products: shoesList,
     brandProducts: [],
-    cart: [],
+    cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
     selectedBrand: 'Home'
   }
-
+  
 
   const [state, dispatch] = useReducer(AppReducer, initalState);
 
-
-  //function  get Brand products 
+  if(state.cart.length) {
+    localStorage.setItem('cart',JSON.stringify(state.cart))
+  }
+  
+  
+  //function get Brand products 
   const getBrandProducts = (brand) => {
     console.log(brand)
     dispatch({
@@ -28,12 +32,12 @@ const AppState = ({ children }) => {
 
   // function add to cart product
   const addToCart = (product) => {
-
-    dispatch({
-      type: ADD_TO_CART,
-      payload: { ...product, quantity: 1 }
-    })
-
+    
+      dispatch({
+        type: ADD_TO_CART,
+        payload: { ...product, quantity: 1 }
+      })
+  
   }
 
   // function remove from cart product
@@ -47,22 +51,22 @@ const AppState = ({ children }) => {
 
   // function to increase Item qunatity in cart 
   const increaseQuantity = id => {
-
+    
     dispatch({
       type: INCREASE_QUANTITY,
       payload: id
     })
   }
   // function to decrease productItem qunatity in cart 
-  const decreaseQuantity = ({ id, quantity }) => {
-
+const decreaseQuantity = ({id,quantity}) => {
+    
     dispatch({
       type: DECREASE_QUANTITY,
-      payload: { id, quantity }
+      payload: {id,quantity}
     })
 
   }
-
+  
   // function to change brand name 
   const changeBrand = (brand) => {
     dispatch({
