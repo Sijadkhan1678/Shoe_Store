@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import AppReducer from './AppReducer';
 import context from './AppContext';
 import shoesList from './Data'
@@ -15,10 +15,14 @@ const AppState = ({ children }) => {
   
 
   const [state, dispatch] = useReducer(AppReducer, initalState);
+  
 
-  if(state.cart.length) {
-    localStorage.setItem('cart',JSON.stringify(state.cart))
-  }
+  useEffect(()=>{
+
+      localStorage.setItem('cart',JSON.stringify(state.cart))
+    
+  },[state.cart])
+  
   
   
   //function get Brand products 
