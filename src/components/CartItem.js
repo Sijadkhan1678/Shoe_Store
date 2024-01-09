@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { TableRow, TableCell, Stack, Box,Typography } from '@mui/material'
+import { TableRow, TableCell, Stack, IconButton,Typography } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/AddCircle'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
@@ -43,7 +43,7 @@ const CartItem = ({ item }) => {
 
          <TableCell>
 
-            <Typography variant='h2' fontSize='1rem'>${price * quantity} </Typography>
+            <Typography variant='h2' fontSize='1rem'>${(price * quantity).toFixed(2)} </Typography>
 
          </TableCell>
 
