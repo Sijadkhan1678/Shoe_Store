@@ -31,10 +31,10 @@
                 <NavLink to="/cart" fontWeight={400} style={style}> Cart</NavLink>
                 <NavLink to="/about" fontWeight={400} style={style}> Contact Us </NavLink> 
                 <NavLink to="/about" fontWeight={400} style={style}> Shopping Cart </NavLink> 
-                
                 <NavLink to="/about" fontWeight={400} style={style}> About us </NavLink> 
 
             </Box>
+
             <Box pl="15px" mb="3rem">
                 <Typography variant="h5" marginBottom="1.5rem" fontSize="1.25rem" fontWeight={700} color="#2c2c2c">
                     Social Links
@@ -48,28 +48,27 @@
                 <NavLink to="/instagram" fontWeight={400} style={style}> Instagram </NavLink> 
                 <NavLink to="/instagram" fontWeight={400} style={style}> Instagram </NavLink> 
                 <NavLink to="/instagram" fontWeight={400} style={style}> Instagram </NavLink> 
-                 
-
 
             </Box>
+
             <Box pl={{lg:'30px',md:'30px',sm:"30px",xs:'15px'}} pr={{xs:"1rem"}} mb="3rem">
                 <Typography variant="h5" fontSize="1.25rem" fontWeight={700} color="#2c2c2c" marginBottom="1.5rem">
                     Newsletter
                 </Typography>
                 <Box mb="1rem">
-                <TextField fullWidth={{sm:"true"}} label="Your Name"  bgcolor="whitesmoke" />
+                <TextField fullWidth label="Your Name"  bgcolor="whitesmoke" />
                 </Box>
                 <Box mb="1rem">
-                <TextField fullWidth={{sm:"true"}} label="Your Email" bgcolor="whitesmoke" />
+                <TextField fullWidth label="Your Email" bgcolor="whitesmoke" />
                 </Box>
                 
-                <Button fullWidth variant="contained" sx={{color:"#000000",bgcolor:"#ffa71f",'&:hover':{color:'whitesmoke'}}}  size="large">Subscribe Now</Button>
-        
-                
+                <Button fullWidth variant="contained" sx={{color:"#000000",bgcolor:"#ffa71f",'&:hover':{color:'whitesmoke'}}}  size="large">Subscribe Now</Button>   
             </Box>
+            
             </Stack>
           
          </Stack>
+
          <Stack direction="row" flexWrap='wrap' alignItems='center' mx={{lg:'3rem',md:'3rem',sm:'orem'}} py="1.3rem">
          ©  <Typography variant='body1' fontWeight={600} ml={1}> Your Site Name.</Typography>
            <Typography variant="body1" ml={1}>All Rights Reserved. Designed by</Typography>
