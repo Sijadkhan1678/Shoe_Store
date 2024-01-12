@@ -15,20 +15,17 @@ const AppReducer = (state, action) => {
 
     case ADD_TO_CART:
 
-      const isProduct = state.cart.find( product => product.id === action.payload.id);
+      const product = state.cart.find( product => product.id === action.payload.id);
       
-      if (!isProduct) { 
+      if (!product) { 
         
         return { ...state, cart: [...state.cart, { ...action.payload }] }
 
       }
-
+      
       else {
 
-        return {
-
-          ...state, cart: state.cart.map(product => product.id !== isProduct.id ? product : { ...product, quantity: product.quantity + 1 })
-        }
+        product.quantity++  
 
       }
 
