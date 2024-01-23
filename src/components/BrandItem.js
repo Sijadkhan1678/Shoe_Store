@@ -1,34 +1,55 @@
-import React,{useContext} from 'react';
-import {Stack,Button} from '@mui/material';
+import React, { useContext } from 'react';
+import { Stack, Button } from '@mui/material';
 import context from '../context/AppContext';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 
 const BrandItem = () => {
-  const {selectedBrand,getBrandProducts} = useContext(context)
-  console.log('brand',selectedBrand)
-  
-  const brandList = [
-     {name: 'All',
-     active: selectedBrand === 'All' || selectedBrand === 'Home' ? 'contained' : 'outlined'},
-     { name:'Nike', active:selectedBrand === 'Nike' ? 'contained': 'outlined'},
-     { name:'Addidas',active: selectedBrand === 'Addidas' ? 'contained':'outlined'},
-      {name:'Fila', active: selectedBrand === 'Fila' ? 'contained' : 'outlined'
-      },
-      {name:'Puma', active : selectedBrand==='Puma' ? 'contained' : 'outlined'},
-      {name:'Reebok',active:selectedBrand ==='Reebok' ? 'contained': 'outlined'},
-     { name:'Jordan',active: selectedBrand === 'Jordan' ? 'contained' : 'outlined'}
+    
+    const { selectedBrand, getBrandProducts } = useContext(context)
+
+    const [value, setValue] = React.useState(0);
+
+    const brandList = [
+        
+        'All',
+        'Nike',
+        'Addidas',
+        'Fila',
+        'Puma',
+        'Reebok',
+        'Jordan'
     ]
+    
+    const handleChange = (event, newValue) => {
+
+        getBrandProducts(brandList[newValue])
+        setValue(newValue);
+
+    };
+
     return (
-      
-       <Stack  spacing={4} direction="row"
-         mt={5} ml={8} mb={8} >
-   
-        {brandList.map((brand,index)=>
-          (<Button key={index} variant={brand.active} onClick={()=>getBrandProducts(brand.name)} /*style={{color:'gray'}}*/>
-             {brand.name}
-          </Button>))}
-       </Stack>
-         )
+
+        <Box sx={{ width: '100%', mb: 6, mt: 2 }}>
+            <Tabs
+                value={value}
+                onChange={handleChange}
+                variant="scrollable"
+                scrollButtons={false}
+                indicatorColor="secondary"
+                textColor='secondary'
+                centered
+                >
+                    
+                {brandList.map((brand, index) => (<Tab key={index} label={brand} />))}
+
+            </Tabs>
+        </Box>
+
+
+    )
 }
 
 export default BrandItem;
