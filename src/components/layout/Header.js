@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Box, Stack, Badge, IconButton, SwipeableDrawer, List, ListItem, ListItemText } from '@mui/material'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { Box, Stack,Typography ,Badge, IconButton, SwipeableDrawer, List, ListItem, ListItemText } from '@mui/material'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from './logo.jpg'
+
 import { NavLink } from 'react-router-dom'
 import context from '../../context/AppContext'
 
@@ -14,7 +14,7 @@ const Header = () => {
 
     return (
 
-        <Box py={5} px={{ xs: 2, sm: 4, md: 8, lg: 10 }}>
+        <Box bgcolor='#eeeeee'  py={5} px={{ xs: 2, sm: 4, md: 8, lg: 10 }}>
             <SwipeableDrawer open={open} onOpen={toggleDrawer} onClose={toggleDrawer}>
 
                 <Box
@@ -50,7 +50,7 @@ const Header = () => {
                 </IconButton>
 
                 <Box width='50px' marginTop="6px">
-                    <img width='40px' src={logo} alt='logo' />
+                    <Typography variant='h4' color='black' fontWeight={800}>Shoefy</Typography>
                 </Box>
 
                 <Stack direction='row' sx={{
@@ -69,9 +69,9 @@ const Header = () => {
 
                     <IconButton aria-label='cart' size='large' p={5}>
 
-                        <NavLink style={{ color: '#e09d51' }} to='/cart'>
+                        <NavLink style={{ color: 'black' }} to='/cart'>
 
-                            <Badge badgeContent={cart.length} color='primary'> <ShoppingCartIcon /> </Badge>
+                            <Badge badgeContent={cart.length} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
 
                         </NavLink>
 
@@ -90,8 +90,8 @@ const style = ({ isActive }) => {
         fontWieght: '500',
         fontSize: '1.2rem',
         textDecoration: 'none',
-        color: '#97670f',
-        borderBottom: isActive ? '2px solid #b78f46' : ''
+        color: 'black',
+        borderBottom: isActive ? '2px solid black' : ''
     }
 }
 export default Header;
