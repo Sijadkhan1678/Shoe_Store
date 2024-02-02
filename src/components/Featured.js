@@ -14,7 +14,7 @@ const Featured = () => {
 
     }
 
-    const FeaturedContents = [createContent(<DoneIcon sx={{ fontSize: '2rem', color: 'orange' }} />, 'Quality Product'), createContent(<LocalShippingIcon sx={{ fontSize: '2rem', color: 'orange' }} />, 'Free Shipping'), createContent(<CompareArrowsIcon sx={{ fontSize: '2rem', color: 'orange' }} />, '14-Day Return'), createContent(<PhoneIcon sx={{ fontSize: '2rem', color: 'orange' }} />, '24/7 Support')]
+    const FeaturedContents = [createContent(<DoneIcon sx={{ fontSize: '2rem', color: '#ff7800' }} />, 'Quality Product'), createContent(<LocalShippingIcon sx={{ fontSize: '2rem', color: '#ff7800' }} />, 'Free Shipping'), createContent(<CompareArrowsIcon sx={{ fontSize: '2rem', color: '#ff7800' }} />, '14-Day Return'), createContent(<PhoneIcon sx={{ fontSize: '2rem', color: '#ff7800' }} />, '24/7 Support')]
 
     return (
         
