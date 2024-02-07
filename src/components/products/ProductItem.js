@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Grid, Typography, Box, Rating, Button, ButtonGroup, Stack } from '@mui/material'
 import context from '../../context/AppContext'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
@@ -9,41 +9,71 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 const ProductItem = ({ product }) => {
 
   const { name, img, price, rating, brand } = product
+  const [isHovered, setHovered] = useState(false)
   const { addToCart } = useContext(context);
-  
+
+
   let shoeName = name.slice(0, 14)
-  
+
+  function handleHover() {
+    if (isHovered) {
+      setHovered(false)
+    } else {
+      setHovered(true)
+    }
+
+  }
 
   return (
 
-    <Grid item lg={4} md={4} sm={6} xs={12} position='relative' zIndex={1}>
+    <Grid item lg={4} md={4} sm={6} xs={12} position='relative' onMouseEnter={handleHover} onMouseLeave={handleHover} zIndex={1}>
       <Box width="100%" >
-        <img src={img} alt='shoe' width='100%' height={250}  style={imgStyle} />
+        <img src={img} alt='shoe' width='100%' height={250} style={imgStyle} />
       </Box>
-      
-      <ButtonGroup
 
-        orientation="horizontal"
-        size="large"
-        sx={{width:'100%',ml:'9px',transform:'translateY(-20px)'}}
+      <ButtonGroup orientation="horizontal" size="large"
+        sx={{ width: '100%', ml: '9px', transform: 'translateY(-20px)' }}
       >
-        <Button variant='contained' boxShadow='none' style={{
-            backgroundColor: '#524938',
-            width:'20%',
-          }}  startIcon={<VisibilityIcon />}></Button>
-        <Button  onClick={() => addToCart(product)} variant='contained'
-          
-          style={{
-            backgroundColor: '#524938',
-            width:'56%',
-            
+        <Button sx={{
+          variant: 'contained',
+          bgcolor: '#524938',
+          color: 'white',
+          width: '20%',
+          transform: isHovered ? 'translateY(-26px)' : 'translateY(-10px)',
+          transition: 'opacity 300ms ease-in,transform 300ms ease-in,visibility 300ms ease-in',
+          visibility: isHovered ? 'visible' : 'hidden',
+          opacity: isHovered ? '1' : '0',
+          '&:hover': { bgcolor: '#ff7800' }
+        }} startIcon={<VisibilityIcon />}></Button>
+        <Button onClick={() => addToCart(product)}
+
+          sx={{
+            variant: 'contained',
+            bgcolor: '#524938',
+            color: 'white',
+            width: '56%',
+            transform: isHovered ? 'translateY(-26px)' : 'translateY(-10px)',
+            transition: 'opacity 400ms ease-in, transform 400ms ease-in-out, visibility 400ms ease-in',
+            transitionDelay: '200ms',
+            visibility: isHovered ? 'visible' : 'hidden',
+            opacity: isHovered ? '1' : '0',
+            '&:hover': { bgcolor: '#ff7800' }
+
           }}>ADD TO CART</Button>
-        <Button variant='contained' style={{
-            backgroundColor: '#524938',
-            width:'20%', 
-          }} startIcon={<CompareArrowsIcon />}></Button>
+        <Button sx={{
+          variant: 'contained',
+          backgroundColor: '#524938',
+          color: 'white',
+          width: '20%',
+          transform: isHovered ? 'translateY(-26px)' : 'translateY(-10px)',
+          transition: 'opacity 600ms ease-in,transform 600ms ease-in,visibility 600ms ease-in',
+          visibility: isHovered ? 'visible' : 'hidden',
+          transitionDelay: '200ms',
+          opacity: isHovered ? '1' : '0',
+          '&:hover': { bgcolor: '#ff7800' }
+        }} startIcon={<CompareArrowsIcon />}></Button>
       </ButtonGroup>
-      
+
       <Stack direction='column' justifyContent='space-evenly'>
 
         <Box sx={itemContentStyle}>
