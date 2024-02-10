@@ -66,16 +66,11 @@ const Header = () => {
                 </Stack>
 
                 <Box maxWidth='13%' >
+                <NavLink style={{ color: 'black' }} to='/cart'>
+  
+                    <Badge badgeContent={cart.length} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
 
-                    <IconButton aria-label='cart' size='large' p={5}>
-
-                        <NavLink style={{ color: 'black' }} to='/cart'>
-
-                            <Badge badgeContent={cart.length} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
-
-                        </NavLink>
-
-                    </IconButton>
+                </NavLink>
 
                 </Box>
 
