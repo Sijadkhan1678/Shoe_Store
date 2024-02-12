@@ -5,6 +5,10 @@ import { Link, NavLink } from 'react-router-dom'
 
 
 const Footer = () => {
+
+    const navLinks = [{link:'Home',path:'/'},{link:'Brand',path:'brands'},{link:'Shopping Cart',path:'cart'},{link:'Contact Us',path:'contact'},{link:'About us',path:'about'}];
+    const socialLinks = [{link:'Facebook',path:'/facebook'},{link:'twitter',path:'/twitter'},{link:'Linkdin',path:'/linkdin'},{link:'Instagram',path:'/instagram'},{link:'Tiktok',path:'/tiktok'}]
+   
     return (
         <Box mt="3rem" pt="3rem" px="0.9rem" bgcolor="#f5f5f5">
             <Stack pt="3rem" px={{ lg: "3rem", md: '1.5rem' }} direction={{ lg: 'row', md: "row", sm: 'column' }} justifyContent="space-between">
@@ -12,7 +16,6 @@ const Footer = () => {
                     <Box width='50px' mb="1.5rem">
                         <Typography variant='h4' fontWeight={700}>Shoefy</Typography>
                     </Box>
-
 
                     <Box mt="1.5rem">
                         <Typography variant='body1'>123 Street, New York, USA</Typography>
@@ -25,13 +28,8 @@ const Footer = () => {
                         <Typography variant='h5' fontSize="1.25rem" color="#2c2c2c" fontWeight={700} marginBottom="1.5rem">
                             Quick Shop
                         </Typography>
-
-                        <Typography varinat="body1" fontWeight={400}> <NavLink to='/' fontWeight={400} style={style}> Home </NavLink> </Typography>
-                        <NavLink to="/brands" fontWeight={400} style={style}> Brand  </NavLink>
-                        <NavLink to="/cart" fontWeight={400} style={style}> Cart</NavLink>
-                        <NavLink to="/about" fontWeight={400} style={style}> Contact Us </NavLink>
-                        <NavLink to="/about" fontWeight={400} style={style}> Shopping Cart </NavLink>
-                        <NavLink to="/about" fontWeight={400} style={style}> About us </NavLink>
+                        
+                        {navLinks.map((navLink,index)=> <NavLink key={index} to={navLink.path} fontWeight={400} style={navLinkStyle}> {navLink.link}  </NavLink> )}
 
                     </Box>
 
@@ -39,16 +37,9 @@ const Footer = () => {
                         <Typography variant="h5" marginBottom="1.5rem" fontSize="1.25rem" fontWeight={700} color="#2c2c2c">
                             Social Links
                         </Typography>
-                        <Typography variant='body1'>
-                            <NavLink to='Facebook' style={style}> Facebook </NavLink>
-                        </Typography>
-
-                        <NavLink to="/twitter" fontWeight={400} style={style}> twitter  </NavLink>
-                        <NavLink to="/Linkdin" fontWeight={400} style={style}>  Linkdin</NavLink>
-                        <NavLink to="/instagram" fontWeight={400} style={style}> Instagram </NavLink>
-                        <NavLink to="/instagram" fontWeight={400} style={style}> Instagram </NavLink>
-                        <NavLink to="/instagram" fontWeight={400} style={style}> Instagram </NavLink>
-
+                    
+                        {socialLinks.map((socialLink,index) =>  <Link key={index} to={socialLink.path} style={linkStyle} fontWeight={400}> {socialLink.link} </Link>)}
+                        
                     </Box>
 
                     <Box pl={{ lg: '30px', md: '30px', sm: "30px", xs: '15px' }} pr={{ xs: "1rem" }} mb="3rem">
@@ -86,17 +77,21 @@ const Footer = () => {
     )
 }
 
-const style = ({ isActive }) => {
+const navLinkStyle = ({ isActive }) => {
+
     return {
         display: 'block',
         fontSize: '1rem',
         marginBottom: '0.8rem',
-        textAlign: "left",
         textDecoration: 'none',
-        color: '#1c1c1c',
-        '&:hover': "#2c2c2c",
+        color: isActive ? '#ff7800': '#1c1c1c',   
     }
 }
-
+const linkStyle = {
+    display:'block',
+    textDecoration:'none',
+    marginBottom:'0.8rem',
+    color:'#1c1c1c',
+}
 
 export default Footer
