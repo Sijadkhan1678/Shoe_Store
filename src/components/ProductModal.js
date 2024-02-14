@@ -20,43 +20,61 @@ const ProductModal = () => {
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: 800,
-                    height: 355,
+                    width: 900,
+                    overflow: 'hidden',
+                    height: 390,
                     bgcolor: 'background.paper',
-
                     boxShadow: 24,
-                    '&:hover': { bgcolor: 'red' },
-                    // p: 2,
                 }}>
 
                     <Grid container>
 
-
                         <Grid item lg={6} md={6} sm={6} xs={5}>
-                            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4uStY5nioO6w7Bc7tqzodcfy2EVmVpfCjOQ&usqp=CAU' width='100%' height='355' alt='hero' />
+                            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4uStY5nioO6w7Bc7tqzodcfy2EVmVpfCjOQ&usqp=CAU' width='100%' height='390' alt='hero' />
                         </Grid>
 
                         <Grid item lg={6} md={6} sm={6} xs={5}>
-                            <Box p={3}>
-                                <Typography variant='h4' component='h3' mb={1.3} /*fontSize={28}*/ fontWeight={500}>Jordan 4 Thund</Typography>
+                            <Box p={2.5}>
 
-                                <Stack direction='row'>
-                                    <Typography variant='h6' component='h4'>price</Typography>
-                                    <Typography variant='h6' component='h4'></Typography>
-                                </Stack>
+                                <Typography variant='h4' component='h3' mb={1.3} fontSize={30} fontWeight={500}>Jordan 4 Thund</Typography>
+                                <Typography variant='h6' fontWeight={300} component='h4'>$45.00 USD</Typography>
+
                                 <Box mt={2}>
                                     <Stack >
                                         <ButtonGroup>
                                             <Button sx={{
                                                 variant: 'contained',
-                                                backgroundColor: '#524938',
-                                                color: 'white',
-                                                width: '20%',
+                                                backgroundColor: '#f7f7f7',
+                                                color: '#696969',
+                                                width: '12%',
                                                 border: 'none',
-                                                borderLeft: '1px solid white',
+                                                py: 1.2,
+                                                px: 3,
+                                                '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
+
+                                            }}>-</Button>
+                                            <Button sx={{
+                                                variant: 'contained',
+                                                backgroundColor: '#f7f7f7',
+                                                color: '#696969',
+                                                width: '12%',
+                                                px: 3,
+                                                py: 1.2,
+                                                border: 'none',
+                                                '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
+
+                                            }}>1</Button>
+                                            <Button sx={{
+                                                variant: 'contained',
+                                                backgroundColor: '#f7f7f7',
+                                                color: '#696969',
+                                                py: 1.2,
+                                                px: 3,
+                                                width: '12%',
+                                                border: 'none',
+                                                '&:hover': { border: 'none', bgcolor: '#f7f7f7' }
+
                                             }}>+</Button>
-                                            <Button>1</Button>
-                                            <Button>-</Button>
                                         </ButtonGroup>
 
                                     </Stack>
@@ -64,9 +82,17 @@ const ProductModal = () => {
                                         color: "white",
                                         bgcolor: "#524938",
                                         '&:hover': { bgcolor: '#ff7800' },
+                                        boxShadow: 'none',
                                         display: 'block',
-                                        borderRadius: '0px'
+                                        borderRadius: '0px',
+                                        my: 2.5
                                     }}>Add To Cart</Button>
+                                </Box>
+
+                                <Box mt={3}>
+                                    <Typography variant='h4' fontWeight={500} component='h3' mb={2}>Description</Typography>
+                                    <Typography variant='body1'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor...</Typography>
+
                                 </Box>
 
                             </Box>
