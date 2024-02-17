@@ -1,4 +1,4 @@
-import { GET_BRAND_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
+import { GET_BRAND_PRODUCTS, ADD_TO_CART, OPEN_MODAL, ADD_PRODUCT, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
 
 const AppReducer = (state, action) => {
 
@@ -12,7 +12,11 @@ const AppReducer = (state, action) => {
                 ...state, brandProducts: state.products.filter(product => product.brand === action.payload),
                 selectedBrand: action.payload
             }
-
+        case ADD_PRODUCT:
+            return { ...state, product: action.payload }
+        case OPEN_MODAL:
+            console.log('modal in reducer')
+            return { ...state, modal: action.payload }
         case ADD_TO_CART:
 
             const product = state.cart.find(product => product.id === action.payload.id);
@@ -30,13 +34,13 @@ const AppReducer = (state, action) => {
             }
 
         case REMOVE_FROM_CART:
-            
+
             return { ...state, cart: state.cart.filter(item => item.id !== action.payload) }
 
         case INCREASE_QUANTITY:
 
             return {
-                
+
                 ...state, cart: state.cart.map(product => product.id !== action.payload ? product : { ...product, quantity: product.quantity + 1 })
 
             }
@@ -47,7 +51,7 @@ const AppReducer = (state, action) => {
                 return {
                     ...state, cart: state.cart.map(product => product.id !== action.payload.id ? product : { ...product, quantity: action.payload.quantity - 1 })
                 }
-        
+
         case CHANGE_BRAND:
             return {
                 ...state, selectedBrand: action.payload
@@ -60,3 +64,4 @@ const AppReducer = (state, action) => {
 }
 
 export default AppReducer;
+

@@ -10,8 +10,7 @@ const ProductItem = ({ product }) => {
 
     const { name, img, price, rating, brand } = product
     const [isHovered, setHovered] = useState(false)
-    const { addToCart } = useContext(context);
-
+    const { addToCart,addProduct } = useContext(context);
 
     let shoeName = name.slice(0, 14)
 
@@ -26,7 +25,7 @@ const ProductItem = ({ product }) => {
 
     return (
 
-        <Grid item lg={4} md={4} sm={6} xs={12} position='relative' onMouseEnter={handleHover} onMouseLeave={handleHover} zIndex={1}>
+        <Grid item lg={4} md={4} sm={6} xs={12} onMouseEnter={handleHover} onMouseLeave={handleHover}>
             <Box width="100%" >
                 <img src={img} alt='shoe' width='100%' height={250} style={imgStyle} />
             </Box>
@@ -34,7 +33,7 @@ const ProductItem = ({ product }) => {
             <ButtonGroup orientation="horizontal" size="large"
                 sx={{ width: '100%', ml: '9px', transform: 'translateY(-20px)' }}
             >
-                <Button sx={{
+                <Button onClick={()=> addProduct(product)} startIcon={<VisibilityIcon />} sx={{
                     variant: 'contained',
                     bgcolor: '#524938',
                     color: 'white',
@@ -45,7 +44,7 @@ const ProductItem = ({ product }) => {
                     visibility: isHovered ? 'visible' : 'hidden',
                     opacity: isHovered ? '1' : '0',
                     '&:hover': { bgcolor: '#ff7800',border:'none' }
-                }} startIcon={<VisibilityIcon />}></Button>
+                }}></Button>
                 <Button onClick={() => addToCart(product)}
 
                     sx={{
