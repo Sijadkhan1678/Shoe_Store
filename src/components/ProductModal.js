@@ -5,9 +5,9 @@ import context from '../context/AppContext'
 
 const ProductModal = () => {
 
-    const { product, modal, handleModal } = React.useContext(context)
+    const { product, modalOpen, closeModal } = React.useContext(context)
 
-    const handleClose = () => handleModal(false);
+    const handleClose = () => closeModal(false);
 
     const xs = 600;
     const sm = 900;
@@ -28,7 +28,7 @@ const ProductModal = () => {
     return (
 
         <Modal
-            open={modal}
+            open={modalOpen}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"

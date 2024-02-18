@@ -1,4 +1,4 @@
-import { GET_BRAND_PRODUCTS, ADD_TO_CART, OPEN_MODAL, ADD_PRODUCT, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
+import { GET_BRAND_PRODUCTS, ADD_TO_CART, OPEN_MODAL, CLOSE_MODAL, ADD_PRODUCT, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
 
 const AppReducer = (state, action) => {
 
@@ -12,11 +12,18 @@ const AppReducer = (state, action) => {
                 ...state, brandProducts: state.products.filter(product => product.brand === action.payload),
                 selectedBrand: action.payload
             }
+
         case ADD_PRODUCT:
+
             return { ...state, product: action.payload }
+
         case OPEN_MODAL:
-            console.log('modal in reducer')
-            return { ...state, modal: action.payload }
+
+            return { ...state, modalOpen: true }
+
+        
+        case CLOSE_MODAL:
+            return { ...state, product: null, modalOpen: false }
         case ADD_TO_CART:
 
             const product = state.cart.find(product => product.id === action.payload.id);

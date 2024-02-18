@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
 
     const { name, img, price, rating, brand } = product
     const [isHovered, setHovered] = useState(false)
-    const { addToCart,addProduct } = useContext(context);
+    const { addToCart,addProduct, openModal } = useContext(context);
 
     let shoeName = name.slice(0, 14)
 
@@ -21,6 +21,11 @@ const ProductItem = ({ product }) => {
             setHovered(true)
         }
 
+    }
+    
+    function handleViewModal() {
+        addProduct(product)
+        openModal()
     }
 
     return (
@@ -33,7 +38,7 @@ const ProductItem = ({ product }) => {
             <ButtonGroup orientation="horizontal" size="large"
                 sx={{ width: '100%', ml: '9px', transform: 'translateY(-20px)' }}
             >
-                <Button onClick={()=> addProduct(product)} startIcon={<VisibilityIcon />} sx={{
+                <Button onClick={handleViewModal} startIcon={<VisibilityIcon />} sx={{
                     variant: 'contained',
                     bgcolor: '#524938',
                     color: 'white',

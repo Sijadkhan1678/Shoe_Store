@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import AppReducer from './AppReducer';
 import context from './AppContext';
 import shoesList from './Data'
-import { GET_BRAND_PRODUCTS, ADD_TO_CART, ADD_PRODUCT,OPEN_MODAL, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
+import { GET_BRAND_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, ADD_PRODUCT,OPEN_MODAL, CLOSE_MODAL, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
 
 const AppState = ({ children }) => {
 
@@ -11,7 +11,7 @@ const AppState = ({ children }) => {
         brandProducts: [],
         cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
         selectedBrand: 'Home',
-        modal:false,
+        modalOpen:false,
         product:null
     }
 
@@ -35,10 +35,13 @@ const AppState = ({ children }) => {
             payload: brand
         })
     }
-    const handleModal = (isOpen) => { dispatch({type:OPEN_MODAL,payload:isOpen}) }
+    const openModal = () => { dispatch({type:OPEN_MODAL}) }
+    
+    const closeModal = () => { dispatch({type:CLOSE_MODAL}) }
+
     const addProduct = (product) => {
-        console.log(product)
-       handleModal(true)
+        
+
        dispatch({type:ADD_PRODUCT,payload:product}) 
     }
 
@@ -91,7 +94,7 @@ const AppState = ({ children }) => {
         <context.Provider value={{
             products: state.products,
             product: state.product,
-            modal: state.modal,
+            modalOpen: state.modalOpen,
             cart: state.cart,
             selectedBrand: state.selectedBrand,
             brandProducts: state.brandProducts,
@@ -102,7 +105,8 @@ const AppState = ({ children }) => {
             increaseQuantity,
             decreaseQuantity,
             changeBrand,
-            handleModal
+            openModal,
+            closeModal,
         }}>
             {children}
         </context.Provider>
