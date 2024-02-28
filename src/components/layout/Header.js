@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Box, Stack, Typography, Badge, IconButton, SwipeableDrawer, List, ListItem, ListItemText } from '@mui/material'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import { NavLink } from 'react-router-dom'
 import context from '../../context/AppContext'
 
@@ -10,13 +9,16 @@ const Header = () => {
 
     const { cart } = useContext(context)
     const [open, setOpen] = useState(false)
-    const [isHovered, setHovered] = useState(false)
+    const [navActiveItem, setNavActiveItem] = useState('Home')
+    const [isHovered, setHovered] = useState(undefined)
     const [currentNavItemHovered, setCurrentNavItemHovered] = useState(undefined)
     const toggleDrawer = () => setOpen(!open)
 
     const setCurrentItemHoveredEffect = (e) => {
+
         setHovered(true);
         setCurrentNavItemHovered(e.target.textContent)
+
     }
 
     return (
@@ -67,9 +69,9 @@ const Header = () => {
                     width: { sm: '50%', md: '30%', lg: '30%' },
                 }}>
 
-                    <NavLink to='/' style={isHovered && currentNavItemHovered === 'Home' ? hoverStyled : style} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Home</NavLink>
-                    <NavLink to='/brands' style={isHovered && currentNavItemHovered === 'Brand' ? hoverStyled : style} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Brand</NavLink>
-                    <NavLink to='/about' style={isHovered && currentNavItemHovered === 'About' ? hoverStyled : style} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>About</NavLink>
+                    <NavLink to='/' style={isHovered && currentNavItemHovered === 'Home' && navActiveItem !== "Home" ? hoverStyled : style} onClick={() => setNavActiveItem('Home')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Home</NavLink>
+                    <NavLink to='/brands' style={isHovered && currentNavItemHovered === 'Brand' && navActiveItem !== "Brands" ? hoverStyled : style} onClick={() => setNavActiveItem('Brands')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Brand</NavLink>
+                    <NavLink to='/about' style={isHovered && currentNavItemHovered === 'About' && navActiveItem !== "About" ? hoverStyled : style} onClick={() => setNavActiveItem('About')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>About</NavLink>
 
                 </Stack>
 
@@ -103,7 +105,6 @@ const hoverStyled = {
     fontWieght: 500,
     fontSize: '1.2rem',
     textDecoration: 'none',
-    transition: 'border 300ms ease-in',
     color: '#ff7800',
 }
 
