@@ -10,7 +10,7 @@ const Header = () => {
     const { cart } = useContext(context)
     const [open, setOpen] = useState(false)
     const [navActiveItem, setNavActiveItem] = useState('Home')
-    const [isHovered, setHovered] = useState(undefined)
+    const [isHovered, setHovered] = useState(false)
     const [currentNavItemHovered, setCurrentNavItemHovered] = useState(undefined)
     const toggleDrawer = () => setOpen(!open)
 
@@ -67,6 +67,7 @@ const Header = () => {
                     justifyContent: 'space-between',
                     display: { xs: 'none', sm: 'flex' },
                     width: { sm: '50%', md: '30%', lg: '30%' },
+                    height: 30
                 }}>
 
                     <NavLink to='/' style={isHovered && currentNavItemHovered === 'Home' && navActiveItem !== "Home" ? hoverStyled : style} onClick={() => setNavActiveItem('Home')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Home</NavLink>
