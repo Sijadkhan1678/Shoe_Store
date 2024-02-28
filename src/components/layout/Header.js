@@ -71,7 +71,7 @@ const Header = () => {
                 }}>
 
                     <NavLink to='/' style={isHovered && currentNavItemHovered === 'Home' && navActiveItem !== "Home" ? hoverStyled : style} onClick={() => setNavActiveItem('Home')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Home</NavLink>
-                    <NavLink to='/brands' style={isHovered && currentNavItemHovered === 'Brand' && navActiveItem !== "Brands" ? hoverStyled : style} onClick={() => setNavActiveItem('Brands')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Brand</NavLink>
+                    <NavLink to='/brands' style={isHovered && currentNavItemHovered === 'Brand' && navActiveItem !== "Brand" ? hoverStyled : style} onClick={() => setNavActiveItem('Brand')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Brand</NavLink>
                     <NavLink to='/about' style={isHovered && currentNavItemHovered === 'About' && navActiveItem !== "About" ? hoverStyled : style} onClick={() => setNavActiveItem('About')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>About</NavLink>
 
                 </Stack>
