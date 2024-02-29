@@ -77,7 +77,7 @@ const Header = () => {
                 </Stack>
 
                 <Box maxWidth='13%'>
-                    <NavLink style={{ color: 'black' }} to='/cart'>
+                    <NavLink style={{ color: 'black' }} to='/cart' onClick={() => setNavActiveItem('cart')}>
 
                         <Badge badgeContent={cart.length} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
 
@@ -96,7 +96,6 @@ const style = ({ isActive }) => {
         fontWieght: 500,
         fontSize: '1.2rem',
         textDecoration: 'none',
-        transition: 'border 100ms ease-in',
         color: 'black',
         borderBottom: isActive ? '2px solid black' : ''
     }
