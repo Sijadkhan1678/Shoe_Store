@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { useMediaQuery } from '@mui/material';
-import hero from './hero3.png'
+import hero from './hero.png'
 
 const Hero = () => {
 
