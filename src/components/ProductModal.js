@@ -5,9 +5,22 @@ import context from '../context/AppContext'
 
 const ProductModal = () => {
 
-    const { product, modalOpen, closeModal } = React.useContext(context)
+    const { product, modalOpen, closeModal, addToCart } = React.useContext(context);
+    const [quantity,setQuantity] = React.useState(1);
 
-    const handleClose = () => closeModal(false);
+    const handleProductQuantity = (type) => {
+          
+        if(type === 'increase'){
+            setQuantity(quantity+1)
+        }
+        if(type === 'decrease'){
+            if(quantity > 1){
+                setQuantity(quantity-1)    
+            }
+            
+        }
+    }
+    const handleClose = () => { closeModal(false); setQuantity(1) }
 
     const xs = 600;
     const sm = 900;
@@ -48,7 +61,7 @@ const ProductModal = () => {
                 <Grid container>
 
                     <Grid item lg={6} md={6} sm={6} xs={12}>
-                        
+                       
                         <img src={product && product.img} style={imageStyle} alt='product' />
                         
                     </Grid>
@@ -62,7 +75,7 @@ const ProductModal = () => {
                             <Box mt={2}>
                                 <Stack>
                                     <ButtonGroup>
-                                        <Button sx={{
+                                        <Button onClick={()=>handleProductQuantity('decrease')} sx={{
                                             variant: 'contained',
                                             backgroundColor: '#f7f7f7',
                                             color: '#696969',
@@ -83,8 +96,8 @@ const ProductModal = () => {
                                             border: 'none',
                                             '&:hover': { border: 'none' }
 
-                                        }}>1</Button>
-                                        <Button sx={{
+                                        }}>{quantity}</Button>
+                                        <Button onClick={() => handleProductQuantity('increase')} sx={{
                                             variant: 'contained',
                                             backgroundColor: '#f7f7f7',
                                             color: '#696969',
@@ -98,7 +111,7 @@ const ProductModal = () => {
                                     </ButtonGroup>
 
                                 </Stack>
-                                <Button fullWidth variant="contained" size="large" sx={{
+                                <Button fullWidth onClick={() => addToCart({...product,quantity},'modal_view')} variant="contained" size="large" sx={{
                                     color: "white",
                                     bgcolor: "#524938",
                                     '&:hover': { bgcolor: '#ff7800' },

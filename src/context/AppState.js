@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import AppReducer from './AppReducer';
 import context from './AppContext';
 import shoesList from './Data'
-import { GET_BRAND_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, ADD_PRODUCT,OPEN_MODAL, CLOSE_MODAL, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
+import { GET_BRAND_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, ADD_PRODUCT, OPEN_MODAL, CLOSE_MODAL, INCREASE_QUANTITY, DECREASE_QUANTITY, CHANGE_BRAND } from './Types';
 
 const AppState = ({ children }) => {
 
@@ -11,8 +11,8 @@ const AppState = ({ children }) => {
         brandProducts: [],
         cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
         selectedBrand: 'Home',
-        modalOpen:false,
-        product:null
+        modalOpen: false,
+        product: null
     }
 
 
@@ -35,23 +35,31 @@ const AppState = ({ children }) => {
             payload: brand
         })
     }
-    const openModal = () => { dispatch({type:OPEN_MODAL}) }
-    
-    const closeModal = () => { dispatch({type:CLOSE_MODAL}) }
+    const openModal = () => { dispatch({ type: OPEN_MODAL }) }
+
+    const closeModal = () => { dispatch({ type: CLOSE_MODAL }) }
 
     const addProduct = (product) => {
-        
 
-       dispatch({type:ADD_PRODUCT,payload:product}) 
+
+        dispatch({ type: ADD_PRODUCT, payload: product })
     }
 
     // function add to cart product
-    const addToCart = (product) => {
+    const addToCart = (product, viewType = undefined) => {
+        if (viewType) {
 
-        dispatch({
-            type: ADD_TO_CART,
-            payload: { ...product, quantity: 1 }
-        })
+            dispatch({
+                type: ADD_TO_CART,
+                payload: product
+            })
+
+        } else {
+            dispatch({
+                type: ADD_TO_CART,
+                payload: { ...product, quantity: 1 }
+            })
+        }
 
     }
 
@@ -89,7 +97,7 @@ const AppState = ({ children }) => {
             payload: brand
         })
     }
-    console.log('state',state.modal)
+    console.log('state', state.modal)
     return (
         <context.Provider value={{
             products: state.products,
