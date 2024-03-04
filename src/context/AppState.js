@@ -6,7 +6,7 @@ import { GET_BRAND_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, ADD_PRODUCT, OPEN_MO
 
 const AppState = ({ children }) => {
 
-    const initalState = {
+    const initialState = {
         products: shoesList,
         brandProducts: [],
         cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
@@ -16,7 +16,7 @@ const AppState = ({ children }) => {
     }
 
 
-    const [state, dispatch] = useReducer(AppReducer, initalState);
+    const [state, dispatch] = useReducer(AppReducer, initialState);
 
 
     useEffect(() => {
