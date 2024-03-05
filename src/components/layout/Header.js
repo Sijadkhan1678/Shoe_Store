@@ -1,18 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { Box, Stack, Typography, Badge, IconButton, SwipeableDrawer, List, ListItem, ListItemText } from '@mui/material'
+import { useLocation } from 'react-router-dom';
+import { Box, Stack, Typography, Badge, IconButton, SwipeableDrawer, List, ListItem, ListItemText } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavLink } from 'react-router-dom'
-import context from '../../context/AppContext'
+import { NavLink } from 'react-router-dom';
+import context from '../../context/AppContext';
 
 const Header = () => {
-
-    const { cart } = useContext(context)
+    
+    const { cart } = useContext(context);
     const [open, setOpen] = useState(false)
     const [navActiveItem, setNavActiveItem] = useState('Home')
     const [isHovered, setHovered] = useState(false)
     const [currentNavItemHovered, setCurrentNavItemHovered] = useState(undefined)
     const toggleDrawer = () => setOpen(!open)
+    const currentLocation = useLocation().pathname
 
     const setCurrentItemHoveredEffect = (e) => {
 
@@ -23,7 +25,7 @@ const Header = () => {
 
     return (
 
-        <Box bgcolor='#eeeeee' py={5} px={{ xs: 2, sm: 4, md: 8, lg: 10 }}>
+        <Box bgcolor={ currentLocation === '/' ? '#eeeeee' :'white'} py={5} px={{ xs: 2, sm: 4, md: 8, lg: 10 }}>
             <SwipeableDrawer open={open} onOpen={toggleDrawer} onClose={toggleDrawer}>
 
                 <Box
