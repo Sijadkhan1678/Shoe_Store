@@ -10,9 +10,8 @@ const ProductItem = ({ product }) => {
 
     const { name, img, price, rating, brand } = product
     const [isHovered, setHovered] = useState(false)
-    const { addToCart,addProduct, openModal } = useContext(context);
+    const { addToCart, addProduct, openModal } = useContext(context);
 
-    let shoeName = name.slice(0, 14)
 
     function handleHover() {
         if (isHovered) {
@@ -22,7 +21,7 @@ const ProductItem = ({ product }) => {
         }
 
     }
-    
+
     function handleViewModal() {
         addProduct(product)
         openModal()
@@ -43,12 +42,12 @@ const ProductItem = ({ product }) => {
                     bgcolor: '#524938',
                     color: 'white',
                     width: '20%',
-                    border:'none',
+                    border: 'none',
                     transform: isHovered ? 'translateY(-24px)' : 'translateY(-10px)',
                     transition: 'opacity 300ms ease-in,transform 300ms ease-in,visibility 300ms ease-in',
                     visibility: isHovered ? 'visible' : 'hidden',
                     opacity: isHovered ? '1' : '0',
-                    '&:hover': { bgcolor: '#ff7800',border:'none' }
+                    '&:hover': { bgcolor: '#ff7800', border: 'none' }
                 }}></Button>
                 <Button onClick={() => addToCart(product)}
 
@@ -57,14 +56,14 @@ const ProductItem = ({ product }) => {
                         bgcolor: '#524938',
                         color: 'white',
                         width: '56%',
-                        border:'none',
+                        border: 'none',
                         borderLeft: '1px solid white',
                         transform: isHovered ? 'translateY(-24px)' : 'translateY(-10px)',
                         transition: 'opacity 400ms ease-in, transform 400ms ease-in-out, visibility 400ms ease-in',
                         transitionDelay: '200ms',
                         visibility: isHovered ? 'visible' : 'hidden',
                         opacity: isHovered ? '1' : '0',
-                        '&:hover': { bgcolor: '#ff7800',border:'none' }
+                        '&:hover': { bgcolor: '#ff7800', border: 'none' }
 
                     }}>ADD TO CART</Button>
                 <Button sx={{
@@ -72,14 +71,14 @@ const ProductItem = ({ product }) => {
                     backgroundColor: '#524938',
                     color: 'white',
                     width: '20%',
-                    border:'none',
+                    border: 'none',
                     borderLeft: '1px solid white',
                     transform: isHovered ? 'translateY(-24px)' : 'translateY(-10px)',
                     transition: 'opacity 600ms ease-in,transform 600ms ease-in,visibility 600ms ease-in',
                     visibility: isHovered ? 'visible' : 'hidden',
                     transitionDelay: '200ms',
                     opacity: isHovered ? '1' : '0',
-                    '&:hover': { bgcolor: '#ff7800',border:'none' }
+                    '&:hover': { bgcolor: '#ff7800', border: 'none' }
                 }} startIcon={<CompareArrowsIcon />}></Button>
             </ButtonGroup>
 
@@ -87,7 +86,7 @@ const ProductItem = ({ product }) => {
 
                 <Box sx={itemContentStyle}>
                     <Typography variant='h6' color="#1c1c1c" fontWeight='400' fontSize='1rem'>
-                        {shoeName}
+                        {name}
                     </Typography>
 
                     <Typography
@@ -98,7 +97,7 @@ const ProductItem = ({ product }) => {
                 </Box>
 
                 <Box sx={star$brand_sx}>
-                    <Rating value={rating} size='small' readOnly />
+                    <Rating value={rating} size='small' readOnly sx={{ color: 'black' }} />
                     <Typography variant='body1' fontSize='14px' fontWeight='300' >
                         {brand}
                     </Typography>
@@ -111,7 +110,6 @@ const ProductItem = ({ product }) => {
     )
 }
 const itemContentStyle = {
-    pt: '1.5rem',
     pb: '1rem',
     pr: '0.4rem',
     display: 'flex',
@@ -119,7 +117,6 @@ const itemContentStyle = {
     justifyContent: 'space-between'
 }
 const star$brand_sx = {
-    pt: '0rem',
     pb: '0.5rem',
     pr: '0.4rem',
     ml: '-0.23rem',
