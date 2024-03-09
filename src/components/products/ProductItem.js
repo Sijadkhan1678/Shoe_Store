@@ -1,87 +1,25 @@
-import React, { useContext, useState } from 'react';
-import { Grid, Typography, Box, Rating, Button, ButtonGroup, Stack } from '@mui/material'
-import context from '../../context/AppContext'
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import React, { useState } from 'react';
+import { Grid, Typography, Box, Rating, Stack } from '@mui/material'
+import ProductActionButton from './ProductActionButton';
 
 
 
 const ProductItem = ({ product }) => {
 
-    const { name, img, price, rating, brand } = product
     const [isHovered, setHovered] = useState(false)
-    const { addToCart, addProduct, openModal } = useContext(context);
-
-
-    function handleHover() {
-        if (isHovered) {
-            setHovered(false)
-        } else {
-            setHovered(true)
-        }
-
-    }
-
-    function handleViewModal() {
-        addProduct(product)
-        openModal()
-    }
+    const { name, img, price, rating, brand } = product
+    
+    function handleHover() { setHovered(!isHovered) }
 
     return (
 
         <Grid item lg={4} md={4} sm={6} xs={12} onMouseEnter={handleHover} onMouseLeave={handleHover}>
+
             <Box width="100%" >
-                <img src={img} alt='shoe' width='100%' height={250} style={imgStyle} />
+                <img src={img} alt='shoe' width='100%' height={250} style={productImgStyle} />
             </Box>
 
-            <ButtonGroup orientation="horizontal" size="large"
-                sx={{ width: '100%', ml: '9px', transform: 'translateY(-20px)' }}
-            >
-                <Button onClick={handleViewModal} startIcon={<VisibilityIcon />} sx={{
-                    variant: 'contained',
-                    bgcolor: '#524938',
-                    color: 'white',
-                    width: '20%',
-                    border: 'none',
-                    transform: isHovered ? 'translateY(-24px)' : 'translateY(-10px)',
-                    transition: 'opacity 300ms ease-in,transform 300ms ease-in,visibility 300ms ease-in',
-                    visibility: isHovered ? 'visible' : 'hidden',
-                    opacity: isHovered ? '1' : '0',
-                    '&:hover': { bgcolor: '#ff7800', border: 'none' }
-                }}></Button>
-                <Button onClick={() => addToCart(product)}
-
-                    sx={{
-                        variant: 'contained',
-                        bgcolor: '#524938',
-                        color: 'white',
-                        width: '56%',
-                        border: 'none',
-                        borderLeft: '1px solid white',
-                        transform: isHovered ? 'translateY(-24px)' : 'translateY(-10px)',
-                        transition: 'opacity 400ms ease-in, transform 400ms ease-in-out, visibility 400ms ease-in',
-                        transitionDelay: '200ms',
-                        visibility: isHovered ? 'visible' : 'hidden',
-                        opacity: isHovered ? '1' : '0',
-                        '&:hover': { bgcolor: '#ff7800', border: 'none' }
-
-                    }}>ADD TO CART</Button>
-                <Button sx={{
-                    variant: 'contained',
-                    backgroundColor: '#524938',
-                    color: 'white',
-                    width: '20%',
-                    border: 'none',
-                    borderLeft: '1px solid white',
-                    transform: isHovered ? 'translateY(-24px)' : 'translateY(-10px)',
-                    transition: 'opacity 600ms ease-in,transform 600ms ease-in,visibility 600ms ease-in',
-                    visibility: isHovered ? 'visible' : 'hidden',
-                    transitionDelay: '200ms',
-                    opacity: isHovered ? '1' : '0',
-                    '&:hover': { bgcolor: '#ff7800', border: 'none' }
-                }} startIcon={<CompareArrowsIcon />}></Button>
-            </ButtonGroup>
-
+            <ProductActionButton product={product} isHovered={isHovered} />
             <Stack direction='column' justifyContent='space-evenly'>
 
                 <Box sx={itemContentStyle}>
@@ -96,7 +34,7 @@ const ProductItem = ({ product }) => {
                     </Typography>
                 </Box>
 
-                <Box sx={star$brand_sx}>
+                <Box sx={itemContentStyle2}>
                     <Rating value={rating} size='small' readOnly sx={{ color: 'black' }} />
                     <Typography variant='body1' fontSize='14px' fontWeight='300' >
                         {brand}
@@ -110,13 +48,15 @@ const ProductItem = ({ product }) => {
     )
 }
 const itemContentStyle = {
+
     pb: '1rem',
     pr: '0.4rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between'
 }
-const star$brand_sx = {
+const itemContentStyle2 = {
+
     pb: '0.5rem',
     pr: '0.4rem',
     ml: '-0.23rem',
@@ -125,10 +65,10 @@ const star$brand_sx = {
     justifyContent: 'space-between'
 }
 
-const imgStyle = {
+const productImgStyle = {
+
     borderRadius: '0.8rem',
     objectFit: 'cover',
-
 }
 
 export default ProductItem;
