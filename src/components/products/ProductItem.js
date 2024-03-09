@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Typography, Box, Rating, Stack } from '@mui/material'
-import ProductActionButton from './ProductActionButton';
+import ProductActionButton from './ProductActionButtons';
 
 
 
