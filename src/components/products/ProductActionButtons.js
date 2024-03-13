@@ -21,7 +21,7 @@ const ProductActionButtons = ({ product, isHovered }) => {
         border: 'none',
     }
     const hoverStyled = {
-        transform: isHovered ? 'translateY(-24px)' : 'translateY(-10px)',
+        transform: isHovered ? 'translateY(-15px)' : 'translateY(-10px)',
         visibility: isHovered ? 'visible' : 'hidden',
         opacity: isHovered ? '1' : '0',
         '&:hover': { bgcolor: '#ff7800', border: 'none' }
@@ -34,18 +34,19 @@ const ProductActionButtons = ({ product, isHovered }) => {
     const quickViewButtonStyle = addDefaultStyle({
         width: '20%',
         transition: 'opacity 300ms ease-in, transform 300ms ease-in, visibility 300ms ease-in',
+        transitionDelay:'300ms'
     })
     const addToCartButtonStyle = addDefaultStyle({
-        width: '56%',
+        width: '60%',
         borderLeft: '1px solid white',
-        transition: 'opacity 400ms ease-in, transform 400ms ease-in-out, visibility 400ms ease-in',
-        transitionDelay: '200ms',
+        transition: 'opacity 300ms ease-in, transform 300ms ease-in-out, visibility 400ms ease-in',
+        transitionDelay: '600ms',
     })
     const compareButtonStyle = addDefaultStyle({
-        width: '20%',
+        width: '21%',
         borderLeft: '1px solid white',
-        transition: 'opacity 600ms ease-in, transform 600ms ease-in, visibility 600ms ease-in',
-        transitionDelay: '200ms',
+        transition: 'opacity 300ms ease-in, transform 300ms ease-in, visibility 600ms ease-in',
+        transitionDelay: '800ms',
 
     })
 
@@ -54,8 +55,11 @@ const ProductActionButtons = ({ product, isHovered }) => {
         <ButtonGroup orientation="horizontal" size="large"
             sx={{
                 width: '100%',
-                ml: '9px',
-                transform: 'translateY(-20px)'
+                transform:'translateY(15px)',
+                position:'absolute',
+                bottom:0,
+                left:0,
+                right:0,
             }}>
 
             <Button onClick={handleViewModal} startIcon={<VisibilityIcon />} sx={quickViewButtonStyle} />
