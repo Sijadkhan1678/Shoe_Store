@@ -3,35 +3,37 @@ import { Grid, Typography, Box, Rating, Stack } from '@mui/material'
 import ProductActionButton from './ProductActionButtons';
 
 
-
 const ProductItem = ({ product }) => {
 
     const [isHovered, setHovered] = useState(false)
     const { name, img, price, rating, brand } = product
-    
+
     function handleHover() { setHovered(!isHovered) }
 
     return (
 
         <Grid item lg={4} md={4} sm={6} xs={12} onMouseEnter={handleHover} onMouseLeave={handleHover}>
 
-            <Box width="100%" >
+            <Box width="100%" sx={{ position: 'relative', overflow: 'hidden', height: 250 }} >
+
                 <img src={img} alt='shoe' width='100%' height={250} style={productImgStyle} />
+                <ProductActionButton product={product} isHovered={isHovered} />
+
             </Box>
 
-            <ProductActionButton product={product} isHovered={isHovered} />
-            <Stack direction='column' justifyContent='space-evenly'>
+
+            <Stack direction='column' justifyContent='space-evenly' pt={2}>
 
                 <Box sx={itemContentStyle}>
+
                     <Typography variant='h6' color="#1c1c1c" fontWeight='400' fontSize='1rem'>
                         {name}
                     </Typography>
 
-                    <Typography
-                        variant='body1'
-                        color='primary'>
+                    <Typography variant='body1' color='primary'>
                         $ {price}
                     </Typography>
+
                 </Box>
 
                 <Box sx={itemContentStyle2}>
@@ -67,7 +69,8 @@ const itemContentStyle2 = {
 
 const productImgStyle = {
 
-    borderRadius: '0.8rem',
+    borderTopLeftRadius: '0.8rem',
+    borderTopRightRadius: '0.8rem',
     objectFit: 'cover',
 }
 
