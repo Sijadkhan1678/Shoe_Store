@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box, Modal, Grid, Typography, ButtonGroup, Button, useMediaQuery } from '@mui/material'
+import { Box, Modal, Grid, Typography, ButtonGroup, Button, useMediaQuery, IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
 import context from '../context/AppContext'
 
 
@@ -25,7 +26,7 @@ const ProductModal = () => {
     const xs = 600;
     const sm = 900;
     const md = 1200;
-    const lg = 1536;
+    // const lg = 1536;
 
     const isMobile = useMediaQuery(`(max-width: ${xs}px)`);
     const isSmall = useMediaQuery(`(max-width: ${sm}px)`);
@@ -37,6 +38,17 @@ const ProductModal = () => {
         height: isLarge ? 450 : (isSmall ? (isMobile ? 350 : 450) : 450),
         objectFit: 'cover'
     };
+
+    const buttonDefaultStyle = {
+        variant: 'contained',
+        width: '12%',
+        color: '#696969',
+        py: 1.2,
+        px: 3,
+        backgroundColor: '#f7f7f7',
+        border: 'none',
+        '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
+    }
 
     return (
 
@@ -68,7 +80,9 @@ const ProductModal = () => {
                     </Grid>
 
                     <Grid item lg={6} md={6} sm={6} xs={12}>
+                        <Box sx={{ position: 'absolute', right: 8, top: 3 }}><IconButton onClick={handleClose}><CloseIcon /></IconButton></Box>
                         <Box p={2.5}>
+
 
                             {product && (<Typography variant='h4' component='h3' mb={1.3} fontSize={30} fontWeight={500}>{product.name}</Typography>)}
                             {product && (<Typography variant='h6' fontWeight={300} component='h4'>${product.price} USD</Typography>)}
@@ -76,40 +90,15 @@ const ProductModal = () => {
                             <Box mt={2}>
 
                                 <ButtonGroup>
-                                    <Button onClick={() => handleProductQuantity('decrease')} sx={{
-                                        variant: 'contained',
-                                        backgroundColor: '#f7f7f7',
-                                        color: '#696969',
-                                        width: '12%',
-                                        border: 'none',
-                                        py: 1.2,
-                                        px: 3,
-                                        '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
 
-                                    }}>-</Button>
+                                    <Button onClick={() => handleProductQuantity('decrease')} sx={{...buttonDefaultStyle}}>-</Button>
                                     <Button disableRipple sx={{
-                                        variant: 'contained',
-                                        backgroundColor: '#f7f7f7',
-                                        color: '#696969',
+                                        ...buttonDefaultStyle,
                                         cursor: 'default',
-                                        width: '12%',
-                                        px: 3,
-                                        py: 1.2,
-                                        border: 'none',
                                         '&:hover': { border: 'none', bgcolor: '#f7f7f7' }
 
                                     }}>{quantity}</Button>
-                                    <Button onClick={() => handleProductQuantity('increase')} sx={{
-                                        variant: 'contained',
-                                        backgroundColor: '#f7f7f7',
-                                        color: '#696969',
-                                        py: 1.2,
-                                        px: 3,
-                                        width: '12%',
-                                        border: 'none',
-                                        '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
-
-                                    }}>+</Button>
+                                    <Button onClick={() => handleProductQuantity('increase')} sx={{ ...buttonDefaultStyle, }}>+</Button>
                                 </ButtonGroup>
 
 
