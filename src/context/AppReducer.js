@@ -21,9 +21,11 @@ const AppReducer = (state, action) => {
 
             return { ...state, modalOpen: true }
 
-        
+
         case CLOSE_MODAL:
+
             return { ...state, product: null, modalOpen: false }
+
         case ADD_TO_CART:
 
             const product = state.cart.find(product => product.id === action.payload.id);
@@ -37,7 +39,7 @@ const AppReducer = (state, action) => {
             else {
 
                 product.quantity++
-
+                return state
             }
 
         case REMOVE_FROM_CART:
@@ -58,6 +60,7 @@ const AppReducer = (state, action) => {
                 return {
                     ...state, cart: state.cart.map(product => product.id !== action.payload.id ? product : { ...product, quantity: action.payload.quantity - 1 })
                 }
+            return state
 
         case CHANGE_BRAND:
             return {
@@ -71,4 +74,3 @@ const AppReducer = (state, action) => {
 }
 
 export default AppReducer;
-
