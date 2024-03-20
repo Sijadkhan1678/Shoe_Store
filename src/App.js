@@ -5,18 +5,20 @@ import Footer from './components/layout/Footer'
 import Home from './components/pages/Home';
 import Brand from './components/pages/Brand'
 import About from './components/pages/About'
+import Checkout from './components/pages/Checkout'
 import Cart from './components/pages/Cart'
 import NotFound from './components/pages/NotFound'
 import AppState from './context/AppState'
+import ProductModal from './components/ProductModal'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const App = () => {
-
 
   return (
     <AppState>
       <Router>
         <Fragment>
+          <ProductModal />
           <Header />
           <Box>
 
@@ -25,11 +27,12 @@ const App = () => {
               <Route path="brands" element={<Brand />} />
               <Route path="about" element={<About />} />
               <Route path="cart" element={<Cart />} />
+              <Route path='/cart/checkout' element={<Checkout />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
 
           </Box>
-           <Footer />
+          <Footer />
         </Fragment>
       </Router>
     </AppState>
