@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
 import context from '../context/AppContext';
 import { Grid, Box, Stack, Typography, FormControl, InputBase, Button } from '@mui/material'
+import { Link } from 'react-router-dom';
 
 
-const CartSummary = () => {
-
+const CartSummary = ({ isCheckout,order }) => {
+    console.log(isCheckout)
 
     const [promoCode, setPromoCode] = useState('')
 
@@ -30,7 +31,7 @@ const CartSummary = () => {
 
         <Grid container>
 
-            <Grid item lg={7} md={6} sm={9} xs={6}>
+            {!isCheckout && (<Grid item lg={7} md={6} sm={9} xs={6}>
                 <FormControl variant='standard'>
 
                     <InputBase placeholder="Promo Code" type='text' value={promoCode} onChange={handleChange} sx={{
@@ -42,8 +43,8 @@ const CartSummary = () => {
                 </FormControl>
 
             </Grid>
-
-            <Grid item lg={5} md={6} sm={3} xs={6} >
+            )}
+            {!isCheckout && (<Grid item lg={5} md={6} sm={3} xs={6} >
 
                 <Button fullWidth onClick={() => applyPromodCode()} variant="contained" size="medium"
                     sx={{
@@ -54,14 +55,14 @@ const CartSummary = () => {
                     }}
                 > Apply coupon</Button>
 
-            </Grid>
+            </Grid>)}
 
 
             <Grid item lg={12} sm={12} xs={12} mt='3rem'>
                 <Box bgcolor='#eeeeee' p='0.75rem 1.25rem'>
                     <Typography fontSize="1.5rem" fontWeight={600} variant='h4'>
 
-                        Cart Summary
+                        {order ? 'Order Summary' : 'Cart Summary'}
 
                     </Typography>
                 </Box>
@@ -110,9 +111,9 @@ const CartSummary = () => {
 
                     </Box>
 
-                    <Box px='1.25rem' pb='0.75rem' my='1rem'>
+                    {!isCheckout && ( <Box px='1.25rem' pb='0.75rem' my='1rem'>
 
-                        <Button fullWidth variant="contained" size="large"
+                        <Button fullWidth component={Link} to='/cart/checkout' variant="contained" size="large"
                             sx={{
                                 p: '1rem',
                                 bgcolor: "#524938",
@@ -120,7 +121,7 @@ const CartSummary = () => {
                             }}
                         > Proceed To Checkout </Button>
 
-                    </Box>
+                    </Box>)}
 
                 </Box>
 

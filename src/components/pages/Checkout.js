@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Box, Typography, Grid, Stack, TextField, Button } from '@mui/material'
+import CartSummary from '../CartSummary'
 
 const Checkout = () => {
 
@@ -225,10 +226,6 @@ const Checkout = () => {
 
 
 
-
-
-
-
                 <Grid item spacing={2} lg={6}>
 
 
@@ -300,16 +297,17 @@ const Checkout = () => {
                 sx={{
                   width: '48%',
                   p: '10px 0px',
-                  // boxShadow: '0',
-                  // borderRadius: '0px', 
+                  fontWeight: 'bold',
+                  borderRadius: '6px',
                 }}>Back To Cart</Button>
 
               <Button variant="contained" size="small"
                 sx={{
                   width: '48%',
-                  p: '10px 0px',
-                  // boxShadow: '0',
-                  borderRadius: '0px', bgcolor: "#524938",
+                  p: '5px 0px',
+                  fontWeight: 'bold',
+                  borderRadius: '6px',
+                  bgcolor: "#524938",
                   '&:hover': { bgcolor: '#ff7800' }
                 }}>Proceed To Payment</Button>
             </Stack>
@@ -318,8 +316,10 @@ const Checkout = () => {
 
           {/* Order Sumamary */}
 
-          <Box width="30%" bgcolor='red'>
-            Order Summary
+          <Box width="40%" mt={3}>
+
+            <CartSummary isCheckout={true} order={true} />
+
           </Box>
           {/* Order Summary end  */}
         </Stack>
