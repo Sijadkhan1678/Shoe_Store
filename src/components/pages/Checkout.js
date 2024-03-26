@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Box, Typography, Grid, Stack, TextField, Button } from '@mui/material'
 import CartSummary from '../CartSummary'
 
+
 const Checkout = () => {
 
   return (
@@ -9,9 +10,9 @@ const Checkout = () => {
     <Box /*p={3}*/ >
 
       <Container >
-        {/* shipping */}
-        <Stack direction={{ lg: 'row', md: 'row', sm: 'column' }} gap={3}>
 
+        <Stack direction={{ lg: 'row', md: 'row', sm: 'column' }} gap={3}>
+          {/* shipping Address */}
           <Box width='70%'>
 
             <Box p={3}  >
@@ -163,8 +164,6 @@ const Checkout = () => {
 
 
 
-
-
                 <Grid item lg={6}  >
 
                   {/* <FormControl variant='standard'> */}
@@ -298,14 +297,19 @@ const Checkout = () => {
                   width: '48%',
                   p: '10px 0px',
                   fontWeight: 'bold',
+                  fontSize: '13px',
                   borderRadius: '6px',
+                  borderColor: '#ff7800',
+                  color: '#ff7800',
+                  '&:hover': { bgcolor: '#ff7800', color: 'white', borderColor: '#ff7800' }
                 }}>Back To Cart</Button>
 
               <Button variant="contained" size="small"
                 sx={{
                   width: '48%',
-                  p: '5px 0px',
+                  p: '10px 0px',
                   fontWeight: 'bold',
+                  fontSize: '13px',
                   borderRadius: '6px',
                   bgcolor: "#524938",
                   '&:hover': { bgcolor: '#ff7800' }
@@ -316,7 +320,7 @@ const Checkout = () => {
 
           {/* Order Sumamary */}
 
-          <Box width="40%" mt={3}>
+          <Box width="34%" mt={3}>
 
             <CartSummary isCheckout={true} order={true} />
 
