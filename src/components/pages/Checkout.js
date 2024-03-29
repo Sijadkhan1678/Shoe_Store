@@ -7,15 +7,15 @@ const Checkout = () => {
 
   return (
 
-    <Box /*p={3}*/ >
+    <Box>
 
-      <Container >
+      <Container>
 
-        <Stack direction={{ lg: 'row', md: 'row', sm: 'column' }} gap={3}>
+        <Stack direction={{ lg: 'row', md: 'row', sm: 'column-reverse', xs: 'column' }} /*gap={{lg:3,sm:0}}*/>
           {/* shipping Address */}
-          <Box width='70%'>
+          <Box width={{ lg: '70%', sm: '100%' }}>
 
-            <Box p={3}  >
+            <Box p={{ lg: 3, sm: 0 }} mt={{ sm: 5 }} /*bgcolor='red'*/  >
 
               <Box py={1}>
 
@@ -23,9 +23,9 @@ const Checkout = () => {
 
               </Box>
 
-              <Grid container spacing={4}>
+              <Grid /*sx={{bgcolor:'red'}}*/ container spacing={{ lg: 4, sm: 2 }}>
 
-                <Grid item lg={6}  >
+                <Grid item lg={6} md={6} sm={6}  >
 
                   {/* <FormControl variant='standard'> */}
                   <Grid item mt={2}>
@@ -87,7 +87,7 @@ const Checkout = () => {
 
 
 
-                <Grid item lg={6}>
+                <Grid item lg={6} md={6} sm={6}>
 
 
                   <Grid item mt={2}>
@@ -153,19 +153,18 @@ const Checkout = () => {
 
 
             {/* Billing Addresss */}
-            <Box p={3} mt={4} >
+            <Box p={{ lg: 3, sm: 0 }} mt={{ lg: 4, md: 4, sm: 5 }} width={{ lg: '70%', md: '70%', sm: '100%' }}>
               <Box py={1}>
 
-                <Typography variant='h6' component='h4' sx={{ fontSize: '14px', color: '#2c2c2c' }} fontWeight='600'>Shipping Address</Typography>
+                <Typography variant='h6' component='h4' sx={{ fontSize: '14px', color: '#2c2c2c' }} fontWeight='600'>Billing Address</Typography>
 
               </Box>
 
-              <Grid container spacing={4}>
+              <Grid container spacing={{ lg: 4, sm: 2 }}>
 
 
 
-                <Grid item lg={6}  >
-
+                <Grid item lg={6} md={6} sm={6}>
                   {/* <FormControl variant='standard'> */}
                   <Grid item mt={2}>
 
@@ -225,7 +224,7 @@ const Checkout = () => {
 
 
 
-                <Grid item spacing={2} lg={6}>
+                <Grid item lg={6} md={6} sm={6}>
 
 
                   <Grid item mt={2}>
@@ -281,7 +280,6 @@ const Checkout = () => {
 
                 </Grid>
 
-
               </Grid>
 
             </Box>
@@ -320,7 +318,7 @@ const Checkout = () => {
 
           {/* Order Sumamary */}
 
-          <Box width="34%" mt={3}>
+          <Box width={{ lg: '34%', sm: "100%" }} mt={3}>
 
             <CartSummary isCheckout={true} order={true} />
 
@@ -338,3 +336,4 @@ const Checkout = () => {
 }
 
 export default Checkout
+
