@@ -11,9 +11,9 @@ const Checkout = () => {
 
       <Container>
 
-        <Stack direction={{ lg: 'row', md: 'row', sm: 'column-reverse', xs: 'column' }} /*gap={{lg:3,sm:0}}*/>
+        <Stack direction={{ lg: 'row', md: 'row', sm: 'column-reverse', xs: 'column' }} gap={{lg:3,sm:4}}>
           {/* shipping Address */}
-          <Box width={{ lg: '70%', sm: '100%' }}>
+          <Box width={{ lg: '70%', md: '70%', sm: '100%' }}>
 
             <Box p={{ lg: 3, sm: 0 }} mt={{ sm: 5 }} /*bgcolor='red'*/  >
 
@@ -25,7 +25,7 @@ const Checkout = () => {
 
               <Grid /*sx={{bgcolor:'red'}}*/ container spacing={{ lg: 4, sm: 2 }}>
 
-                <Grid item lg={6} md={6} sm={6}  >
+                <Grid item lg={6} md={6} sm={6} xs={6}>
 
                   {/* <FormControl variant='standard'> */}
                   <Grid item mt={2}>
@@ -87,7 +87,7 @@ const Checkout = () => {
 
 
 
-                <Grid item lg={6} md={6} sm={6}>
+                <Grid item lg={6} md={6} sm={6} xs={6}>
 
 
                   <Grid item mt={2}>
@@ -153,7 +153,7 @@ const Checkout = () => {
 
 
             {/* Billing Addresss */}
-            <Box p={{ lg: 3, sm: 0 }} mt={{ lg: 4, md: 4, sm: 5 }} width={{ lg: '70%', md: '70%', sm: '100%' }}>
+            <Box p={{ lg: 3, sm: 0 }} mt={{ lg: 4, md: 4, sm: 5 }}  /*bgcolor='red'*/>
               <Box py={1}>
 
                 <Typography variant='h6' component='h4' sx={{ fontSize: '14px', color: '#2c2c2c' }} fontWeight='600'>Billing Address</Typography>
@@ -164,7 +164,7 @@ const Checkout = () => {
 
 
 
-                <Grid item lg={6} md={6} sm={6}>
+                <Grid item lg={6} md={6} sm={6} xs={6}>
                   {/* <FormControl variant='standard'> */}
                   <Grid item mt={2}>
 
@@ -224,7 +224,7 @@ const Checkout = () => {
 
 
 
-                <Grid item lg={6} md={6} sm={6}>
+                <Grid item lg={6} md={6} sm={6} xs={6}>
 
 
                   <Grid item mt={2}>
@@ -318,7 +318,7 @@ const Checkout = () => {
 
           {/* Order Sumamary */}
 
-          <Box width={{ lg: '34%', sm: "100%" }} mt={3}>
+          <Box width={{ lg: '34%', md: "34%", sm: "100%" }} mt={{lg:8,md:5,sm:5}}>
 
             <CartSummary isCheckout={true} order={true} />
 
