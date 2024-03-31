@@ -1,9 +1,33 @@
 import React from 'react'
-import { Container, Box, Typography, Grid, Stack, TextField, Button } from '@mui/material'
+import { Container, Box, Typography, Grid, FormControl, Stack, TextField, InputLabel, MenuItem, Select, Button } from '@mui/material'
 import CartSummary from '../CartSummary'
 
 
 const Checkout = () => {
+
+  const [countries, setCounties] = React.useState([
+    { name: 'America', id: 1, category: 1 },
+    { name: 'Algeria', id: 2, category: 1 },
+    { name: 'Afghanistan', id: 3, category: 1 },
+    { label: 'Australia', id: 9, category: 3 },
+    { name: 'Bangladesh', id: 4, category: 2 },
+    { name: 'Engaland', id: 5, category: 2 },
+    { name: 'France', id: 6, category: 2 },
+    { name: 'Germany', id: 7, category: 3 },
+    { name: 'Iraq', id: 8, category: 3 },
+    { name: 'Iran', id: 10, category: 3 },
+    { name: 'Japan', id: 11, category: 3 },
+    { name: 'Korea', id: 12, category: 3 },
+    { name: 'Netherland', id: 13, category: 3 },
+    { label: 'Newzland', id: 14, category: 3 },
+    { name: 'Oman', id: 15, category: 3 },
+    { name: 'Pakistan', id: 16, category: 3 },
+    { name: 'Russia', id: 17, category: 3 },
+    { name: 'Sirlanka', id: 18, category: 3 },
+    { name: 'Syria', id: 19, category: 3 },
+    { name: 'Korea', id: 20, category: 3 },
+
+  ]);
 
   return (
 
@@ -115,15 +139,24 @@ const Checkout = () => {
                   </Grid>
 
                   <Grid item mt={2}>
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="country"
-                      label="Country"
+                    <FormControl fullWidth size='small'>
+                      <InputLabel id="demo-simple-select-label">Country</InputLabel>
+                      <Select
 
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
-                    />
+                        // value='pakistan'
+                        fullWidth
+                        id="country"
+                        label="Country"
+
+                      // value={third}
+                      // onChange={e => setThird(e.target.value)}
+                      >
+                        {countries.map(country => <MenuItem key={country.id} value={country.name}>{country.name}</MenuItem>)}
+
+
+
+                      </Select>
+                    </FormControl>
 
 
                   </Grid>
