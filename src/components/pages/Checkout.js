@@ -5,16 +5,16 @@ import CartSummary from '../CartSummary'
 
 const Checkout = () => {
 
-  const [countries, setCounties] = React.useState([
+  const countries = [
     { name: 'America', id: 1, },
     { name: 'Algeria', id: 2, },
     { name: 'Afghanistan', id: 3, },
-    { label: 'Australia', id: 9, },
-    { name: 'Bangladesh', id: 4, },
-    { name: 'Engaland', id: 5, },
-    { name: 'France', id: 6, },
-    { name: 'Germany', id: 7, },
-    { name: 'Iraq', id: 8, },
+    { label: 'Australia', id: 4, },
+    { name: 'Bangladesh', id: 5, },
+    { name: 'Engaland', id: 6, },
+    { name: 'France', id: 7, },
+    { name: 'Germany', id: 8, },
+    { name: 'Iraq', id: 9, },
     { name: 'Iran', id: 10, },
     { name: 'Irland', id: 11 },
     { name: 'Japan', id: 12, },
@@ -26,9 +26,31 @@ const Checkout = () => {
     { name: 'Russia', id: 18, },
     { name: 'Sirlanka', id: 19, },
     { name: 'Syria', id: 20, },
-    { name: 'Korea', id: 21 },
+    { name: 'Ukrain', id: 21 },
+    { name: 'United state emarate', id: 22 },
 
-  ]);
+  ]
+
+  const [shippingForm, setShippingform] = React.useState({
+    fullName: '',
+    phone: '',
+    zipCode: '',
+    email: '',
+    company: '',
+    country: '',
+    address1: '',
+    address2: '',
+
+  })
+  const { fullName, phone, zipCode, email, address1, company, country, address2 } = shippingForm
+
+
+  const handlechange = (e) => {
+
+    const { value, name } = e.target
+    setShippingform({ ...shippingForm, [name]: value })
+
+  }
 
   return (
 
@@ -56,51 +78,54 @@ const Checkout = () => {
                   <Grid item mt={2}>
 
                     <TextField
-                      size='small'
                       fullWidth
+                      size='small'
+                      name='fullName'
                       id="fullname"
                       label="Full Name"
-                    // value={first}
-                    // onChange={e => setFirst(e.target.value)}
+                      value={fullName}
+                      onChange={handlechange}
                     />
+
                   </Grid>
 
                   <Grid item mt={2}>
                     <TextField
-                      size='small'
                       fullWidth
-                      id="phoone"
+                      size='small'
+                      name='phone'
+                      id="phone"
                       label="Phone Number"
-
-                    // value={second}
-                    // onChange={e => setSecond(e.target.value)}
+                      value={phone}
+                      onChange={handlechange}
                     />
                   </Grid>
 
                   <Grid item mt={2}>
                     <TextField
-                      size='small'
                       fullWidth
+                      size='small'
+                      name='zipCode'
                       id="zip"
                       label="Zip Code"
-
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
+                      value={zipCode}
+                      onChange={handlechange}
                     />
 
 
                   </Grid>
+
                   <Grid item mt={2}>
+
                     <TextField
-                      size='small'
                       fullWidth
+                      size='small'
+                      name='address1'
                       id="address"
                       label="Address 1"
-
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
+                      value={address1}
+                      onChange={handlechange}
                     />
-
 
                   </Grid>
 
@@ -110,51 +135,47 @@ const Checkout = () => {
                 </Grid>
 
 
-
-
                 <Grid item lg={6} md={6} sm={6} xs={6}>
 
 
                   <Grid item mt={2}>
 
                     <TextField
-                      size='small'
                       fullWidth
+                      size='small'
+                      name='email'
                       id="email"
                       label="Email Address"
-                    // value={first}
-                    // onChange={e => setFirst(e.target.value)}
+                      value={email}
+                      onChange={handlechange}
                     />
                   </Grid>
 
                   <Grid item mt={2}>
                     <TextField
-                      size='small'
                       fullWidth
+                      size='small'
+                      name="company"
                       id="company"
                       label="Company"
-
-                    // value={second}
-                    // onChange={e => setSecond(e.target.value)}
+                      value={company}
+                      onChange={handlechange}
                     />
                   </Grid>
 
                   <Grid item mt={2}>
                     <FormControl fullWidth size='small'>
-                      <InputLabel id="demo-simple-select-label">Country</InputLabel>
+                      <InputLabel id="country-select-label">Country</InputLabel>
                       <Select
 
-                        // value='pakistan'
                         fullWidth
+                        name="country"
                         id="country"
                         label="Country"
-
-                      // value={third}
-                      // onChange={e => setThird(e.target.value)}
+                        value={country}
+                        onChange={handlechange}
                       >
                         {countries.map(country => <MenuItem key={country.id} value={country.name}>{country.name}</MenuItem>)}
-
-
 
                       </Select>
                     </FormControl>
@@ -163,13 +184,13 @@ const Checkout = () => {
                   </Grid>
                   <Grid item mt={2}>
                     <TextField
-                      size='small'
                       fullWidth
+                      size='small'
+                      name='address2'
                       id="address"
                       label="Address 2"
-
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
+                      value={address2}
+                      onChange={handlechange}
                     />
 
 
