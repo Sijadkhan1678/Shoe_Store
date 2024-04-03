@@ -27,7 +27,7 @@ const Checkout = () => {
     { name: 'Sirlanka', id: 19, },
     { name: 'Syria', id: 20, },
     { name: 'Ukrain', id: 21 },
-    { name: 'United state emarate', id: 22 },
+    { name: 'United state Emerat', id: 22 },
 
   ]
 
@@ -42,14 +42,56 @@ const Checkout = () => {
     address2: '',
 
   })
+
+  const [errors, setErrors] = React.useState({
+    fullName: false,
+    phone: false,
+    zipCode: false,
+    email: false,
+    company: false,
+    country: false,
+    address1: false,
+    address2: false,
+
+  })
+  // isValid: value => /\S+@\S+\.\S+/.test(value) for email
+  // isValid: value =>
+  //^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test( value)
+
   const { fullName, phone, zipCode, email, address1, company, country, address2 } = shippingForm
+
 
 
   const handlechange = (e) => {
 
     const { value, name } = e.target
-    setShippingform({ ...shippingForm, [name]: value })
 
+
+    setShippingform({ ...shippingForm, [name]: value });
+    
+    console.log('nameError =>', errors.fullName)
+
+  }
+
+  const shippingFormValidation = () => {
+
+    // console.log()
+    if(fullName.length === 4){
+      setErrors({ ...errors, 'fullName': true });
+    }
+
+    if(phone.length === 4){
+      setErrors({ ...errors, 'phone': true });
+    }
+    
+    if(zipCode.length === 4){
+      setErrors({ ...errors, 'zipCode': true });
+    }
+
+    if('/\S+@\S+\.\S+/'.test(email)){
+      setErrors({ ...errors, 'email': true });
+    }
+    
   }
 
   return (
@@ -79,6 +121,7 @@ const Checkout = () => {
 
                     <TextField
                       fullWidth
+                      error={errors.fullName}
                       size='small'
                       name='fullName'
                       id="fullname"
