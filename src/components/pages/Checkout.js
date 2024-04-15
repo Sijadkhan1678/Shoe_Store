@@ -31,7 +31,7 @@ const Checkout = () => {
 
   ]
 
-  const [shippingForm, setShippingform] = React.useState({
+  const [shippingForm, setShippingForm] = React.useState({
     fullName: '',
     phone: '',
     zipCode: '',
@@ -63,7 +63,7 @@ const Checkout = () => {
 
     const { value, name } = e.target
 
-    setShippingform({ ...shippingForm, [name]: value });
+    setShippingForm({ ...shippingForm, [name]: value });
 
     shippingFormValidation(name, value)
 
