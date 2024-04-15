@@ -85,7 +85,7 @@ const Checkout = () => {
       setErrors({ ...errors, 'phone': false })
     }
 
-    if (inputValue.length === 4 && inputField === 'zipCode') {
+    if (inputValue.length < 4 && inputField === 'zipCode') {
       setErrors({ ...errors, 'zipCode': true });
     } else if (inputField === 'zipCode') {
       setErrors({ ...errors, 'zipCode': false })
