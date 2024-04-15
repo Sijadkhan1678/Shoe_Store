@@ -20,7 +20,7 @@ const Checkout = () => {
     { name: 'Japan', id: 12, },
     { name: 'Korea', id: 13, },
     { name: 'Netherland', id: 14, },
-    { label: 'Newzland', id: 15, },
+    { name: 'Newzland', id: 15, },
     { name: 'Oman', id: 16, },
     { name: 'Pakistan', id: 17, },
     { name: 'Russia', id: 18, },
@@ -467,4 +467,3 @@ const Checkout = () => {
 }
 
 export default Checkout
-
