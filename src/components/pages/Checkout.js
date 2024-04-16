@@ -63,9 +63,20 @@ const Checkout = () => {
 
     const { value, name } = e.target
 
-    setShippingForm({ ...shippingForm, [name]: value });
+    if (name === 'phone' && !isNaN(value) && value.length <= 11) {
 
-    shippingFormValidation(name, value)
+      setShippingForm({ ...shippingForm, [name]: value });
+
+      shippingFormValidation(name, value)
+      return
+
+    } else if (name !== 'phone') {
+
+      setShippingForm({ ...shippingForm, [name]: value });
+
+      shippingFormValidation(name, value)
+
+    }
 
   }
 
@@ -78,8 +89,9 @@ const Checkout = () => {
       setErrors({ ...errors, 'fullName': false });
     }
 
-    if (inputValue.length < 11 && inputField === 'phone') {
-      console.log(inputField)
+    if (inputValue.length < 11 && inputField === 'phone' && parseInt(inputValue) !== 'number') {
+      // console.log('inputValue type',typeof inputValue)
+      // console.log('inputValue type', parseInt(inputValue))
       setErrors({ ...errors, 'phone': true });
     } else if (inputField === 'phone') {
       setErrors({ ...errors, 'phone': false })
@@ -97,7 +109,7 @@ const Checkout = () => {
     } else if (inputField === 'email') {
       setErrors({ ...errors, 'email': true })
     }
-    if (inputValue === '' && inputField === 'country') {
+    if (inputValue === '' && inputField === 'country' && country.length === 0) {
       setErrors({ ...errors, 'country': true })
     } else if (inputField === 'country') {
 
@@ -119,6 +131,18 @@ const Checkout = () => {
 
   }
 
+  const onSubmit = () => {
+    const { fullNameError, phoneError, zipCodeError, address1Error, emailError, companyError, countryError, address2Error } = errors;
+    //  console.log('country :',country)
+    if (country.length === 0) {
+      // console.log("country error",country)
+      setErrors({ ...errors, 'country': true })
+    }
+    if (!fullNameError || !phoneError || !zipCodeError || !address1Error || !emailError || !companyError || !address2Error) {
+
+    }
+    // console.log('phone Status',phoneError)
+  }
 
   return (
 
@@ -433,7 +457,7 @@ const Checkout = () => {
                   '&:hover': { bgcolor: '#ff7800', color: 'white', borderColor: '#ff7800' }
                 }}>Back To Cart</Button>
 
-              <Button variant="contained" size="small"
+              <Button variant="contained" size="small" onClick={onSubmit}
                 sx={{
                   width: '48%',
                   p: '10px 0px',
@@ -467,3 +491,4 @@ const Checkout = () => {
 }
 
 export default Checkout
+
