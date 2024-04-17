@@ -82,65 +82,89 @@ const Checkout = () => {
 
   const shippingFormValidation = (inputField, inputValue) => {
 
+    let isError = false
 
-    if (inputValue.length <= 4 && inputField === 'fullName') {
+    if (inputField === 'fullName' && (inputValue === '' || inputValue.length <= 4)) {
+
       setErrors({ ...errors, 'fullName': true });
+      isError = true
+
     } else if (inputField === 'fullName') {
       setErrors({ ...errors, 'fullName': false });
+      isError = false
     }
 
-    if (inputValue.length < 11 && inputField === 'phone' && parseInt(inputValue) !== 'number') {
+    if (inputField === 'phone' && parseInt(inputValue) !== 'number') {
+      if (inputValue.length < 11) {
+        setErrors({ ...errors, 'phone': true });
+        isError = true
+      }
       // console.log('inputValue type',typeof inputValue)
       // console.log('inputValue type', parseInt(inputValue))
-      setErrors({ ...errors, 'phone': true });
-    } else if (inputField === 'phone') {
-      setErrors({ ...errors, 'phone': false })
-    }
 
-    if (inputValue.length < 4 && inputField === 'zipCode') {
-      setErrors({ ...errors, 'zipCode': true });
+    } else if (inputField === 'phone') {
+      setErrors({ ...errors, 'phone': false });
+      isError = false;
+    };
+
+    if (inputField === 'zipCode') {
+      if (inputValue.length < 4) {
+        setErrors({ ...errors, 'zipCode': true });
+        isError = true;
+      }
+
+
     } else if (inputField === 'zipCode') {
       setErrors({ ...errors, 'zipCode': false })
+      isError = false
     }
 
     if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(inputValue) && inputValue.endsWith('@gmail.com') && inputField === 'email') {
       setErrors({ ...errors, 'email': false });
+      isError = false
 
     } else if (inputField === 'email') {
       setErrors({ ...errors, 'email': true })
+      isError = true
     }
     if (inputValue === '' && inputField === 'country' && country.length === 0) {
       setErrors({ ...errors, 'country': true })
+      isError = true
     } else if (inputField === 'country') {
 
       setErrors({ ...errors, 'country': false })
-
+      isError = false
     }
-    if ((inputValue === '' || inputValue.length < 10) && inputField === 'address1') {
+    if (inputField === 'address1' && (inputValue === '' || inputValue.length < 5)) {
 
       setErrors({ ...errors, 'address1': true })
+      isError = true
 
     } else if (inputField === 'address') {
       setErrors({ ...errors, 'adddress1': false })
+      isError = false
     }
-    if ((inputValue === '' || inputValue.length < 10) && inputField === 'address2') {
+    if (inputField === 'address2' && (inputValue === '' || inputValue.length < 5)) {
       setErrors({ ...errors, 'address2': true })
+      isError = true
     } else if (inputField === 'address2') {
       setErrors({ ...errors, 'address2': false })
+      isError = false
     }
-
+    return isError
   }
 
   const onSubmit = () => {
     const { fullNameError, phoneError, zipCodeError, address1Error, emailError, companyError, countryError, address2Error } = errors;
     //  console.log('country :',country)
-    if (country.length === 0) {
+    if (country.length === 0 || country === '') {
       // console.log("country error",country)
       setErrors({ ...errors, 'country': true })
     }
-    if (!fullNameError || !phoneError || !zipCodeError || !address1Error || !emailError || !companyError || !address2Error) {
-
-    }
+    console.log('isErrror',shippingFormValidation())
+    // if (shippingFormValidation()) {
+    //   console.log('no errors')
+    // }
     // console.log('phone Status',phoneError)
   }
 
