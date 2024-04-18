@@ -113,7 +113,6 @@ const Checkout = () => {
         isError = true;
       }
 
-
     } else if (inputField === 'zipCode') {
       setErrors({ ...errors, 'zipCode': false })
       isError = false
@@ -155,13 +154,40 @@ const Checkout = () => {
   }
 
   const onSubmit = () => {
-    const { fullNameError, phoneError, zipCodeError, address1Error, emailError, companyError, countryError, address2Error } = errors;
+
     //  console.log('country :',country)
+    const newErrors = { ...errors }
     if (country.length === 0 || country === '') {
       // console.log("country error",country)
-      setErrors({ ...errors, 'country': true })
+      // setErrors({ ...errors, 'country': true })
+      newErrors.country = true
     }
-    console.log('isErrror',shippingFormValidation())
+    if (fullName === '') {
+      newErrors.fullName = true
+    }
+    if (phone === '') {
+      // setErrors({ ...errors, phone: true })
+      newErrors.phone = true
+    }
+    if (zipCode === '') {
+      // setErrors({ ...errors, zipCode: true })
+      newErrors.zipCode = true
+      console.log('zid')
+    }
+    if (address1 === '') {
+      // setErrors({ ...errors, address1: true })
+      newErrors.address1 = true
+    }
+    if (email === '') {
+      // setErrors({ ...errors, email: true })
+      newErrors.email = true
+    }
+    if (address2 === '') {
+      // setErrors({ ...errors, address2: true })
+      newErrors.address2 = true
+    }
+    setErrors({...errors,...newErrors})
+    // console.log('isErrror',shippingFormValidation())
     // if (shippingFormValidation()) {
     //   console.log('no errors')
     // }
