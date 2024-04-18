@@ -27,7 +27,7 @@ const Checkout = () => {
     { name: 'Sirlanka', id: 19, },
     { name: 'Syria', id: 20, },
     { name: 'Ukrain', id: 21 },
-    { name: 'United state Emerat', id: 22 },
+    { name: 'United state Emarat', id: 22 },
 
   ]
 
@@ -55,6 +55,7 @@ const Checkout = () => {
 
   })
 
+  const [hasError, setError] = React.useState(false);
 
   const { fullName, phone, zipCode, email, address1, company, country, address2 } = shippingForm
 
@@ -94,11 +95,11 @@ const Checkout = () => {
       isError = false
     }
 
-    if (inputField === 'phone' && parseInt(inputValue) !== 'number') {
-      if (inputValue.length < 11) {
-        setErrors({ ...errors, 'phone': true });
-        isError = true
-      }
+    if (inputField === 'phone' && inputValue.length < 11 /*&& parseInt(inputValue) !== 'number'*/) {
+
+      setErrors({ ...errors, 'phone': true });
+      isError = true
+
       // console.log('inputValue type',typeof inputValue)
       // console.log('inputValue type', parseInt(inputValue))
 
@@ -107,15 +108,15 @@ const Checkout = () => {
       isError = false;
     };
 
-    if (inputField === 'zipCode') {
-      if (inputValue.length < 4) {
-        setErrors({ ...errors, 'zipCode': true });
-        isError = true;
-      }
+    if (inputField === 'zipCode' && inputValue.length < 4) {
+
+      setErrors({ ...errors, 'zipCode': true });
+      isError = true;
 
     } else if (inputField === 'zipCode') {
       setErrors({ ...errors, 'zipCode': false })
       isError = false
+      console.log('zipCode =>', isError)
     }
 
     if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(inputValue) && inputValue.endsWith('@gmail.com') && inputField === 'email') {
@@ -139,8 +140,8 @@ const Checkout = () => {
       setErrors({ ...errors, 'address1': true })
       isError = true
 
-    } else if (inputField === 'address') {
-      setErrors({ ...errors, 'adddress1': false })
+    } else if (inputField === 'address1') {
+      setErrors({ ...errors, 'address1': false })
       isError = false
     }
     if (inputField === 'address2' && (inputValue === '' || inputValue.length < 5)) {
@@ -150,7 +151,8 @@ const Checkout = () => {
       setErrors({ ...errors, 'address2': false })
       isError = false
     }
-    return isError
+    console.log('return expression =>', isError)
+    setError(isError)
   }
 
   const onSubmit = () => {
@@ -186,8 +188,20 @@ const Checkout = () => {
       // setErrors({ ...errors, address2: true })
       newErrors.address2 = true
     }
-    setErrors({...errors,...newErrors})
-    // console.log('isErrror',shippingFormValidation())
+    setErrors(newErrors)
+    if(hasError){
+      console.log('error exist')
+    }else{
+      console.log('form submited')
+    }
+
+    // if (shippingFmValidation()) {
+    //   console.log('form does not sumbit')
+    // } else {
+    //   console.log('form  sumbited to server')
+    // }
+    console.log('isErrror ==>>', shippingFormValidation())
+    // console.log('errors obje =>',errors)
     // if (shippingFormValidation()) {
     //   console.log('no errors')
     // }
@@ -541,4 +555,3 @@ const Checkout = () => {
 }
 
 export default Checkout
-
