@@ -10,7 +10,9 @@ import Cart from './components/pages/Cart'
 import NotFound from './components/pages/NotFound'
 import AppState from './context/AppState'
 import ProductModal from './components/ProductModal'
+import Product from './components/pages/Product';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 
 const App = () => {
 
@@ -28,6 +30,7 @@ const App = () => {
               <Route path="about" element={<About />} />
               <Route path="cart" element={<Cart />} />
               <Route path='/cart/checkout' element={<Checkout />} />
+              <Route path='/product' element={<Product />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Typography, Box, Rating, Stack } from '@mui/material'
 import ProductActionButton from './ProductActionButtons';
+import { Link } from 'react-router-dom'
 
 
 const ProductItem = ({ product }) => {
@@ -14,41 +15,48 @@ const ProductItem = ({ product }) => {
 
         <Grid item lg={4} md={4} sm={6} xs={12} onMouseEnter={handleHover} onMouseLeave={handleHover}>
 
-            <Box width="100%" sx={{ position: 'relative', overflow: 'hidden', height: 250 }} >
 
-                <img src={img} alt='shoe' width='100%' height={250} style={productImgStyle} />
+            <Box width="100%" sx={{ position: 'relative', overflow: 'hidden', height: 250 }} >
+                <Link to='/product' style={linkStyle} >
+                    <img src={img} alt='shoe' width='100%' height={250} style={productImgStyle} />
+                </Link>
                 <ProductActionButton product={product} isHovered={isHovered} />
 
             </Box>
 
 
             <Stack direction='column' justifyContent='space-evenly' pt={2}>
+                <Link to='/product' style={linkStyle} >
+                    <Box sx={itemContentStyle}>
 
-                <Box sx={itemContentStyle}>
+                        <Typography variant='h6' color="#1c1c1c" fontWeight='400' fontSize='1rem'>
+                            {name}
+                        </Typography>
 
-                    <Typography variant='h6' color="#1c1c1c" fontWeight='400' fontSize='1rem'>
-                        {name}
-                    </Typography>
+                        <Typography variant='body1' color='primary'>
+                            $ {price}
+                        </Typography>
 
-                    <Typography variant='body1' color='primary'>
-                        $ {price}
-                    </Typography>
+                    </Box>
 
-                </Box>
-
-                <Box sx={itemContentStyle2}>
-                    <Rating value={rating} size='small' readOnly sx={{ color: 'black' }} />
-                    <Typography variant='body1' fontSize='14px' fontWeight='300' >
-                        {brand}
-                    </Typography>
-                </Box>
-
+                    <Box sx={itemContentStyle2}>
+                        <Rating value={rating} size='small' readOnly sx={{ color: 'black' }} />
+                        <Typography variant='body1' fontSize='14px' fontWeight='300' >
+                            {brand}
+                        </Typography>
+                    </Box>
+                </Link>
             </Stack>
 
         </Grid>
 
     )
 }
+const linkStyle = {
+    textDecoration: 'none',
+    color: 'black',
+}
+
 const itemContentStyle = {
 
     pb: '1rem',
