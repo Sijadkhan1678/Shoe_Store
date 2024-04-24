@@ -1,10 +1,55 @@
 import React from 'react'
+import { Box, Container, Grid, Typography, Button, Rating, useMediaQuery } from '@mui/material'
 
 const Product = () => {
+
+  const xs = 600;
+  const sm = 900;
+  const md = 1200;
+  // const lg = 1536;
+
+  const isMobile = useMediaQuery(`(max-width: ${xs}px)`);
+  const isSmall = useMediaQuery(`(max-width: ${sm}px)`);
+  const isLarge = useMediaQuery(`(min-width: ${md}px)`);
+
+  const imageStyle = {
+    width: '100%',
+    maxWidth: isLarge ? 700 : '100%',
+    height: isLarge ? 450 : (isSmall ? (isMobile ? 350 : 450) : 450),
+    objectFit: 'cover'
+  };
   return (
-    <div>
-        product details component || component
-    </div>
+    <Box /*sx={{ bgcolor: 'yellow' }}*/ mt={8}>
+      <Container /*style={{ backgroundColor: 'red' }}*/>
+        <Grid container>
+
+
+          {/* product image section */}
+          <Grid item bgcolor='gray' lg={6} md={6} sm={12} xs={12}>
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTadMayQjrxuWmqXB6nTaNUXJRumlXGHD7u2w&usqp=CAU' style={imageStyle} alt='product image' />
+          </Grid>
+
+
+          {/* product detail section */}
+          <Grid item bgcolor='cadetblue' lg={6} md={6} sm={12} xs={12} px={2}>
+            <Box mt={4}>
+              <Typography variant='h6' component='h4' mb={1.3} fontSize={12} color='yellow' fontWeight={600}>{'Addidas brand'.toUpperCase()}</Typography>
+
+              <Typography variant='h4' component='h3' mb={0.3} fontSize={30} fontWeight={700}>Addidas energy Bounce</Typography>
+              <Rating value={4.5} size='small' readOnly sx={{ color: 'black' }} />
+              <Typography variant='h3' component='h4' mt={2} fontWeight={700}> $99.00 </Typography>
+            </Box>
+            <Box mt={2}>
+              <Typography variant='h6' fontWeight={700} fontSize={14} component='h3'>Description</Typography>
+              <Typography variant='body1'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor...</Typography>
+
+            </Box>
+          </Grid>
+
+        </Grid>
+
+      </Container>
+    </Box>
   )
 }
 
