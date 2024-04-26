@@ -27,7 +27,7 @@ const Checkout = () => {
     { name: 'Sirlanka', id: 19, },
     { name: 'Syria', id: 20, },
     { name: 'Ukrain', id: 21 },
-    { name: 'United state Emarat', id: 22 },
+    { name: 'United Arab Emirates', id: 22 },
 
   ]
 
@@ -112,16 +112,16 @@ const Checkout = () => {
 
     if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(inputValue) && inputValue.endsWith('@gmail.com') && inputField === 'email') {
       setErrors({ ...errors, 'email': false });
-      
+
 
     } else if (inputField === 'email') {
 
       setErrors({ ...errors, 'email': true })
-      
+
     }
     if (inputValue === '' && inputField === 'country' && country.length === 0) {
       setErrors({ ...errors, 'country': true })
-    
+
     } else if (inputField === 'country') {
 
       setErrors({ ...errors, 'country': false })
@@ -149,40 +149,45 @@ const Checkout = () => {
   }
 
   const onSubmit = () => {
-    
+
     const newErrors = { ...errors }
+
     if (country.length === 0 || country === '') {
-      
+
       newErrors.country = true
+
     }
     if (fullName === '') {
+
       newErrors.fullName = true
+
     }
     if (phone === '') {
-      
+
       newErrors.phone = true
     }
     if (zipCode === '') {
-      
+
       newErrors.zipCode = true
-    
+
     }
     if (address1 === '') {
-      
+
       newErrors.address1 = true
     }
     if (email === '') {
-      
+
       newErrors.email = true
     }
     if (address2 === '') {
-      
+
       newErrors.address2 = true
     }
 
     setErrors(newErrors)
 
     let hasError = false
+
     for (let error in newErrors) {
 
       if (newErrors[error]) {
@@ -362,140 +367,6 @@ const Checkout = () => {
             </Box>
             {/* shipping end */}
 
-
-
-
-            {/* Billing Addresss */}
-            <Box p={{ lg: 3, sm: 0 }} mt={{ lg: 4, md: 4, sm: 5, xs: 4 }}  /*bgcolor='red'*/>
-              <Box py={1}>
-
-                <Typography variant='h6' component='h4' sx={{ fontSize: '14px', color: '#2c2c2c' }} fontWeight='600'>Billing Address</Typography>
-
-              </Box>
-
-              <Grid container spacing={{ lg: 4, sm: 2, xs: 2 }}>
-
-                <Grid item lg={6} md={6} sm={6} xs={6}>
-                  {/* <FormControl variant='standard'> */}
-                  <Grid item mt={2}>
-
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="fullname"
-                      label="Full Name"
-                    // value={first}
-                    // onChange={e => setFirst(e.target.value)}
-                    />
-                  </Grid>
-
-                  <Grid item mt={2}>
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="phoone"
-                      label="Phone Number"
-
-                    // value={second}
-                    // onChange={e => setSecond(e.target.value)}
-                    />
-                  </Grid>
-
-                  <Grid item mt={2}>
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="zip"
-                      label="Zip Code"
-
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
-                    />
-
-
-                  </Grid>
-                  <Grid item mt={2}>
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="address"
-                      label="Address 1"
-
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
-                    />
-
-
-                  </Grid>
-
-                  {/* </FormControl> */}
-
-
-                </Grid>
-
-
-
-                <Grid item lg={6} md={6} sm={6} xs={6}>
-
-
-                  <Grid item mt={2}>
-
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="email"
-                      label="Email Address"
-                    // value={first}
-                    // onChange={e => setFirst(e.target.value)}
-                    />
-                  </Grid>
-
-                  <Grid item mt={2}>
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="company"
-                      label="Company"
-
-                    // value={second}
-                    // onChange={e => setSecond(e.target.value)}
-                    />
-                  </Grid>
-
-                  <Grid item mt={2}>
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="country"
-                      label="Country"
-
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
-                    />
-
-
-                  </Grid>
-                  <Grid item mt={2}>
-                    <TextField
-                      size='small'
-                      fullWidth
-                      id="address"
-                      label="Address 2"
-
-                    // value={third}
-                    // onChange={e => setThird(e.target.value)}
-                    />
-
-
-                  </Grid>
-
-                </Grid>
-
-              </Grid>
-
-            </Box>
-
-            {/* Billing Address end */}
 
 
             {/* Checkout Action Buttons */}
