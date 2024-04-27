@@ -11,6 +11,9 @@ const Product = () => {
   const isMobile = useMediaQuery(`(max-width: ${xs}px)`);
   const isSmall = useMediaQuery(`(max-width: ${sm}px)`);
   const isLarge = useMediaQuery(`(min-width: ${md}px)`);
+  const [currentChip, setCurrentChip] = React.useState('S')
+
+  const handleChip = (chip) => { setCurrentChip(chip.target.innerText) }
 
   const imageStyle = {
     width: '100%',
@@ -38,7 +41,7 @@ const Product = () => {
 
               <Typography variant='h4' component='h3' mb={1} fontSize={32} fontWeight={700}>Addidas energy Bounce</Typography>
               <Rating value={4.5} size='small' readOnly sx={{ color: 'black' }} />
-              <Typography variant='h3' component='h4' color='#ff7800' mt={2} fontWeight={700}> $99.00 </Typography>
+              <Typography variant='h3' component='h4' /*color='#ff7800'*/ mt={2} fontWeight={700}> $99.00 </Typography>
             </Box>
             <Box mt={2}>
               <Typography variant='h6' fontWeight={700} fontSize={14} component='h3'>Description</Typography>
@@ -47,24 +50,24 @@ const Product = () => {
             </Box>
             {/* size chips */}
             <Box mt={1}>
-            <Typography variant='h6' fontWeight={700} fontSize={14} component='h3' gutterBottom>Size</Typography>
+              <Typography variant='h6' fontWeight={700} fontSize={14} component='h3' mb={1}>Size</Typography>
               <Grid container spacing={2}>
                 <Grid item>
-                  <Chip label='S' />
+                  <Chip label='S' onClick={handleChip} variant={currentChip === 'S' ? 'contained' : 'outlined'} color='warning' />
                 </Grid>
                 <Grid item>
-                  <Chip label='M' />
+                  <Chip label='M' onClick={handleChip} variant={currentChip === 'M' ? 'contained' : 'outlined'} color='warning' />
                 </Grid>
                 <Grid item>
-                  <Chip label='L' />
+                  <Chip label='L' onClick={handleChip} variant={currentChip === 'L' ? 'contained' : 'outlined'} color='warning' />
                 </Grid>
                 <Grid item>
-                  <Chip label='XL' />
+                  <Chip label='XL' onClick={handleChip} variant={currentChip === 'XL' ? 'contained' : 'outlined'} color='warning' />
                 </Grid>
                 <Grid item>
-                  <Chip label='XXL' />
+                  <Chip label='XXL' onClick={handleChip} variant={currentChip === 'XXL' ? 'contained' : 'outlined'} color='warning' />
                 </Grid>
-                
+
               </Grid>
             </Box>
           </Grid>
