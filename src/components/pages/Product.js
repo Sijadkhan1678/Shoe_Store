@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box, Container, Grid, Typography, Stack, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
+import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Product = () => {
 
@@ -27,14 +28,15 @@ const Product = () => {
     width: '12%',
     color: '#ff7800',
     fontSize: 16,
+    fontWeight:700,
     // py: 1.2,
-    // px: 3,
+    px: 3,
     backgroundColor: '#f7f7f7',
     border: 'none',
     '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
   }
   return (
-    <Box /*sx={{ bgcolor: 'yellow' }}*/ mt={8}>
+    <Box /*sx={{ bgcolor: 'yellow' }}*/ mt={7}>
       <Container /*style={{ backgroundColor: 'red' }}*/>
         <Grid container>
 
@@ -81,48 +83,56 @@ const Product = () => {
 
               </Grid>
             </Box>
-            <Box mt={2}>
-              <Typography variant='h6' fontWeight={700} fontSize={14} component='h3' mb={1}>Quantity</Typography>
-              <ButtonGroup>
+            <Box mt={4}>
+              {/* <Typography variant='h6' fontWeight={700} fontSize={14} component='h3' mb={1}>Quantity</Typography> */}
+              <Stack direction='row' spacing={2}>
+                <ButtonGroup>
 
-                <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle }}>-</Button>
+                  <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle, /*fontSize: 18,*/ }}>-</Button>
 
-                <Button disableRipple sx={{
-                  ...buttonDefaultStyle,
-                  cursor: 'default',
-                  '&:hover': { border: 'none', bgcolor: '#f7f7f7' }
+                  <Button disableRipple sx={{
+                    ...buttonDefaultStyle,
+                    cursor: 'default',
+                    '&:hover': { border: 'none', bgcolor: '#f7f7f7' },
+                    // fontSize: 16,
+                    color:'black !important'
+                  }}>{/*quantity*/}1</Button>
 
-                }}>{/*quantity*/}</Button>
+                  <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle,fontSize: 18, }}>+</Button>
 
-                <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle }}>+</Button>
+                </ButtonGroup>
+                <Stack direction='row' spacing={5} mt={4} /*bgcolor='red'*/>
 
-              </ButtonGroup>
+                  <Button /*fullWidth*/ /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
+                    color: "white",
+                    // width: '22%',
+                    px: 4,
+                    // fontWeight: 700,
+                    bgcolor: "#ff7800",
+                    '&:hover': { bgcolor: '#ff7800' },
+                    boxShadow: 'none',
+                    // display: 'block',
+                    // borderRadius: '0px',
+                    // my: 2.5
+                  }}>Buy Now</Button>
+                  <Button /*fullWidth*/ startIcon={<ShoppingCartIcon />} /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
+                    color: "white",
+                    // width: '22%',
+                    px: 2,
+                    // fontWeight: 700,
+                    bgcolor: "#524938",
+                    '&:hover': { bgcolor: '#ff7800' },
+                    // boxShadow: 'none',
+                    // display: 'block',
+                    // borderRadius: '0px',
+                    // my: 2.5
+                  }}>Add To Cart</Button>
+
+                </Stack>
+              </Stack>
 
             </Box>
-
-            <Stack direction='row' gap={4} mt={2}>
-              <Button fullWidth /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
-                color: "white",
-                width: '30%',
-                bgcolor: "#524938",
-                '&:hover': { bgcolor: '#ff7800' },
-                boxShadow: 'none',
-                display: 'block',
-                // borderRadius: '0px',
-                my: 2.5
-              }}>Buy Now</Button>
-              <Button fullWidth /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
-                color: "white",
-                width: '30%',
-                bgcolor: "#524938",
-                '&:hover': { bgcolor: '#ff7800' },
-                boxShadow: 'none',
-                display: 'block',
-                // borderRadius: '0px',
-                my: 2.5
-              }}>Add To Cart</Button>
-
-            </Stack>
+            
           </Grid>
 
         </Grid>
