@@ -1,6 +1,9 @@
 import React from 'react'
 import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AddIcon from '@mui/icons-material/Add';
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const Product = () => {
 
@@ -26,11 +29,16 @@ const Product = () => {
   const buttonDefaultStyle = {
     variant: 'contained',
     width: '12%',
-    color: '#ff7800',
-    fontSize: 16,
-    fontWeight:700,
+    // color: '#ff7800',
+    // textAlign:'center',
+    // fontSize: 13,
+    fontWeight: 700,
+    color: '#696969',
     // py: 1.2,
+    py: 1.2,
     px: 3,
+
+
     backgroundColor: '#f7f7f7',
     border: 'none',
     '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
@@ -83,56 +91,64 @@ const Product = () => {
 
               </Grid>
             </Box>
-            <Box mt={4}>
-              {/* <Typography variant='h6' fontWeight={700} fontSize={14} component='h3' mb={1}>Quantity</Typography> */}
-              <Stack direction='row' spacing={2}>
-                <ButtonGroup>
 
-                  <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle, /*fontSize: 18,*/ }}>-</Button>
+            <Box my={3}>
+              {/* <Divider /> */}
+              {/* <Typography variant='h6' fontWeight={700} fontSize={14} component='h3'>Quantity</Typography> */}
+              {/* <Stack direction='row' p={2}> */}
+              <ButtonGroup>
 
-                  <Button disableRipple sx={{
-                    ...buttonDefaultStyle,
-                    cursor: 'default',
-                    '&:hover': { border: 'none', bgcolor: '#f7f7f7' },
-                    // fontSize: 16,
-                    color:'black !important'
-                  }}>{/*quantity*/}1</Button>
+                <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle, /*fontSize: 18,*/ }} ><RemoveIcon /></Button>
 
-                  <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle,fontSize: 18, }}>+</Button>
+                <Button disableRipple sx={{
+                  ...buttonDefaultStyle,
+                  cursor: 'default',
+                  '&:hover': { border: 'none', bgcolor: '#f7f7f7' },
+                  // fontSize: 16,
+                  
+                }}>{/*quantity*/}1</Button>
 
-                </ButtonGroup>
-                <Stack direction='row' spacing={5} mt={4} /*bgcolor='red'*/>
+                <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle, }} ><AddIcon /> </Button>
 
-                  <Button /*fullWidth*/ /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
-                    color: "white",
-                    // width: '22%',
-                    px: 4,
-                    // fontWeight: 700,
-                    bgcolor: "#ff7800",
-                    '&:hover': { bgcolor: '#ff7800' },
-                    boxShadow: 'none',
-                    // display: 'block',
-                    // borderRadius: '0px',
-                    // my: 2.5
-                  }}>Buy Now</Button>
-                  <Button /*fullWidth*/ startIcon={<ShoppingCartIcon />} /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
-                    color: "white",
-                    // width: '22%',
-                    px: 2,
-                    // fontWeight: 700,
-                    bgcolor: "#524938",
-                    '&:hover': { bgcolor: '#ff7800' },
-                    // boxShadow: 'none',
-                    // display: 'block',
-                    // borderRadius: '0px',
-                    // my: 2.5
-                  }}>Add To Cart</Button>
+              </ButtonGroup>
 
-                </Stack>
-              </Stack>
+              {/* </Stack> */}
 
             </Box>
-            
+            <Box mt={2}>
+              <Divider />
+            </Box>
+            <Stack direction='row' spacing={4} mt={4} /*bgcolor='red'*/>
+
+              <Button /*fullWidth*/ /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ startIcon={<ElectricBoltIcon />} variant="contained" size="large" sx={{
+                color: "white",
+                // width: '22%',
+                fontSize: 12,
+                fontWeight: 700,
+                bgcolor: "#ff7800",
+                '&:hover': { bgcolor: '#ff7800' },
+                boxShadow: 'none',
+                // display: 'block',
+                // borderRadius: '0px',
+                // my: 2.5
+              }}>Buy Now</Button>
+              <Button /*fullWidth*/ startIcon={<ShoppingCartIcon />} /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
+                color: "white",
+                // width: '22%',
+                px: 2,
+                fontSize: 12,
+                fontWeight: 700,
+                // fontWeight: 500,
+                bgcolor: "#524938",
+                '&:hover': { bgcolor: '#ff7800' },
+                // boxShadow: 'none',
+                // display: 'block',
+                // borderRadius: '0px',
+                // my: 2.5
+              }}>Add To Cart</Button>
+
+            </Stack>
+
           </Grid>
 
         </Grid>
