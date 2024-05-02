@@ -29,16 +29,10 @@ const Product = () => {
   const buttonDefaultStyle = {
     variant: 'contained',
     width: '12%',
-    // color: '#ff7800',
-    // textAlign:'center',
-    // fontSize: 13,
     fontWeight: 700,
     color: '#696969',
-    // py: 1.2,
-    py: 1.2,
+    py: 1,
     px: 3,
-
-
     backgroundColor: '#f7f7f7',
     border: 'none',
     '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
@@ -48,12 +42,10 @@ const Product = () => {
       <Container /*style={{ backgroundColor: 'red' }}*/>
         <Grid container>
 
-
           {/* product image section */}
           <Grid item /*bgcolor='gray'*/ lg={6} md={6} sm={12} xs={12}>
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTadMayQjrxuWmqXB6nTaNUXJRumlXGHD7u2w&usqp=CAU' style={imageStyle} alt='product' />
           </Grid>
-
 
           {/* product detail section */}
           <Grid item /*bgcolor='cadetblue'*/ lg={6} md={6} sm={12} xs={12} px={2}>
@@ -66,7 +58,7 @@ const Product = () => {
             </Box>
             <Box mt={2}>
               <Typography variant='h6' fontWeight={700} fontSize={14} component='h3'>Description</Typography>
-              <Typography variant='body1'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor...</Typography>
+              <Typography variant='body1' color='#696969'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor...</Typography>
 
             </Box>
             {/* size chips */}
@@ -93,26 +85,24 @@ const Product = () => {
             </Box>
 
             <Box my={3}>
-              {/* <Divider /> */}
+
               {/* <Typography variant='h6' fontWeight={700} fontSize={14} component='h3'>Quantity</Typography> */}
-              {/* <Stack direction='row' p={2}> */}
+
               <ButtonGroup>
 
-                <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle, /*fontSize: 18,*/ }} ><RemoveIcon /></Button>
+                <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle }} ><RemoveIcon /></Button>
 
                 <Button disableRipple sx={{
                   ...buttonDefaultStyle,
                   cursor: 'default',
                   '&:hover': { border: 'none', bgcolor: '#f7f7f7' },
-                  // fontSize: 16,
-                  
+                  fontSize: 20,
+
                 }}>{/*quantity*/}1</Button>
 
-                <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle, }} ><AddIcon /> </Button>
+                <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle }} ><AddIcon /> </Button>
 
               </ButtonGroup>
-
-              {/* </Stack> */}
 
             </Box>
             <Box mt={2}>
@@ -120,31 +110,23 @@ const Product = () => {
             </Box>
             <Stack direction='row' spacing={4} mt={4} /*bgcolor='red'*/>
 
-              <Button /*fullWidth*/ /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ startIcon={<ElectricBoltIcon />} variant="contained" size="large" sx={{
+              <Button  /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ startIcon={<ElectricBoltIcon />} variant="contained" size="large" sx={{
                 color: "white",
-                // width: '22%',
                 fontSize: 12,
                 fontWeight: 700,
                 bgcolor: "#ff7800",
                 '&:hover': { bgcolor: '#ff7800' },
                 boxShadow: 'none',
-                // display: 'block',
-                // borderRadius: '0px',
-                // my: 2.5
+
               }}>Buy Now</Button>
-              <Button /*fullWidth*/ startIcon={<ShoppingCartIcon />} /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
+              <Button startIcon={<ShoppingCartIcon />} /*onClick={() => addToCart({ ...product, quantity }, 'modal_view')}*/ variant="contained" size="large" sx={{
                 color: "white",
-                // width: '22%',
                 px: 2,
                 fontSize: 12,
                 fontWeight: 700,
-                // fontWeight: 500,
                 bgcolor: "#524938",
                 '&:hover': { bgcolor: '#ff7800' },
-                // boxShadow: 'none',
-                // display: 'block',
-                // borderRadius: '0px',
-                // my: 2.5
+
               }}>Add To Cart</Button>
 
             </Stack>
