@@ -31,14 +31,13 @@ const Product = () => {
     width: '12%',
     fontWeight: 700,
     color: '#696969',
-    py: 1,
     px: 3,
     backgroundColor: '#f7f7f7',
     border: 'none',
     '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
   }
   return (
-    <Box /*sx={{ bgcolor: 'yellow' }}*/ mt={7}>
+    <Box mt={7}>
       <Container /*style={{ backgroundColor: 'red' }}*/>
         <Grid container>
 
@@ -66,16 +65,16 @@ const Product = () => {
               <Typography variant='h6' fontWeight={700} fontSize={14} component='h3' mb={1}>Size</Typography>
               <Grid container spacing={2}>
                 <Grid item>
-                  <Chip label='S' onClick={handleChip} variant={currentChip === 'S' ? 'contained' : 'outlined'} color='warning' />
+                  <Chip label='S' onClick={handleChip} variant={currentChip === 'S' ? 'contained' : 'outlined'} /*color='warning'*/ />
                 </Grid>
                 <Grid item>
-                  <Chip label='M' onClick={handleChip} variant={currentChip === 'M' ? 'contained' : 'outlined'} color='warning' />
+                  <Chip label='M' onClick={handleChip} variant={currentChip === 'M' ? 'contained' : 'outlined'} /*color='warning'*/ />
                 </Grid>
                 <Grid item>
-                  <Chip label='L' onClick={handleChip} variant={currentChip === 'L' ? 'contained' : 'outlined'} color='warning' />
+                  <Chip label='L' onClick={handleChip} variant={currentChip === 'L' ? 'contained' : 'outlined'} /*color='warning'*/ />
                 </Grid>
                 <Grid item>
-                  <Chip label='XL' onClick={handleChip} variant={currentChip === 'XL' ? 'contained' : 'outlined'} color='warning' />
+                  <Chip label='XL' onClick={handleChip} variant={currentChip === 'XL' ? 'contained' : 'outlined'} /*color='warning'*/ />
                 </Grid>
                 <Grid item>
                   <Chip label='XXL' onClick={handleChip} variant={currentChip === 'XXL' ? 'contained' : 'outlined'} color='warning' />
@@ -90,17 +89,18 @@ const Product = () => {
 
               <ButtonGroup>
 
-                <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle }} ><RemoveIcon /></Button>
+                <Button /*onClick={() => handleProductQuantity('decrease')}*/ sx={{ ...buttonDefaultStyle }}><RemoveIcon /></Button>
+
 
                 <Button disableRipple sx={{
                   ...buttonDefaultStyle,
                   cursor: 'default',
                   '&:hover': { border: 'none', bgcolor: '#f7f7f7' },
-                  fontSize: 20,
+                  fontSize: 18,
 
                 }}>{/*quantity*/}1</Button>
 
-                <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle }} ><AddIcon /> </Button>
+                <Button /*onClick={() => handleProductQuantity('increase')}*/ sx={{ ...buttonDefaultStyle, fontSize: '50px !important' }}><AddIcon />  </Button>
 
               </ButtonGroup>
 
