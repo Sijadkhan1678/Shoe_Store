@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const ProductItem = ({ product }) => {
 
     const [isHovered, setHovered] = useState(false)
-    const { name, img, price, rating, brand } = product
+    const { id, name, img, price, rating, brand } = product
 
     function handleHover() { setHovered(!isHovered) }
 
@@ -17,7 +17,7 @@ const ProductItem = ({ product }) => {
 
 
             <Box width="100%" sx={{ position: 'relative', overflow: 'hidden', height: 250 }} >
-                <Link to='/product' style={linkStyle} >
+                <Link to={`/product/${id}`} style={linkStyle} >
                     <img src={img} alt='shoe' width='100%' height={250} style={productImgStyle} />
                 </Link>
                 <ProductActionButton product={product} isHovered={isHovered} />
@@ -26,7 +26,7 @@ const ProductItem = ({ product }) => {
 
 
             <Stack direction='column' justifyContent='space-evenly' pt={2}>
-                <Link to='/product' style={linkStyle} >
+                <Link to={`/product/${id}`} style={linkStyle} >
                     <Box sx={itemContentStyle}>
 
                         <Typography variant='h6' color="#1c1c1c" fontWeight='400' fontSize='1rem'>
