@@ -39,7 +39,7 @@ const AppReducer = (state, action) => {
             else {
 
                 product.quantity++
-                return state
+                return {...state}
             }
 
         case REMOVE_FROM_CART:
@@ -74,3 +74,4 @@ const AppReducer = (state, action) => {
 }
 
 export default AppReducer;
+
