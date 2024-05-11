@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
 import context from '../../context/AppContext'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -10,17 +10,12 @@ import { useParams } from 'react-router-dom'
 const Product = () => {
 
   const xs = 600;
-  const sm = 900;
   const md = 1200;
-  // const lg = 1536;
 
   const isMobile = useMediaQuery(`(max-width: ${xs}px)`);
-  const isSmall = useMediaQuery(`(max-width: ${sm}px)`);
   const isLarge = useMediaQuery(`(min-width: ${md}px)`);
   const [currentChip, setCurrentChip] = React.useState('S')
   const [quantity, setQuantity] = React.useState(1);
-  const [product, setProduct] = useState()
-  const [counter, setCounter] = useState(1)
   const { addToCart, products } = React.useContext(context)
   const { id } = useParams()
 
@@ -31,32 +26,26 @@ const Product = () => {
       setQuantity(quantity - 1)
     }
   }
-  useEffect(() => {
-    getCurrentProduct()
 
-    console.log('useEffect', counter)
-  },[])
   const getCurrentProduct = () => {
     const product = products.find((product) => product.id === id)
-    console.log(product)
-    setCounter(counter + 1)
 
     if (product) {
-      setProduct(product)
+      return product
     }
   }
+  const product = getCurrentProduct()
 
-  // const { name, img, price } = product
-  // console.log(product)
+  const { name, img, price, rating, brand } = product
 
   const handleChip = (chip) => { setCurrentChip(chip.target.innerText) }
 
 
   const imageStyle = {
     width: '100%',
-    maxWidth: isLarge ? 700 : '100%',
+    maxWidth: isLarge ? 600 : '100%',
     borderRadius: 6,
-    height: isLarge ? 450 : (isSmall ? (isMobile ? 350 : 450) : 450),
+    height: isLarge ? 450 : (isMobile ? 200 : 350),
     objectFit: 'cover'
   };
   const buttonDefaultStyle = {
@@ -70,23 +59,24 @@ const Product = () => {
     '&:hover': { border: 'none', bgcolor: '#e5e5e5' }
   }
   return (
+
     <Box mt={7}>
       <Container /*style={{ backgroundColor: 'red' }}*/>
         <Grid container>
 
           {/* product image section */}
           <Grid item /*bgcolor='gray'*/ lg={6} md={6} sm={12} xs={12}>
-            {product && <img src={product.img} style={imageStyle} alt='product' />}
+            {product && <img src={img} style={imageStyle} alt='product' />}
           </Grid>
 
           {/* product detail section */}
           <Grid item /*bgcolor='cadetblue'*/ lg={6} md={6} sm={12} xs={12} px={2}>
             <Box mt={4}>
-              {product && <Typography variant='h6' component='h4' mb={1} fontSize={12} color="#ff7800" fontWeight={600} ml={0.6}>{`${product.brand} brand`.toUpperCase()}</Typography>}
+              {product && <Typography variant='h6' component='h4' mb={1} fontSize={12} color="#ff7800" fontWeight={600} ml={0.6}>{`${brand} brand`.toUpperCase()}</Typography>}
 
-              {product && <Typography variant='h4' component='h3' mb={1} fontSize={32} fontWeight={700}>{product.name}</Typography>}
-              {product && <Rating value={product.rating} size='small' readOnly sx={{ color: 'black' }} />}
-              {product && <Typography variant='h3' component='h4' /*color='#ff7800'*/ mt={2} fontWeight={700}> ${product.price} </Typography>}
+              {product && <Typography variant='h4' component='h3' mb={1} fontSize={32} fontWeight={700}>{name}</Typography>}
+              {product && <Rating value={rating} size='small' readOnly sx={{ color: 'black' }} />}
+              {product && <Typography variant='h3' component='h4' /*color='#ff7800'*/ mt={2} fontWeight={700}> ${price} </Typography>}
             </Box>
             <Box mt={2}>
               <Typography variant='h6' fontWeight={700} fontSize={14} component='h3'>Description</Typography>
@@ -152,7 +142,7 @@ const Product = () => {
                 boxShadow: 'none',
 
               }}>Buy Now</Button>
-              <Button startIcon={<ShoppingCartIcon />} onClick={() => addToCart({ id: '2344', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTadMayQjrxuWmqXB6nTaNUXJRumlXGHD7u2w&usqp=CAU', name: 'HyperAdapt Self-lacing', price: 67, quantity }, 'modal_view')} variant="contained" size="large" sx={{
+              <Button startIcon={<ShoppingCartIcon />} onClick={() => addToCart({ ...product, quantity }, 'product_view')} variant="contained" size="large" sx={{
                 color: "white",
                 px: 2,
                 fontSize: 12,
