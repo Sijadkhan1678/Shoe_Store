@@ -34,6 +34,7 @@ const Product = () => {
       return product
     }
   }
+  
   const product = getCurrentProduct()
 
   const { name, img, price, rating, brand } = product
@@ -72,9 +73,9 @@ const Product = () => {
           {/* product detail section */}
           <Grid item /*bgcolor='cadetblue'*/ lg={6} md={6} sm={12} xs={12} px={2}>
             <Box mt={4}>
-              {product && <Typography variant='h6' component='h4' mb={1} fontSize={12} color="#ff7800" fontWeight={600} ml={0.6}>{`${brand} brand`.toUpperCase()}</Typography>}
+              {product && <Typography variant='h6' component='h4' sx={{ mb: 1, fontSize: 12, color: "#ff7800", fontWeight: 600, ml: 0.6 }}>{`${brand} brand`.toUpperCase()}</Typography>}
 
-              {product && <Typography variant='h4' component='h3' mb={1} fontSize={32} fontWeight={700}>{name}</Typography>}
+              {product && <Typography variant='h4' component='h3' sx={{ mb: 1, fontSize: 32, fontWeight: 700, }}>{name}</Typography>}
               {product && <Rating value={rating} size='small' readOnly sx={{ color: 'black' }} />}
               {product && <Typography variant='h3' component='h4' /*color='#ff7800'*/ mt={2} fontWeight={700}> ${price} </Typography>}
             </Box>
