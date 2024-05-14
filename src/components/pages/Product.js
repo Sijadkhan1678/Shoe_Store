@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
 import context from '../../context/AppContext'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -18,13 +18,6 @@ const Product = () => {
   const [quantity, setQuantity] = React.useState(1);
   const { addToCart, products } = React.useContext(context)
   const { id } = useParams()
-
-  useEffect(() => {
-
-    window.scrollTo({ top: 130, left: 0, behavior: 'smooth' })
-    ()
-
-  }, []);
 
   const handleQuantity = (type) => {
     if (type === 'increase') {
@@ -47,6 +40,7 @@ const Product = () => {
   const { name, img, price, rating, brand } = product
 
   const handleChip = (chip) => { setCurrentChip(chip.target.innerText) }
+  window.scrollTo({ top: 130, left: 0, behavior: 'smooth' })
 
 
   const imageStyle = {
