@@ -10,6 +10,7 @@ import Cart from './components/pages/Cart'
 import NotFound from './components/pages/NotFound'
 import AppState from './context/AppState'
 import ProductModal from './components/ProductModal'
+import Alert from './components/Alert'
 import Product from './components/pages/Product';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -21,7 +22,9 @@ const App = () => {
       <Router>
         <Fragment>
           <ProductModal />
+          <Alert />
           <Header />
+
           <Box>
 
             <Routes>
