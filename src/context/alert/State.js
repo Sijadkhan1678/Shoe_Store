@@ -1,5 +1,5 @@
 import React from 'react'
-import Context from "Context";
+import Context from "./Context";
 import reducer from './Reducer'
 import { SET_ALERT, REMOVE_ALERT } from './constant';
 
@@ -8,21 +8,23 @@ export const State = ({ children }) => {
     const initialState = null
     const [state, dispatch] = React.useReducer(reducer, initialState)
 
-    const setAlert = (alert) => {
+    const setAlert = (message) => {
 
         dispatch({
             type: SET_ALERT,
-            payload: alert
+            payload: message
         })
     }
     const removeAlert = () => {
 
-        dispatch({ type: REMOVE_ALERT })
+        setTimeout(() => {
+            dispatch({ type: REMOVE_ALERT })
+        },3000)
     }
 
     return (
         <Context.Provider value={{
-            alert: state,
+            message: state,
             setAlert,
             removeAlert
         }}>
