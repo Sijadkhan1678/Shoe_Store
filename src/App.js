@@ -9,6 +9,7 @@ import Checkout from './components/pages/Checkout'
 import Cart from './components/pages/Cart'
 import NotFound from './components/pages/NotFound'
 import AppState from './context/AppState'
+import AlertState from './context/alert/State'
 import ProductModal from './components/ProductModal'
 import Alert from './components/Alert'
 import Product from './components/pages/Product';
@@ -19,6 +20,7 @@ const App = () => {
 
   return (
     <AppState>
+      <AlertState>
       <Router>
         <Fragment>
           <ProductModal />
@@ -41,6 +43,7 @@ const App = () => {
           <Footer />
         </Fragment>
       </Router>
+      </AlertState>
     </AppState>
   );
 }

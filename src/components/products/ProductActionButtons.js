@@ -3,17 +3,25 @@ import { ButtonGroup, Button } from '@mui/material';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Appcontext from '../../context/AppContext';
+import contextAlert from '../../context/alert/Context';
 
 
 const ProductActionButtons = ({ product, isHovered }) => {
 
     const { addToCart, addProduct, openModal } = useContext(Appcontext);
+    const { setAlert } = useContext(contextAlert);
 
     function handleViewModal() {
 
         addProduct(product)
         openModal()
     }
+    function handleCart() {
+
+        setAlert('Successfully Add To Cart')
+        addToCart(product)
+    }
+
     const defaultStyle = {
         variant: 'contained',
         bgcolor: '#524938',
@@ -33,19 +41,19 @@ const ProductActionButtons = ({ product, isHovered }) => {
     }
     const quickViewButtonStyle = addDefaultStyle({
         width: '20%',
-        transition: 'opacity 300ms ease-in, transform 300ms ease-in, visibility 300ms ease-in',
-        transitionDelay:'300ms'
+        transition: 'opacity 300ms ease-in-out, transform 300ms ease-in, visibility 300ms ease-in-out',
+        transitionDelay: '300ms'
     })
     const addToCartButtonStyle = addDefaultStyle({
         width: '60%',
         borderLeft: '1px solid white',
-        transition: 'opacity 300ms ease-in, transform 300ms ease-in-out, visibility 400ms ease-in',
+        transition: 'opacity 300ms ease-in-out, transform 300ms ease-in-out, visibility 400ms ease-in-out',
         transitionDelay: '600ms',
     })
     const compareButtonStyle = addDefaultStyle({
         width: '21%',
         borderLeft: '1px solid white',
-        transition: 'opacity 300ms ease-in, transform 300ms ease-in, visibility 600ms ease-in',
+        transition: 'opacity 300ms ease-in-out, transform 300ms ease-in-out, visibility 600ms ease-in-out',
         transitionDelay: '800ms',
 
     })
@@ -55,16 +63,16 @@ const ProductActionButtons = ({ product, isHovered }) => {
         <ButtonGroup orientation="horizontal" size="large"
             sx={{
                 width: '100%',
-                transform:'translateY(15px)',
-                position:'absolute',
-                bottom:0,
-                left:0,
-                right:0,
+                transform: 'translateY(15px)',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
             }}>
 
             <Button onClick={handleViewModal} startIcon={<VisibilityIcon />} sx={quickViewButtonStyle} />
 
-            <Button onClick={() => addToCart(product)} sx={addToCartButtonStyle}>ADD TO CART</Button>
+            <Button onClick={handleCart} sx={addToCartButtonStyle}>ADD TO CART</Button>
 
             <Button sx={compareButtonStyle} startIcon={<CompareArrowsIcon />} />
 
