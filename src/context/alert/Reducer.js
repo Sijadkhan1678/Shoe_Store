@@ -5,10 +5,10 @@ const Reducer = (state, action) => {
     switch (action.type) {
 
         case SET_ALERT:
-            return state = action.payload
+            return action.payload
 
         case REMOVE_ALERT:
-            return state = null
+            return null
 
         default:
             return state
