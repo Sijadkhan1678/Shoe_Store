@@ -260,7 +260,7 @@ const shoesList = [{
 
   },
   {
-    id : 'afg150fe',
+    id : 'afg150fz',
     name: ' Ferrari SF90 ',
     price: 74,
     rating:4.2,
