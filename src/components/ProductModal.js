@@ -2,11 +2,13 @@ import React from 'react'
 import { Box, Modal, Grid, Typography, ButtonGroup, Button, useMediaQuery, IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import context from '../context/AppContext'
+import contextAlert from '../context/alert/Context';
 
 
 const ProductModal = () => {
 
     const { product, modalOpen, closeModal, addToCart } = React.useContext(context);
+    const { setAlert } = React.useContext(contextAlert);
     const [quantity, setQuantity] = React.useState(1);
 
     const handleProductQuantity = (type) => {
@@ -22,6 +24,12 @@ const ProductModal = () => {
         }
     }
     const handleClose = () => { closeModal(false); setQuantity(1) }
+    
+    const handleAddToCart = () => {
+
+        addToCart({ ...product, quantity }, 'modal_view')
+        setAlert('Successfully Add To Cart')
+    }
 
     const xs = 600;
     const sm = 900;
@@ -91,18 +99,21 @@ const ProductModal = () => {
 
                                 <ButtonGroup>
 
-                                    <Button onClick={() => handleProductQuantity('decrease')} sx={{...buttonDefaultStyle}}>-</Button>
+                                    <Button onClick={() => handleProductQuantity('decrease')} sx={{ ...buttonDefaultStyle }}>-</Button>
+
                                     <Button disableRipple sx={{
                                         ...buttonDefaultStyle,
                                         cursor: 'default',
                                         '&:hover': { border: 'none', bgcolor: '#f7f7f7' }
 
                                     }}>{quantity}</Button>
+
                                     <Button onClick={() => handleProductQuantity('increase')} sx={{ ...buttonDefaultStyle, }}>+</Button>
+
                                 </ButtonGroup>
 
 
-                                <Button fullWidth onClick={() => addToCart({ ...product, quantity }, 'modal_view')} variant="contained" size="large" sx={{
+                                <Button fullWidth onClick={handleAddToCart} variant="contained" size="large" sx={{
                                     color: "white",
                                     bgcolor: "#524938",
                                     '&:hover': { bgcolor: '#ff7800' },

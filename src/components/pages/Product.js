@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
 import context from '../../context/AppContext'
+import contextAlert from '../../context/alert/Context';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
@@ -12,6 +13,7 @@ const Product = () => {
   const xs = 600;
   const md = 1200;
 
+  const { setAlert } = React.useContext(contextAlert);
   const isMobile = useMediaQuery(`(max-width: ${xs}px)`);
   const isLarge = useMediaQuery(`(min-width: ${md}px)`);
   const [currentChip, setCurrentChip] = React.useState('S')
@@ -19,12 +21,22 @@ const Product = () => {
   const { addToCart, products } = React.useContext(context)
   const { id } = useParams()
 
+  React.useEffect(() => {
+    window.scrollTo({ top: 130, left: 0, behavior: 'smooth' })
+  }, [])
+  
   const handleQuantity = (type) => {
     if (type === 'increase') {
       setQuantity(quantity + 1)
     } else if (quantity > 1) {
       setQuantity(quantity - 1)
     }
+  }
+
+  const handleAddToCart = () => {
+
+    addToCart({ ...product, quantity }, 'product_view')
+    setAlert('Successfully Add To Cart')
   }
 
   const getCurrentProduct = () => {
@@ -40,8 +52,6 @@ const Product = () => {
   const { name, img, price, rating, brand } = product
 
   const handleChip = (chip) => { setCurrentChip(chip.target.innerText) }
-  window.scrollTo({ top: 130, left: 0, behavior: 'smooth' })
-
 
   const imageStyle = {
     width: '100%',
@@ -144,7 +154,7 @@ const Product = () => {
                 boxShadow: 'none',
 
               }}>Buy Now</Button>
-              <Button startIcon={<ShoppingCartIcon />} onClick={() => addToCart({ ...product, quantity }, 'product_view')} variant="contained" size="large" sx={{
+              <Button startIcon={<ShoppingCartIcon />} onClick={handleAddToCart} variant="contained" size="large" sx={{
                 color: "white",
                 px: 2,
                 fontSize: 12,
