@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import reducer from './Reducer';
 import context from './Context';
-import { ADD_TO_CART, REMOVE_FROM_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL, ADD_PRODUCT, INCREASE_QUANTITY, DECREASE_QUANTITY } from './Types';
+import { ADD_TO_CART, REMOVE_FROM_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL, INCREASE_QUANTITY, DECREASE_QUANTITY } from './Types';
 
 const State = ({ children }) => {
 
@@ -16,14 +16,10 @@ const State = ({ children }) => {
 
     useEffect(() => {
 
-        localStorage.setItem('cart', JSON.stringify(state.cart))
+        localStorage.setItem('cart', JSON.stringify(state.item))
 
-    }, [state.cart])
+    }, [state.item])
 
-    const addProduct = (product) => {
-
-        dispatch({ type: ADD_PRODUCT, payload: product })
-    }
 
     // function add to cart product
     const addToCart = (product, viewType = undefined) => {
@@ -66,11 +62,13 @@ const State = ({ children }) => {
         dispatch({ type: CALCULATE_TOTAL })
     }
 
-
+    console.log('cart state', JSON.parse(localStorage.getItem('cart')))
     return (
         <context.Provider value={{
-            cart: state.cart,
-            addProduct,
+            item: state.item,
+            subTotalPrice: state.subTotalPrice,
+            totalPrice: state.totalPrice,
+            shippingPrice: state.shippingPrice,
             addToCart,
             removeFromCart,
             increaseQuantity,

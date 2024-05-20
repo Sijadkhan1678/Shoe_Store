@@ -2,8 +2,6 @@ import { GET_BRAND_PRODUCTS, OPEN_MODAL, CLOSE_MODAL, ADD_PRODUCT, CHANGE_BRAND 
 
 const AppReducer = (state, action) => {
 
-    state.cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
-
     switch (action.type) {
 
         case GET_BRAND_PRODUCTS:
