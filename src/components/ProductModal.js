@@ -1,13 +1,15 @@
 import React from 'react'
 import { Box, Modal, Grid, Typography, ButtonGroup, Button, useMediaQuery, IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import context from '../context/AppContext'
 import contextAlert from '../context/alert/Context';
+import { useCartContext } from '../context/cart'
+import context from '../context/AppContext'
 
 
 const ProductModal = () => {
 
-    const { product, modalOpen, closeModal, addToCart } = React.useContext(context);
+    const { product, modalOpen, closeModal } = React.useContext(context);
+    const { addToCart } = useCartContext()
     const { setAlert } = React.useContext(contextAlert);
     const [quantity, setQuantity] = React.useState(1);
 
@@ -24,7 +26,7 @@ const ProductModal = () => {
         }
     }
     const handleClose = () => { closeModal(false); setQuantity(1) }
-    
+
     const handleAddToCart = () => {
 
         addToCart({ ...product, quantity }, 'modal_view')

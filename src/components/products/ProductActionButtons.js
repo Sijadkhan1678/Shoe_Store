@@ -3,12 +3,14 @@ import { ButtonGroup, Button } from '@mui/material';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Appcontext from '../../context/AppContext';
+import { useCartContext } from '../../context/cart';
 import contextAlert from '../../context/alert/Context';
 
 
 const ProductActionButtons = ({ product, isHovered }) => {
 
-    const { addToCart, addProduct, openModal } = useContext(Appcontext);
+    const { addProduct, openModal } = useContext(Appcontext);
+    const { addToCart } = useCartContext()
     const { setAlert } = useContext(contextAlert);
 
     function handleViewModal() {
@@ -18,8 +20,8 @@ const ProductActionButtons = ({ product, isHovered }) => {
     }
     function handleCart() {
 
-        setAlert('Successfully Add To Cart')
         addToCart(product)
+        setAlert('Successfully Add To Cart')
     }
 
     const defaultStyle = {
