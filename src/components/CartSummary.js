@@ -1,35 +1,28 @@
-import React, { useContext, useState } from 'react'
-import context from '../context/AppContext';
+import React, { useState, useLayoutEffect } from 'react'
+import { useCartContext } from '../context/cart';
 import { Grid, Box, Stack, Typography, FormControl, InputBase, Button } from '@mui/material'
 import { Link } from 'react-router-dom';
 
 
-const CartSummary = ({ isCheckout,order }) => {
-    console.log(isCheckout)
+const CartSummary = ({ isCheckout, order }) => {
 
     const [promoCode, setPromoCode] = useState('')
+    const { calculateSubTotal, calculateTotal, shippingPrice, subTotalPrice, totalPrice, } = useCartContext();
+    useLayoutEffect(() => {
+
+        calculateSubTotal()
+        calculateTotal()
+
+    }, [])
 
     const applyPromodCode = () => { }
 
     const handleChange = (e) => setPromoCode(e.target.value)
-
-
-    const { cart } = useContext(context);
-
-    const subTotal = cart.reduce((total, item) => (item.price * item.quantity) + total, 0)
-
-    const shippingPrice = 4.00;
-
-    const totalPrice = cart.reduce((total, product) => {
-
-        return (product.price * product.quantity) + (product.quantity * shippingPrice) + total;
-
-    }, 0)
-
+    console.log('cartSummary component')
 
     return (
 
-        <Grid container>
+        <Grid container sx={{ position: 'sticky', top: 50 }}>
 
             {!isCheckout && (<Grid item lg={7} md={6} sm={9} xs={6}>
                 <FormControl variant='standard'>
@@ -76,7 +69,7 @@ const CartSummary = ({ isCheckout,order }) => {
                             </Typography>
 
                             <Typography variant='h6' fontSize="1rem">
-                                ${subTotal.toFixed(2)}
+                                ${subTotalPrice.toFixed(2)}
                             </Typography>
 
                         </Stack>
@@ -97,7 +90,7 @@ const CartSummary = ({ isCheckout,order }) => {
 
                     <Box p='0.75rem 1.25rem' borderTop='1px solid rgb(237, 241, 255)'>
 
-                        <Stack direction='row' mt='0.5rem' justifyContent='space-between'>
+                        <Stack direction='row' mt='0.5rem' mb={isCheckout && '0.5rem'} justifyContent='space-between'>
 
                             <Typography variant='h4' fontSize="1.25rem" fontWeight={700}>
                                 Total
@@ -111,7 +104,7 @@ const CartSummary = ({ isCheckout,order }) => {
 
                     </Box>
 
-                    {!isCheckout && ( <Box px='1.25rem' pb='0.75rem' my='1rem'>
+                    {!isCheckout && (<Box px='1.25rem' pb='0.75rem' my='1rem'>
 
                         <Button fullWidth component={Link} to='/cart/checkout' variant="contained" size="large"
                             sx={{
