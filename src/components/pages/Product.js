@@ -1,7 +1,8 @@
 import React from 'react'
 import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
-import context from '../../context/AppContext'
 import contextAlert from '../../context/alert/Context';
+import { useCartContext } from '../../context/cart'
+import context from '../../context/AppContext'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
@@ -14,17 +15,19 @@ const Product = () => {
   const md = 1200;
 
   const { setAlert } = React.useContext(contextAlert);
+  const { addToCart } = useCartContext()
+  const { products } = React.useContext(context)
   const isMobile = useMediaQuery(`(max-width: ${xs}px)`);
   const isLarge = useMediaQuery(`(min-width: ${md}px)`);
   const [currentChip, setCurrentChip] = React.useState('S')
   const [quantity, setQuantity] = React.useState(1);
-  const { addToCart, products } = React.useContext(context)
+
   const { id } = useParams()
 
   React.useEffect(() => {
     window.scrollTo({ top: 130, left: 0, behavior: 'smooth' })
   }, [])
-  
+
   const handleQuantity = (type) => {
     if (type === 'increase') {
       setQuantity(quantity + 1)
