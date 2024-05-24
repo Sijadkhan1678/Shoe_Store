@@ -2,8 +2,6 @@ import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CA
 
 const AppReducer = (state, action) => {
 
-    //  state.item = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
-
     switch (action.type) {
 
         case ADD_TO_CART:
@@ -46,16 +44,16 @@ const AppReducer = (state, action) => {
             return {
 
                 ...state,
-                subTotalPrice: state.item.reduce((total, product) => {
-
-                    return (product.price * product.quantity) + (product.quantity * state.shippingPrice) + total;
-
-                }, 0)
+                subTotalPrice: state.item.reduce((total, item) => (item.price * item.quantity) + total, 0)
             }
         case CALCULATE_TOTAL:
             return {
                 ...state,
-                totalPrice: state.item.reduce((total, item) => (item.price * item.quantity) + total, 0)
+                totalPrice: state.item.reduce((total, product) => {
+
+                    return (product.price * product.quantity) + (product.quantity * state.shippingPrice) + total;
+
+                }, 0)
             }
 
         default:

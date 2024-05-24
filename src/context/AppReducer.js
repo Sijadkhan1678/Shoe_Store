@@ -1,4 +1,4 @@
-import { GET_BRAND_PRODUCTS, OPEN_MODAL, CLOSE_MODAL, ADD_PRODUCT, CHANGE_BRAND } from './Types';
+import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './Types';
 
 const AppReducer = (state, action) => {
 
@@ -11,18 +11,6 @@ const AppReducer = (state, action) => {
                 brandProducts: state.products.filter(product => product.brand === action.payload),
                 selectedBrand: action.payload
             }
-
-        case ADD_PRODUCT:
-
-            return { ...state, product: action.payload }
-
-        case OPEN_MODAL:
-
-            return { ...state, modalOpen: true }
-
-        case CLOSE_MODAL:
-
-            return { ...state, product: null, modalOpen: false }
 
         case CHANGE_BRAND:
             return {

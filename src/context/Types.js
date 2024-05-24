@@ -1,6 +1,3 @@
-export const GET_BRAND_PRODUCTS = 'GET_BRAND_PRODUCTS';
-export const ADD_PRODUCT = 'ADD_PRODUCT';
-export const OPEN_MODAL = 'OPEN_MODAL'
-export const CLOSE_MODAL = 'CLOSE_MODAL'
+export const GET_BRAND_PRODUCTS = 'GET_BRAND_PRODUCTS'
 export const CHANGE_BRAND = 'CHANGE_BRAND'
 
