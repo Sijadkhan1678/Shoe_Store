@@ -5,11 +5,12 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Appcontext from '../../context/AppContext';
 import { useCartContext } from '../../context/cart';
 import contextAlert from '../../context/alert/Context';
+import {useModalContext} from '../../context/modal';
 
 
 const ProductActionButtons = ({ product, isHovered }) => {
 
-    const { addProduct, openModal } = useContext(Appcontext);
+    const { addProduct, openModal } = useModalContext(Appcontext);
     const { addToCart } = useCartContext()
     const { setAlert } = useContext(contextAlert);
 
