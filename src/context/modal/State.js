@@ -24,7 +24,8 @@ const State = ({ children }) => {
             open: state.open,
             product: state.product,
             openModal,
-            closeModal, addProduct
+            closeModal,
+            addProduct
         }}>
             {children}
         </context.Provider>

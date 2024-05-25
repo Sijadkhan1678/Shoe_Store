@@ -18,7 +18,7 @@ const Reducer = (state, action) => {
         case CLOSE_MODAL:
             return {
                 ...state, product: null,
-                modalOpen: false
+                open: false
             }
 
         default:
