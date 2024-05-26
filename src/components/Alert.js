@@ -1,6 +1,6 @@
 import React from 'react'
 import { Alert } from '@mui/material'
-import context from '../context/alert/Context'
+import context from '../context/alert/context'
 
 
 const CartAlert = () => {

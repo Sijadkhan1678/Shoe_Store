@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Modal, Grid, Typography, ButtonGroup, Button, useMediaQuery, IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import contextAlert from '../context/alert/Context';
+import contextAlert from '../context/alert/context';
 import { useCartContext } from '../context/cart'
 import { useModalContext } from '../context/modal'
 import context from '../context/AppContext'

@@ -4,7 +4,7 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Appcontext from '../../context/AppContext';
 import { useCartContext } from '../../context/cart';
-import contextAlert from '../../context/alert/Context';
+import contextAlert from '../../context/alert/context';
 import {useModalContext} from '../../context/modal';
 
 

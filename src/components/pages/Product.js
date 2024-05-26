@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
-import contextAlert from '../../context/alert/Context';
+import contextAlert from '../../context/alert/context';
 import { useCartContext } from '../../context/cart'
 import context from '../../context/AppContext'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
