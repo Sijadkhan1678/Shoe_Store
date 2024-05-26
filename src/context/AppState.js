@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 import AppReducer from './AppReducer';
 import context from './AppContext';
-import shoesList from './Data'
-import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './Types';
+import shoesList from './data'
+import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './types';
 
 const AppState = ({ children }) => {
 

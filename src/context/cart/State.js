@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
-import reducer from './Reducer';
-import context from './Context';
-import { ADD_TO_CART, REMOVE_FROM_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL, INCREASE_QUANTITY, DECREASE_QUANTITY } from './Types';
+import reducer from './reducer';
+import context from './context';
+import { ADD_TO_CART, REMOVE_FROM_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL, INCREASE_QUANTITY, DECREASE_QUANTITY } from './types';
 
 const State = ({ children }) => {
 

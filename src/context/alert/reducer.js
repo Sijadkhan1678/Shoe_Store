@@ -1,6 +1,6 @@
 import { SET_ALERT, REMOVE_ALERT } from './constant'
 
-const Reducer = (state, action) => {
+const reducer = (state, action) => {
 
     switch (action.type) {
 
@@ -14,4 +14,4 @@ const Reducer = (state, action) => {
             return state
     }
 }
-export default Reducer
+export default reducer

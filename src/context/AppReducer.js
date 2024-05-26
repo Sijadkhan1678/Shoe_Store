@@ -1,4 +1,4 @@
-import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './Types';
+import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './types';
 
 const AppReducer = (state, action) => {
 
@@ -14,7 +14,8 @@ const AppReducer = (state, action) => {
 
         case CHANGE_BRAND:
             return {
-                ...state, selectedBrand: action.payload
+                ...state, 
+                selectedBrand: action.payload
             }
 
         default:

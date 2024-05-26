@@ -1,6 +1,6 @@
 import React from 'react'
-import Context from "./Context";
-import reducer from './Reducer'
+import context from "./context";
+import reducer from './reducer'
 import { SET_ALERT, REMOVE_ALERT } from './constant';
 
 export const State = ({ children }) => {
@@ -23,13 +23,13 @@ export const State = ({ children }) => {
     }
 
     return (
-        <Context.Provider value={{
+        <context.Provider value={{
             message: state,
             setAlert,
             removeAlert
         }}>
             {children}
-        </Context.Provider>)
+        </context.Provider>)
 }
 
 export default State
