@@ -1,48 +1,35 @@
-import React, { useContext, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Box, Stack, Typography, Badge, IconButton, SwipeableDrawer, List, ListItem, ListItemText } from '@mui/material';
+import React, { useState } from 'react';
+import { useLocation, NavLink } from 'react-router-dom';
+import { useCartContext } from '../../context/cart';
+import { Box, Stack, Badge, IconButton, } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavLink } from 'react-router-dom';
-import context from '../../context/AppContext';
+import NavDrawer from './NavDrawer'
+import Logo from './Logo'
+
 
 const Header = () => {
-    
-    const { cart } = useContext(context);
-    const [open, setOpen] = useState(false)
-    const [navActiveItem, setNavActiveItem] = useState('Home')
-    const [isHovered, setHovered] = useState(false)
+
     const [currentNavItemHovered, setCurrentNavItemHovered] = useState(undefined)
-    const toggleDrawer = () => setOpen(!open)
+    const [navActiveItem, setNavActiveItem] = useState('Home')
     const currentLocation = useLocation().pathname
+    const [isHovered, setHovered] = useState(false)
+    const [open, setOpen] = useState(false)
+    const { item } = useCartContext();
+
+    const toggleDrawer = () => { setOpen(!open) }
 
     const setCurrentItemHoveredEffect = (e) => {
-
         setHovered(true);
         setCurrentNavItemHovered(e.target.textContent)
-
     }
 
     return (
 
-        <Box bgcolor={ currentLocation === '/' ? '#eeeeee' :'white'} py={5} px={{ xs: 2, sm: 4, md: 8, lg: 10 }}>
-            <SwipeableDrawer open={open} onOpen={toggleDrawer} onClose={toggleDrawer}>
+        <Box bgcolor={currentLocation === '/' ? '#eeeeee' : 'white'} py={5} px={{ xs: 2, sm: 4, md: 8, lg: 10 }}>
 
-                <Box
-                    sx={{ width: 200, textAlign: 'center' }}
-                    role="presentation"
-                    onClick={toggleDrawer}
-                //   onKeyDown={toggleDrawer}
-                >
-                    <List>
+            <NavDrawer open={open} toggleDrawer={toggleDrawer} />
 
-                        <ListItem> <NavLink to='/' style={style} ><ListItemText sx={{ transition: 'color 200ms ease-in', '&:hover': { color: 'red' } }} primary='Home' /></NavLink></ListItem>
-                        <ListItem><NavLink to='/brands' style={style}><ListItemText sx={{ transition: 'color 200ms ease-in', '&:hover': { color: 'red' } }} primary='Brand' /></NavLink></ListItem>
-                        <ListItem><NavLink to='/about' style={style}><ListItemText sx={{ transition: 'color 200ms ease-in', '&:hover': { color: 'red' } }} primary='About' /></NavLink></ListItem>
-                    </List>
-
-                </Box>
-            </SwipeableDrawer>
             <Stack direction='row' justifyContent='space-between' alignItems='center'>
 
                 <IconButton
@@ -61,9 +48,7 @@ const Header = () => {
 
                 </IconButton>
 
-                <Box width='50px' marginTop="6px">
-                    <Typography variant='h4' color='black' fontWeight={800}>Shoefy</Typography>
-                </Box>
+                <Logo />
 
                 <Stack direction='row' sx={{
                     justifyContent: 'space-between',
@@ -81,7 +66,7 @@ const Header = () => {
                 <Box maxWidth='13%'>
                     <NavLink style={{ color: 'black' }} to='/cart' onClick={() => setNavActiveItem('cart')}>
 
-                        <Badge badgeContent={cart.length} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
+                        <Badge badgeContent={item.length || '0'} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
 
                     </NavLink>
 
@@ -109,6 +94,5 @@ const hoverStyled = {
     textDecoration: 'none',
     color: '#ff7800',
 }
-
 
 export default Header;
