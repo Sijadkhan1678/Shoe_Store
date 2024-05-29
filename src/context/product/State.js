@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
-import AppReducer from './AppReducer';
-import context from './AppContext';
-import shoesList from './data'
+import reducer from './reducer';
+import context from './context';
+import shoesList from '../data'
 import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './types';
 
 const AppState = ({ children }) => {
@@ -12,7 +12,7 @@ const AppState = ({ children }) => {
         selectedBrand: 'Home',
     }
 
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     //function get Brand products 
     const getBrandProducts = (brand) => { dispatch({ type: GET_BRAND_PRODUCTS, payload: brand }) }
