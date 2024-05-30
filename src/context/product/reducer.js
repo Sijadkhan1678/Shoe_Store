@@ -1,6 +1,6 @@
 import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './types';
 
-const AppReducer = (state, action) => {
+const reducer = (state, action) => {
 
     switch (action.type) {
 
@@ -8,14 +8,14 @@ const AppReducer = (state, action) => {
 
             return {
                 ...state,
-                brandProducts: state.products.filter(product => product.brand === action.payload),
-                selectedBrand: action.payload
+                filterProducts: state.products.filter(product => product.brand === action.payload),
+                currentBrand: action.payload
             }
 
         case CHANGE_BRAND:
             return {
                 ...state, 
-                selectedBrand: action.payload
+                currentBrand: action.payload
             }
 
         default:
@@ -24,4 +24,4 @@ const AppReducer = (state, action) => {
 
 }
 
-export default AppReducer;
+export default reducer;

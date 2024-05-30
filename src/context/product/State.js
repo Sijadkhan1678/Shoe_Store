@@ -4,12 +4,12 @@ import context from './context';
 import shoesList from '../data'
 import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './types';
 
-const AppState = ({ children }) => {
+const State = ({ children }) => {
 
     const initialState = {
         products: shoesList,
-        brandProducts: [],
-        selectedBrand: 'Home',
+        filterProducts: [],
+        currentBrand: 'All',
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -24,8 +24,8 @@ const AppState = ({ children }) => {
     return (
         <context.Provider value={{
             products: state.products,
-            selectedBrand: state.selectedBrand,
-            brandProducts: state.brandProducts,
+            currentBrand: state.currentBrand,
+            filterProducts: state.filterProducts,
             getBrandProducts,
             changeBrand,
 
@@ -36,4 +36,4 @@ const AppState = ({ children }) => {
 
 }
 
-export default AppState;
+export default State;
