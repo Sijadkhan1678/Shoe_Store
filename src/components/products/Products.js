@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import context from '../../context/AppContext'
+import React from 'react';
+import { useProductContext } from '../../context/product'
 import { Container, Grid, Box, Typography } from '@mui/material'
 import ProductItem from './ProductItem'
 
 const Products = () => {
 
-  const { products } = useContext(context);
+  const { products } = useProductContext();
 
   const Extract_hightRatingProducts = () => {
 
@@ -24,11 +24,8 @@ const Products = () => {
         <Typography variant='h2' pb="3rem" fontWeight='800' lineHeight="55px" fontSize="40px">  Products </Typography>
         <Grid container spacing={4}>
           {
-
             highRatingProducts.map(product => (<ProductItem key={product.id} product={product} />))
-
           }
-
         </Grid>
       </Container>
     </Box>
@@ -36,3 +33,4 @@ const Products = () => {
   )
 }
 export default Products;
+

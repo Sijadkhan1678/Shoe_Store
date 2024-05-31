@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Stack, Button } from '@mui/material';
-import context from '../context/AppContext';
+import {useProductContext} from '../context/product';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 
 const BrandItem = () => {
     
-    const { selectedBrand, getBrandProducts } = useContext(context)
+    const { currentBrand, getBrandProducts } = useProductContext()
 
     const [value, setValue] = React.useState(0);
 
@@ -40,7 +40,6 @@ const BrandItem = () => {
                 scrollButtons={false}
                 indicatorColor="secondary"
                 textColor='secondary'
-                centered
                 >
                     
                 {brandList.map((brand, index) => (<Tab key={index} label={brand} />))}

@@ -8,8 +8,10 @@ import About from './components/pages/About'
 import Checkout from './components/pages/Checkout'
 import Cart from './components/pages/Cart'
 import NotFound from './components/pages/NotFound'
-import AppState from './context/AppState'
 import AlertState from './context/alert/State'
+import ModalState from './context/modal/State'
+import CartState from './context/cart/State'
+import ProductState from './context/product/State'
 import ProductModal from './components/ProductModal'
 import Alert from './components/Alert'
 import Product from './components/pages/Product';
@@ -19,32 +21,36 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 const App = () => {
 
   return (
-    <AppState>
+    <ProductState>
       <AlertState>
-      <Router>
-        <Fragment>
-          <ProductModal />
-          <Alert />
-          <Header />
+        <CartState>
+          <ModalState>
+            <Router>
+              <Fragment>
+                <ProductModal />
+                <Alert />
+                <Header />
 
-          <Box>
+                <Box>
 
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="brands" element={<Brand />} />
-              <Route path="about" element={<About />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path='/cart/checkout' element={<Checkout />} />
-              <Route path='/product/:id' element={<Product />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="brands" element={<Brand />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="cart" element={<Cart />} />
+                    <Route path='/cart/checkout' element={<Checkout />} />
+                    <Route path='/product/:id' element={<Product />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
 
-          </Box>
-          <Footer />
-        </Fragment>
-      </Router>
+                </Box>
+                <Footer />
+              </Fragment>
+            </Router>
+          </ModalState>
+        </CartState>
       </AlertState>
-    </AppState>
+    </ProductState>
   );
 }
 
