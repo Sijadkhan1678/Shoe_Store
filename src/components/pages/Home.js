@@ -1,5 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import { Container, Typography } from '@mui/material'
+import React, { Fragment } from 'react';
 import Hero from '../Hero'
 import Products from '../products/Products'
 import Featured from '../Featured';
@@ -7,7 +6,6 @@ import Featured from '../Featured';
 const Home = () => {
 
   return (
-
     <Fragment>
       <Hero />
       <Featured />
