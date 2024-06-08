@@ -1,16 +1,16 @@
 import React from 'react'
 import { Box, Modal, Grid, Typography, ButtonGroup, Button, useMediaQuery, IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import contextAlert from '../context/alert/context';
+import {useAlertContext} from '../context/alert';
 import { useCartContext } from '../context/cart'
 import { useModalContext } from '../context/modal'
 
 
 const ProductModal = () => {
 
-    const { product, open, closeModal } = useModalContext(context);
+    const { product, open, closeModal } = useModalContext();
     const { addToCart } = useCartContext()
-    const { setAlert } = React.useContext(contextAlert);
+    const { setAlert } = useAlertContext();
     const [quantity, setQuantity] = React.useState(1);
 
     const handleProductQuantity = (type) => {
@@ -22,7 +22,6 @@ const ProductModal = () => {
             if (quantity > 1) {
                 setQuantity(quantity - 1)
             }
-
         }
     }
     const handleClose = () => { closeModal(false); setQuantity(1) }
@@ -143,3 +142,4 @@ const ProductModal = () => {
 }
 
 export default ProductModal
+
