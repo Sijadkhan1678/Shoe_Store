@@ -1,4 +1,4 @@
-import { SET_ALERT, REMOVE_ALERT } from './constant'
+import { SET_ALERT, REMOVE_ALERT } from './types'
 
 const reducer = (state, action) => {
 

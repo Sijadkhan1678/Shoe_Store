@@ -4,7 +4,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import contextAlert from '../context/alert/context';
 import { useCartContext } from '../context/cart'
 import { useModalContext } from '../context/modal'
-import context from '../context/AppContext'
 
 
 const ProductModal = () => {

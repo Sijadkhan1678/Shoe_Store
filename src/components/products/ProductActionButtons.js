@@ -1,18 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { ButtonGroup, Button } from '@mui/material';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import Appcontext from '../../context/AppContext';
 import { useCartContext } from '../../context/cart';
-import contextAlert from '../../context/alert/context';
-import {useModalContext} from '../../context/modal';
+import { useAlertContext } from '../../context/alert';
+import { useModalContext } from '../../context/modal';
 
 
 const ProductActionButtons = ({ product, isHovered }) => {
 
-    const { addProduct, openModal } = useModalContext(Appcontext);
+    const { addProduct, openModal } = useModalContext();
     const { addToCart } = useCartContext()
-    const { setAlert } = useContext(contextAlert);
+    const { setAlert } = useAlertContext();
 
     function handleViewModal() {
 

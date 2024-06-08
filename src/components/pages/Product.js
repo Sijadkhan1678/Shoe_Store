@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Container, Grid, Typography, Stack, Divider, Button, ButtonGroup, Rating, useMediaQuery, Chip } from '@mui/material'
-import contextAlert from '../../context/alert/context';
+import { useAlertContext } from '../../context/alert';
 import { useCartContext } from '../../context/cart'
 import { useProductContext } from '../../context/product'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -16,7 +16,7 @@ const Product = () => {
   const [currentChip, setCurrentChip] = React.useState('S')
   const isMobile = useMediaQuery(`(max-width: ${xs}px)`);
   const isLarge = useMediaQuery(`(min-width: ${md}px)`);
-  const { setAlert } = React.useContext(contextAlert);
+  const { setAlert } = useAlertContext()
   const { addToCart } = useCartContext()
   const { products } = useProductContext()
 

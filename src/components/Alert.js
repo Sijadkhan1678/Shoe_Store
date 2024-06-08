@@ -1,12 +1,11 @@
 import React from 'react'
 import { Alert } from '@mui/material'
-import context from '../context/alert/context'
+import { useAlertContext } from '../context/alert'
 
 
 const CartAlert = () => {
 
-  const { message, removeAlert } = React.useContext(context)
-
+  const { message, removeAlert } = useAlertContext()
 
   React.useEffect(() => {
 

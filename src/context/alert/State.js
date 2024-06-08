@@ -1,7 +1,7 @@
 import React from 'react'
 import context from "./context";
 import reducer from './reducer'
-import { SET_ALERT, REMOVE_ALERT } from './constant';
+import { SET_ALERT, REMOVE_ALERT } from './types';
 
 export const State = ({ children }) => {
 
@@ -19,7 +19,7 @@ export const State = ({ children }) => {
 
         setTimeout(() => {
             dispatch({ type: REMOVE_ALERT })
-        },3000)
+        }, 3000)
     }
 
     return (
