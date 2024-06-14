@@ -1,15 +1,24 @@
 import React from 'react'
-import { Dialog, Grid, Box, Stack,DialogTitle, DialogContent, DialogContentText, TextField, Button, FormHelperText, Checkbox } from '@mui/material'
+import { Dialog, Grid, useMediaQuery,Box, Stack, DialogTitle, DialogContent, DialogContentText, TextField, Button, FormHelperText, Checkbox } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
 import newLetter from './newsletter-img.webp'
 
 const NewsLetterPopup = () => {
 
     const [open, setOpen] = React.useState(true)
     const [close, setClose] = React.useState(false)
+    const isMobile = useMediaQuery(`(max-width:600px)`)
+    const isSmall = useMediaQuery(`(max-width:900px)`)
+    const isMedium = useMediaQuery(`(max-width:1200px)`)
+    const isLarge = useMediaQuery(`(min-width:1200px)`)
 
     const handleClose = () => {
         setClose(false)
     }
+    const imgStyle = {
+        
+         display:(isLarge? 'block':(isMedium? 'none':(isSmall?'none': isMobile?'none':'block')))
+    } 
 
     return (
         <Dialog
@@ -20,11 +29,12 @@ const NewsLetterPopup = () => {
             fullWidth
             maxWidth='xl'>
             <Grid container>
-                <Grid item lg={6} p={2.5}>
-                    <img src={newLetter} alt='newsLetter' width='100%' height='490' />
+                <Grid item lg={6}  p={2.5}>
+                    hello
+                    <img src={newLetter} alt='newsLetter' style={imgStyle} width='100%' height='490' />
                 </Grid>
 
-                <Grid item lg={6} pr={4}>
+                <Grid item lg={6} sm={12} pr={4}>
                     <Box mt={6}>
                         <DialogTitle id="alert-dialog-title" sx={{ textAlign: 'center', fontSize: 36, fontWeight: 700 }}>
                             "Get Discount <span style={{ color: 'red' }}>30%</span> Off"
@@ -60,11 +70,28 @@ const NewsLetterPopup = () => {
                                 '&:hover': { bgcolor: '#ff7800' },
                             }}>Subscribe</Button>
                         <Stack direction='row' alignItems='center' justifyContent='center'>
-                            <Checkbox sx={{ color: 'red', }} /> <FormHelperText>don`t show again`</FormHelperText>
+                            <Checkbox sx={{ color: 'gray','&:hover':{color:'darkgray'} }} /> <FormHelperText>don`t show again`</FormHelperText>
                         </Stack>
                     </Box>
 
                 </Grid>
+                <Box sx={{
+                    position: 'absolute',
+                    right: 15,
+                    top: 10,
+                    textAlign: 'center',
+                    
+                    
+                }}>
+                    <CloseIcon sx={{
+                        color: 'gray',
+                        // size: 'small',
+                        bgcolor: '#f4f4f4',
+                        fontSize:20,
+                        p: 1.2,
+                        borderRadius: '50px'
+                    }} />
+                </Box>
 
             </Grid>
         </Dialog >
