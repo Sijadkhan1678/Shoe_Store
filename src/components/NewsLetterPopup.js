@@ -57,20 +57,21 @@ const NewsLetterPopup = () => {
                             }}>
                                 'Sign up to our newsletter and save 30% for you next purchase. No spam, we promise!'
                             </DialogContentText>
-                            <Box >
-                                <TextField
+                            <Box sx={{
+                                p: 2,
+                                bgcolor: '#f4f4f4',
+                                borderRadius: '50px'
+                            }}>
+                                <InputBase
                                     fullWidth
-                                    // margin='dense'
                                     // height='10px'
-                                    size='small'
                                     id='email'
                                     type='email'
-                                    label="Enter Your Email"
+                                    placeholder="Enter Your Email"
                                     sx={{
-                                        bgcolor: "#f4f4f4",
                                         color: '#222',
-                                        borderRadius: '100',
-                                        fontSize: 8
+                                        // p:2,
+                                        borderRadius: '50px'
                                     }}
 
                                 />
