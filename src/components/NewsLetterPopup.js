@@ -1,17 +1,11 @@
 import React from 'react'
-import { Dialog, Grid, useMediaQuery, Box, Stack, DialogTitle, DialogContent, DialogContentText, TextField, Button, FormHelperText, Checkbox, InputBase } from '@mui/material'
+import { Dialog, Grid, Box, Stack, DialogTitle, DialogContent, DialogContentText, Button, FormHelperText, Checkbox, InputBase } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import newLetter from './newsletter-img.webp'
 
 const NewsLetterPopup = () => {
 
     const [open, setOpen] = React.useState(true)
-    const [close, setClose] = React.useState(false)
-    const isMobile = useMediaQuery(`(max-width:600px)`)
-    const isSmall = useMediaQuery(`(max-width:900px)`)
-    const isMedium = useMediaQuery(`(max-width:1200px)`)
-    const isLarge = useMediaQuery(`(min-width:1200px)`)
-
 
     const handleClose = () => {
         setOpen(!open)
@@ -37,11 +31,11 @@ const NewsLetterPopup = () => {
                     <img src={newLetter} width='100%' height={490} alt='newsLetter' />
                 </Grid>
 
-                <Grid item lg={6} md={6} sm={12} xs={12} pr={{ lg:4,md: 2, xs: 0 }}>
+                <Grid item lg={6} md={6} sm={12} xs={12} pr={{ lg: 4, md: 2, xs: 0 }}>
                     <Box mt={{ md: 6, xs: 0 }}>
                         <DialogTitle id="alert-dialog-title" sx={{
                             textAlign: 'center',
-                            fontSize: { lg:36,md: 34, xs: 27 },
+                            fontSize: { lg: 36, md: 34, xs: 27 },
                             fontWeight: { md: 700, xs: 600 },
                             lineHeight: 1.2
                         }}>
@@ -88,7 +82,7 @@ const NewsLetterPopup = () => {
                                 color: "white",
                                 bgcolor: "#524938",
                                 mt: { lg: '30px', md: '30px', xs: '0px' },
-                                mb: { lg: '60px', md: '60px',sm:'30px', xs: '5px' },
+                                mb: { lg: '60px', md: '60px', sm: '30px', xs: '5px' },
                                 p: { sm: '15px 55px', xs: '8px 40px' },
                                 mx: 'auto',
                                 display: 'block',
@@ -116,7 +110,8 @@ const NewsLetterPopup = () => {
                         fontSize: { md: 20, xs: 16 },
                         p: { md: 1.2, xs: 0.9 },
                         borderRadius: '50px'
-                    }} />
+                    }}
+                        onClick={handleClose} />
                 </Box>
 
             </Grid>
