@@ -8,7 +8,7 @@ import banner4 from './banner-4.webp'
 const Banner = () => {
   return (
     <Grid container px={4}>
-      <Grid item lg={4} position='relative'>
+      <Grid item lg={3.96} position='relative'>
         <img src={banner1} alt='banner1' style={{ border: 'none', verticalAlign: 'middle', width: '100%', maxWidth: '100%', height: 'auto' }} />
         <Box sx={{
           position: 'absolute',
@@ -31,7 +31,6 @@ const Banner = () => {
           <img src={banner2} alt='banner1' style={{ border: 'none', verticalAlign: 'middle', width: '100%', height: 'auto' }} />
           <Box sx={{
             position: 'absolute',
-
             top: '25%',
             right: '20px',
             transform: 'translateY(-50%)',
