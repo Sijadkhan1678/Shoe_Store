@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Box,Typography, Button } from '@mui/material'
+import BannerImage from './BannerImage'
 import banner1 from './banner-1.webp'
 import banner2 from './banner-2.webp'
 import banner3 from './banner-3.webp'
@@ -9,7 +10,7 @@ const Banner = () => {
   return (
     <Grid container px={{md:4,sm:2,xs:2}}>
       <Grid item lg={3.96} sm={3.96} xs={12} position='relative'>
-        <img src={banner1} alt='banner1' style={{ border: 'none', verticalAlign: 'middle', width: '100%', maxWidth: '100%', height: 'auto' }} />
+        <BannerImage banner={banner1} />
         <Box sx={{
           position: 'absolute',
           bottom: '50px',
@@ -24,7 +25,7 @@ const Banner = () => {
 
       <Grid item lg={8} sm={8} xs={12} position='relative'>
         <Grid item>
-          <img src={banner2} alt='banner1' style={{ border: 'none', verticalAlign: 'middle', width: '100%', height: 'auto' }} />
+          <BannerImage banner={banner2} />
           <Box sx={{
             position: 'absolute',
             top: '25%',
@@ -41,7 +42,7 @@ const Banner = () => {
 
         <Grid container>
           <Grid item lg={6} sm={6} xs={6} position='relative'>
-            <img src={banner3} alt='banner3' style={{ border: 'none', verticalAlign: 'middle', width: '100%', height: 'auto' }} />
+            <BannerImage banner={banner3} />
             <Box sx={{
               position: 'absolute',
               top: '50%',
@@ -58,7 +59,7 @@ const Banner = () => {
             </Box>
           </Grid>
           <Grid item lg={6} sm={6} xs={6} position='relative'>
-            <img src={banner4} style={{ border: 'none', verticalAlign: 'middle', width: '100%', height: 'auto' }} alt='banner4' />
+            <BannerImage banner={banner4} />
             <Box sx={{
               position: 'absolute',
               top: {md:'80px',sm:'30px',xs:'30px'},
