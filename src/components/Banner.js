@@ -8,9 +8,8 @@ import banner4 from './banner-4.webp'
 
 const Banner = () => {
 
-  const BannerHeading = ({ text, color = '#fff', font, marginBottom }) => {
-    console.log(font)
-    return <Typography variant='h2'
+  const BannerHeading = ({ text, color = '#fff', font, marginBottom }) => (
+    <Typography variant='h2'
       sx={{
         fontSize: { ...font },
         color,
@@ -19,10 +18,9 @@ const Banner = () => {
 
 
       }}>{text}</Typography>
-  }
-  const BannerSubHeading = ({ text, font, color = 'white', marginBottom }) => {
-
-    return <Typography variant='h5'
+  )
+  const BannerSubHeading = ({ text, font, color = 'white', marginBottom }) => (
+    <Typography variant='h5'
       sx={{
         fontSize: { ...font },
         color,
@@ -31,25 +29,23 @@ const Banner = () => {
       }}>
       {text}
     </Typography>
-  }
-  const BannerButton = ({ text, fontSize, marginTop }) => {
+  )
+  const BannerButton = ({ text, fontSize, marginTop }) => (
+    <Button sx={{
+      fontSize,
+      color: '#fff',
+      fontWeight: 400,
+      bgcolor: '#222',
+      textTransform: 'capitalize',
+      borderRadius: '50px',
+      mt: marginTop,
+      px: '50px',
+      py: '10px',
+    }}>
+      {text}
+    </Button>
+  )
 
-    return (
-      <Button sx={{
-        fontSize,
-        color: '#fff',
-        fontWeight: 400,
-        bgcolor: '#222',
-        textTransform: 'capitalize',
-        borderRadius: '50px',
-        mt: marginTop,
-        px: '50px',
-        py: '10px',
-      }}>
-        {text}
-      </Button>
-    )
-  }
   return (
     <Grid container px={{ md: 4, sm: 2, xs: 2 }}>
       <Grid item lg={3.96} sm={3.96} xs={12} position='relative'>
