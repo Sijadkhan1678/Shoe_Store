@@ -7,6 +7,11 @@ import banner3 from './banner-3.webp'
 import banner4 from './banner-4.webp'
 
 const Banner = () => {
+console.log(banner1)
+  const [isHovered, setHovered] = React.useState(false);
+  const handleHovered = () => {
+    setHovered(!isHovered)
+  }
 
   const BannerHeading = ({ text, color = '#fff', font, marginBottom }) => (
     <Typography variant='h2'
@@ -48,8 +53,14 @@ const Banner = () => {
 
   return (
     <Grid container px={{ md: 4, sm: 2, xs: 2 }}>
-      <Grid item lg={3.96} sm={3.96} xs={12} position='relative'>
-        <BannerImage banner={banner1} />
+      <Grid item lg={3.96} sm={3.96} xs={12}
+        sx={{
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+        onMouseEnter={handleHovered}
+        onMouseLeave={handleHovered}>
+        <BannerImage banner={banner1} isHovered={isHovered} currentBanner={banner1}/>
         <Box sx={{
           position: 'absolute',
           bottom: '50px',
@@ -62,9 +73,15 @@ const Banner = () => {
         </Box>
       </Grid>
 
-      <Grid item lg={8} sm={8} xs={12} position='relative'>
+      <Grid item lg={8} sm={8} xs={12}
+        sx={{
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+        onMouseEnter={handleHovered}
+        onMouseLeave={handleHovered}>
         <Grid item>
-          <BannerImage banner={banner2} />
+          <BannerImage banner={banner2} isHovered={isHovered} currentBanner={banner2}  />
           <Box sx={{
             position: 'absolute',
             top: '25%',
@@ -79,8 +96,13 @@ const Banner = () => {
         </Grid>
 
         <Grid container>
-          <Grid item lg={6} sm={6} xs={6} position='relative'>
-            <BannerImage banner={banner3} />
+          <Grid item lg={6} sm={6} xs={6} sx={{
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+            onMouseEnter={handleHovered}
+            onMouseLeave={handleHovered}>
+            <BannerImage banner={banner3} isHovered={isHovered} currentBanner={banner3}/>
             <Box sx={{
               position: 'absolute',
               top: '50%',
@@ -96,8 +118,13 @@ const Banner = () => {
               <BannerButton text='More info' fontSize={18} marginTop={2} />
             </Box>
           </Grid>
-          <Grid item lg={6} sm={6} xs={6} position='relative'>
-            <BannerImage banner={banner4} />
+          <Grid item lg={6} sm={6} xs={6} sx={{
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+            onMouseEnter={handleHovered}
+            onMouseLeave={handleHovered}>
+            <BannerImage banner={banner4} isHovered={isHovered} currentBanner={banner4} />
             <Box sx={{
               position: 'absolute',
               top: { md: '80px', sm: '30px', xs: '30px' },
