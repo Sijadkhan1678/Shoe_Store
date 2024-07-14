@@ -13,44 +13,7 @@ console.log(banner1)
     setHovered(!isHovered)
   }
 
-  const BannerHeading = ({ text, color = '#fff', font, marginBottom }) => (
-    <Typography variant='h2'
-      sx={{
-        fontSize: { ...font },
-        color,
-        fontWeight: 700,
-        mt: marginBottom && marginBottom,
-
-
-      }}>{text}</Typography>
-  )
-  const BannerSubHeading = ({ text, font, color = 'white', marginBottom }) => (
-    <Typography variant='h5'
-      sx={{
-        fontSize: { ...font },
-        color,
-        fontWeight: 400,
-        mb: marginBottom && { ...marginBottom },
-      }}>
-      {text}
-    </Typography>
-  )
-  const BannerButton = ({ text, fontSize, marginTop }) => (
-    <Button sx={{
-      fontSize,
-      color: '#fff',
-      fontWeight: 400,
-      bgcolor: '#222',
-      textTransform: 'capitalize',
-      borderRadius: '50px',
-      mt: marginTop,
-      px: '50px',
-      py: '10px',
-    }}>
-      {text}
-    </Button>
-  )
-
+  
   return (
     <Grid container px={{ md: 4, sm: 2, xs: 2 }}>
       <Grid item lg={3.96} sm={3.96} xs={12}
