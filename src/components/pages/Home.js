@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Hero from '../Hero'
 import Products from '../products/Products'
 import Featured from '../Featured';
+import Banner from '../Banner'
 
 const Home = () => {
 
@@ -9,6 +10,7 @@ const Home = () => {
     <Fragment>
       <Hero />
       <Featured />
+      <Banner />
       <Products />
     </Fragment>
   )
