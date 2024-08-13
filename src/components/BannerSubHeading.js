@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material"
-const BannerSubHeading = ({ text, font, color = 'white', marginBottom }) => {
+const BannerSubHeading = ({ text, font, color = '#fff', marginBottom }) => {
     return (
         <Typography variant='h5'
             sx={{

@@ -10,8 +10,8 @@ return (
       textTransform: 'capitalize',
       borderRadius: '50px',
       mt: marginTop,
-      px: '50px',
-      py: '10px',
+      px: {sm:'50px',xs:'30px'},
+      py: {sm:'10px',xs:'5px'}
     }}>
       {text}
     </Button>

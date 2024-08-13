@@ -16,7 +16,7 @@ const ThirdBanner = () => {
 
   }
   return (
-    <Grid item lg={6} sm={6} xs={6} sx={{
+    <Grid item lg={6} sm={6} xs={12} sx={{
       position: 'relative',
       overflow: 'hidden'
     }}
@@ -30,7 +30,7 @@ const ThirdBanner = () => {
         right: 0,
         left: 0,
         textAlign: 'center',
-        px: { md: '30px', sm: '20px' }
+        px: { md: '30px', sm: '20px',xs:'40px' }
       }}>
         <BannerSubHeading text="Hello Summer 2019" color='#222' font={{ md: 20, sm: 16 }} marginBottom={{ md: 1, sm: 0 }} />
         <BannerHeading text="Extra 50%Off" marginBottom={1} color='#222' font={{ md: 50, sm: 30, xs: 30 }} />

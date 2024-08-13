@@ -14,7 +14,7 @@ const FourthBanner = () => {
   }
 
   return (
-    <Grid item lg={6} sm={6} xs={6} sx={{
+    <Grid item lg={6} sm={6} xs={12} sx={{
       position: 'relative',
       overflow: 'hidden'
     }}
