@@ -40,7 +40,7 @@ const SecondBanner = () => {
         />
         <Typography
           variant="body1"
-          sx={{ fontSize: 18, fontWeight: 700, color: "white", mb: 1 }}
+          sx={{ fontSize: {lg:24,md:22,sm:20,xs:18}, fontWeight: 700, color: "white", mb: 1 }}
         >
           Best Sellers
         </Typography>
