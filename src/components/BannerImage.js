@@ -1,6 +1,9 @@
 import React from "react";
 
 const BannerImage = (props) => {
+    
+    const result = props.height === undefined ? props.height : ''
+
     return (
         <React.Fragment>
             <img
@@ -12,7 +15,7 @@ const BannerImage = (props) => {
                     width: "100%",
                     maxWidth: "100%",
                     height: "auto",
-                    minHeight: props.height && "250px",
+                    minHeight:result, 
                     position: "relative",
                     transition: "transform 1s",
                     transform:

@@ -12,7 +12,8 @@ const FirstBanner = () => {
 
         setHovered(!isHovered)
     }
-    return (<Grid item lg={3.96} sm={3.96} xs={12}
+    return (
+        <Grid item lg={3.96} sm={3.96} xs={12}
         sx={{
             position: 'relative',
             overflow: 'hidden'
@@ -27,7 +28,7 @@ const FirstBanner = () => {
             right: 0,
             textAlign: 'center'
         }}>
-            <BannerHeading text="Run Don't Hide" font={{ md: 50, sm: 30, xs: 40 }} />
+            <BannerHeading text="Run Don't Hide" marginBottom={1} font={{ lg:50,md: 40, sm: 30, xs: 30 }} />
             <BannerSubHeading text='Nike Flash Be Seen' font={{ md: 20, sm: 18, xs: 18 }} />
         </Box>
     </Grid>
