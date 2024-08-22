@@ -35,7 +35,7 @@ const ThirdBanner = () => {
         <BannerSubHeading text="Hello Summer 2019" color='#222' font={{ md: 20, sm: 16 }} marginBottom={{ md: 1, sm: 0 }} />
         <BannerHeading text="Extra 50%Off" marginBottom={1} color='#222' font={{ md: 50, sm: 30, xs: 30 }} />
         <Typography variant='subtitle1' sx={{ fontSize: { sm: 12, xs: 12 } }}>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</Typography>
-        <BannerButton text='More info' fontSize={18} marginTop={2} />
+        <BannerButton text='More info' marginTop={2} />
       </Box>
     </Grid>
   )
