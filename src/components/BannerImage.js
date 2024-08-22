@@ -1,8 +1,12 @@
 import React from "react";
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 const BannerImage = (props) => {
-    
-    const result = props.height === undefined ? props.height : ''
+
+    const isMobile = useMediaQuery(`(max-width: ${600}px)`);
+
+    const result = props.height ? props.height : ''
 
     return (
         <React.Fragment>
@@ -15,7 +19,7 @@ const BannerImage = (props) => {
                     width: "100%",
                     maxWidth: "100%",
                     height: "auto",
-                    minHeight:result, 
+                    minHeight:isMobile && result, 
                     position: "relative",
                     transition: "transform 1s",
                     transform:
