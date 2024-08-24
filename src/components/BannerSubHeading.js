@@ -1,12 +1,14 @@
 import { Typography } from "@mui/material"
-const BannerSubHeading = ({ text, font, color = '#fff', marginBottom }) => {
+const BannerSubHeading = ({ text, font, color = '#fff', mb }) => {
+    mb = typeof mb === 'object' ? {...mb} :mb;
     return (
         <Typography variant='h5'
             sx={{
                 fontSize: { ...font },
                 color,
-                fontWeight: 400,
-                mb: marginBottom && { ...marginBottom },
+                lineHeight:{md:'32px',sm:'28px',xs:'24px'},
+                fontWeight: 300,
+                mb,
             }}>
             {text}
         </Typography>

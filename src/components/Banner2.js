@@ -31,16 +31,22 @@ const SecondBanner = () => {
         <BannerSubHeading
           text="Women's Training"
           font={{ md: 22, sm: 20, xs: 16 }}
-          marginBottom={{ sm: "8px", xs: "4px" }}
+          mb={{ sm: 1, xs: 0.5 }}
         />
         <BannerHeading
           text="Don't Rest Bra"
-          font={{ lg:50,md: 30, xs: 26 }}
-          marginBottom="4px"
+          font={{ lg: 50, md: 30, xs: 26 }}
+          mb={0.5}
         />
+        
         <Typography
           variant="body1"
-          sx={{ fontSize: {lg:24,md:22,sm:20,xs:18}, fontWeight: 700, color: "white", mb: 1 }}
+          sx={{
+            fontSize: { lg: 24, md: 22, sm: 20, xs: 18 },
+            fontWeight: 700,
+            color: "white",
+            mb:2,
+          }}
         >
           Best Sellers
         </Typography>

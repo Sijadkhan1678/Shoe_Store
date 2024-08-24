@@ -1,13 +1,13 @@
 import { Typography } from "@mui/material"
 
-const BannerHeading = ({ text, color = '#fff', font, marginBottom }) => {
+const BannerHeading = ({ text, color = '#fff', font, mb }) => {
     return (
         <Typography variant='h2'
             sx={{
                 fontSize: { ...font },
                 color,
                 fontWeight: 700,
-                mt: marginBottom && marginBottom,
+                mb: mb,
 
 
             }}>{text}</Typography>

@@ -28,8 +28,8 @@ const FirstBanner = () => {
             right: 0,
             textAlign: 'center'
         }}>
-            <BannerHeading text="Run Don't Hide" marginBottom={1} font={{ lg:50,md: 40, sm: 30, xs: 30 }} />
-            <BannerSubHeading text='Nike Flash Be Seen' font={{ md: 20, sm: 18, xs: 18 }} />
+            <BannerHeading text="Run Don't Hide" font={{ lg:50,md: 40, sm: 30, xs: 30 }} mb={1}/>
+            <BannerSubHeading text='Nike Flash Be Seen' font={{ md: 20, sm: 18, xs: 18 }} mb={1}/>
         </Box>
     </Grid>
     )

@@ -23,14 +23,17 @@ const FourthBanner = () => {
       <BannerImage banner={banner4} isHovered={isHovered} />
       <Box sx={{
         position: 'absolute',
-        top: { md: '80px', sm: '30px', xs: '30px' },
+        top: { lg:'80px',md: '20px', sm: '30px', xs: '30px' },
         left: 0,
         right: 0,
         // transform:'translateY(-50%)',
         textAlign: 'center'
       }}>
-        <BannerSubHeading text="Nike Shoes" font={{ md: 20, sm: 16 }} />
-        <BannerHeading text="Collection 2019" marginBottom={1} font={{ md: 50, sm: 30, xs: 30 }} />
+        <BannerSubHeading text="Nike Shoes" mb={1} font={{ md: 20, sm: 16,xs:18 }} />
+        <BannerHeading 
+          text="Collection 2019" 
+          mb={1} 
+          font={{ lg:50,md: 30, sm: 30, xs: 30 }} />
 
       </Box>
     </Grid>
