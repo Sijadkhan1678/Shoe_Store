@@ -29,7 +29,7 @@ const FourthBanner = () => {
         // transform:'translateY(-50%)',
         textAlign: 'center'
       }}>
-        <BannerSubHeading text="Nike Shoes" mb={1} font={{ md: 20, sm: 16,xs:18 }} />
+        <BannerSubHeading text="Nike Shoes" mb={1} font={{ lg:24,md: 20, sm: 16,xs:18 }} />
         <BannerHeading 
           text="Collection 2019" 
           mb={1} 

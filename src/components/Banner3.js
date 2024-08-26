@@ -40,19 +40,21 @@ const ThirdBanner = () => {
         <BannerSubHeading
           text="Hello Summer 2019"
           color="#222"
-          font={{ md: 20, sm: 18,xs:16 }}
+          font={{ lg: 20, md: 16, sm: 18, xs: 16 }}
         />
         <BannerHeading
           text="Extra 50%Off"
           mb={1}
           color="#222"
-          font={{ lg: 50,md:30, xs: 30 }}
+          font={{ lg: 50, md: 30, xs: 30 }}
         />
-        <BannerSubHeading 
-          font={{ lg:18,md:14,sm: 14, xs: 14 }} color='#222' mb={2}
+        <BannerSubHeading
+          font={{ lg: 18, md: 14, sm: 14, xs: 14 }}
+          color="#222"
+          mb={2}
           text="It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout." />
-          
+          readable content of a page when looking at its layout."
+        />
 
         <BannerButton text="More info" />
       </Box>

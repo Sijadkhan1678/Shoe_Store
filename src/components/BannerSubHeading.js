@@ -6,7 +6,7 @@ const BannerSubHeading = ({ text, font, color = '#fff', mb }) => {
             sx={{
                 fontSize: { ...font },
                 color,
-                lineHeight:{md:'32px',sm:'28px',xs:'24px'},
+                lineHeight:{md:'32px',sm:'24px',xs:'24px'},
                 fontWeight: 300,
                 mb,
             }}>

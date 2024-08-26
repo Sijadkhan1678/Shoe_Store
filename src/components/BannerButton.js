@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 const BannerButton = ({ text }) => { 
 return (
     <Button sx={{
-      fontSize:{sm:18,xs:16},
+      fontSize:{xl:18,xs:16},
       color: '#fff',
       fontWeight: 400,
       bgcolor: '#222',
