@@ -21,9 +21,9 @@ const BannerImage = (props) => {
                     height: "auto",
                     minHeight:isMobile && result, 
                     position: "relative",
-                    transition: "transform 1s",
+                    transition: "opacity .8s ease,transform 4s cubic-bezier(0,0,.44,1.18)",
                     transform:
-                        props.isHovered && props.currentBanner === props.banner
+                        props.isHovered 
                             ? "scale(1.2)"
                             : "scale(1)",
                     ...props.style,
