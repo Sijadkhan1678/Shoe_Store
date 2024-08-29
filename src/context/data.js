@@ -90,11 +90,11 @@ const shoesList = [{
   },
   { 
     id : 'afg134dg',
-    name: 'Air Max 97 Luke ',
+    name: "Jordan Zer0.1 Low N7",
     price: 80,
     rating: 4.7,
-    brand: 'Nike',
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4uStY5nioO6w7Bc7tqzodcfy2EVmVpfCjOQ&usqp=CAU"
+    brand: 'Jordan',
+    img: "https://eurotas-demo.myshopify.com/cdn/shop/products/product-v1-img7.jpg?v=1565778376"
   },
   {
     id : 'afg135dg' ,
@@ -118,7 +118,7 @@ const shoesList = [{
     price: 130,
     rating: 5.0,
     brand: 'Nike',
-    img: ' https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP5AX4As_IfapCTnpeuwP4tgVRMnbGivM8gQ&usqp=CAU '
+    img: ' https://eurotas-demo.myshopify.com/cdn/shop/products/product-v1-img2.jpg?v=1565778143'
   },
   {
     id : 'afg138dg',
@@ -374,11 +374,11 @@ const shoesList = [{
   },
   {
     id : '23pp23af',
-    name: 'Card B Reebok',
+    name: ' unisex-adult Court Advance Sneaker',
     price: 43,
     rating: 3.6,
     brand: 'Reebok',
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpcbDReWfUgDpUi_OJ1WZ-E_cdtokONLM_8A&usqp=CAU"
+    img: "https://m.media-amazon.com/images/I/61ALQHM5UYL._AC_UL320_.jpg"
   },
   { 
     id: '23cysgey',

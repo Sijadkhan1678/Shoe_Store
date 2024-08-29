@@ -13,36 +13,48 @@ const ProductItem = ({ product }) => {
 
     return (
 
-        <Grid item lg={4} md={4} sm={6} xs={12} onMouseEnter={handleHover} onMouseLeave={handleHover}>
+        <Grid item lg={3} md={4} sm={4} xs={12} onMouseEnter={handleHover} onMouseLeave={handleHover}>
 
 
-            <Box width="100%" sx={{ position: 'relative', overflow: 'hidden', height: 250 }} >
+            <Box sx={{ position: 'relative', overflow: 'hidden', /*height: 250*/ }} >
                 <Link to={`/product/${id}`} style={linkStyle} >
-                    <img src={img} alt='shoe' width='100%' height={250} style={productImgStyle} />
+
+                    <img src={img} alt='shoe' style={{
+                        // width: '100%',
+                        width:270,
+                        // display: 'block',
+                        // height: 300,
+                        height:'auto',
+                        borderTopLeftRadius: '0.8rem',
+                        borderTopRightRadius: '0.8rem',
+                        borderBottomLeftRadius: '0.8rem',
+                        borderBottomRightRadius: '0.8rem',
+                        // aspectRatio: 'auto 270/270',
+                        objectFit: 'cover',
+                    }} />
+
                 </Link>
                 <ProductActionButton product={product} isHovered={isHovered} />
 
             </Box>
 
+            <Stack direction='column' justifyContent='space-evenly' mt={2}>
 
-            <Stack direction='column' justifyContent='space-evenly' pt={2}>
                 <Link to={`/product/${id}`} style={linkStyle} >
-                    <Box sx={itemContentStyle}>
+                    <Box>
 
-                        <Typography variant='h6' color="#1c1c1c" fontWeight='400' fontSize='1rem'>
+                        <Typography variant='h5' color="#1c1c1c" fontWeight={700} fontSize={20} mb={0.5}>
                             {name}
                         </Typography>
+                        <Rating size='small' value={rating} readOnly sx={{ color: 'orange' }} />
 
-                        <Typography variant='body1' color='primary'>
-                            $ {price}
-                        </Typography>
 
                     </Box>
 
-                    <Box sx={itemContentStyle2}>
-                        <Rating value={rating} size='small' readOnly sx={{ color: 'black' }} />
-                        <Typography variant='body1' fontSize='14px' fontWeight='300' >
-                            {brand}
+                    <Box>
+
+                        <Typography variant='h6' color='#c50215' fontWeight={700}>
+                            ${price}
                         </Typography>
                     </Box>
                 </Link>
@@ -55,31 +67,6 @@ const ProductItem = ({ product }) => {
 const linkStyle = {
     textDecoration: 'none',
     color: 'black',
-}
-
-const itemContentStyle = {
-
-    pb: '1rem',
-    pr: '0.4rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-}
-const itemContentStyle2 = {
-
-    pb: '0.5rem',
-    pr: '0.4rem',
-    ml: '-0.23rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-}
-
-const productImgStyle = {
-
-    borderTopLeftRadius: '0.8rem',
-    borderTopRightRadius: '0.8rem',
-    objectFit: 'cover',
 }
 
 export default ProductItem;

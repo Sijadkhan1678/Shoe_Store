@@ -17,7 +17,7 @@ const Brands = () => {
                     Brands
                 </Typography>
                 <BrandItem />
-                <Grid container justifyContent='space-between' spacing={6}>
+                <Grid container justifyContent='space-between' spacing={4}>
                     {
                         selectedProducts.map(product => <ProductItem key={product.id} product={product} />)
                     }

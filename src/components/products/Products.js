@@ -22,7 +22,7 @@ const Products = () => {
     <Box pt="4rem" pb="3rem">
       <Container>
         <Typography variant='h2' pb="3rem" fontWeight='800' lineHeight="55px" fontSize="40px">  Products </Typography>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           {
             highRatingProducts.map(product => (<ProductItem key={product.id} product={product} />))
           }
