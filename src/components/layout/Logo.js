@@ -1,12 +1,6 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import {Typography } from '@mui/material'
 
-const Logo = () => {
-    return (
-        <Box width='50px' marginTop="6px">
-            <Typography variant='h4' color='black' fontWeight={800}>Shoefy</Typography>
-        </Box>
-    )
-}
+const Logo = () => <Typography variant='h4' color='black' fontWeight={700}>Shofy</Typography>
 
 export default Logo
