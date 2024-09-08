@@ -2,6 +2,7 @@ import React from 'react'
 import { ButtonGroup, Button } from '@mui/material';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useCartContext } from '../../context/cart';
 import { useAlertContext } from '../../context/alert';
 import { useModalContext } from '../../context/modal';
@@ -31,7 +32,7 @@ const ProductActionButtons = ({ product, isHovered }) => {
         border: 'none',
     }
     const hoverStyled = {
-        transform: isHovered ? 'translateY(-15px)' : 'translateY(-10px)',
+        transform: isHovered ? 'translateY(-50px)' : 'translateY(-10px)',
         visibility: isHovered ? 'visible' : 'hidden',
         opacity: isHovered ? '1' : '0',
         '&:hover': { bgcolor: '#ff7800', border: 'none' }
@@ -42,21 +43,33 @@ const ProductActionButtons = ({ product, isHovered }) => {
 
     }
     const quickViewButtonStyle = addDefaultStyle({
-        width: '20%',
-        transition: 'opacity 300ms ease-in-out, transform 300ms ease-in, visibility 300ms ease-in-out',
-        transitionDelay: '300ms'
+        width: {md:'20%',sm:'33.333%',},
+        transition: 'opacity 300ms ease-in-out, transform 300ms ease-in-out, visibility 300ms ease-in-out',
+        transitionDelay: '100ms',
+        display: {sm:'block',xs:'none'}
     })
     const addToCartButtonStyle = addDefaultStyle({
-        width: '60%',
+        width: {md:'60%',xs:'100%'},
         borderLeft: '1px solid white',
-        transition: 'opacity 300ms ease-in-out, transform 300ms ease-in-out, visibility 400ms ease-in-out',
-        transitionDelay: '600ms',
+        transition: 'opacity 400ms ease-in-out, transform 300ms ease-in-out, visibility 400ms ease-in-out',
+        transitionDelay: '200ms',
+        display: {md:'block',sm:'none',xs:'block'}
+
+    })
+    const addToCartIconStyle = addDefaultStyle({
+        width: '33.333%',
+        borderLeft: '1px solid white',
+        transition: 'opacity 400ms ease-in-out, transform 300ms ease-in-out, visibility 400ms ease-in-out',
+        transitionDelay: '200ms',
+        display:{md:'none',sm:'block',xs:'none'}
+
     })
     const compareButtonStyle = addDefaultStyle({
-        width: '21%',
+        width: {md:'21%',sm:'33.444%'},
         borderLeft: '1px solid white',
         transition: 'opacity 300ms ease-in-out, transform 300ms ease-in-out, visibility 600ms ease-in-out',
-        transitionDelay: '800ms',
+        transitionDelay: '300ms',
+        display: {sm:'block',xs:'none'}
 
     })
 
@@ -65,7 +78,7 @@ const ProductActionButtons = ({ product, isHovered }) => {
         <ButtonGroup orientation="horizontal" size="large"
             sx={{
                 width: '100%',
-                transform: 'translateY(15px)',
+                transform: 'translateY(50px)',
                 position: 'absolute',
                 bottom: 0,
                 left: 0,
@@ -75,6 +88,7 @@ const ProductActionButtons = ({ product, isHovered }) => {
             <Button onClick={handleViewModal} startIcon={<VisibilityIcon />} sx={quickViewButtonStyle} />
 
             <Button onClick={handleCart} sx={addToCartButtonStyle}>ADD TO CART</Button>
+            <Button onClick={handleCart} sx={addToCartIconStyle} startIcon={<AddShoppingCartIcon />} />
 
             <Button sx={compareButtonStyle} startIcon={<CompareArrowsIcon />} />
 

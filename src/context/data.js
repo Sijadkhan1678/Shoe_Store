@@ -338,7 +338,8 @@ const shoesList = [{
     price: 68,
     rating: 4.2,
     brand: 'Fila',
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkFaV38mK_0RFiI8r_AqZKWL9qxehxvwJoOg&usqp=CAU "
+    img:"https://rt-barberry.myshopify.com/cdn/shop/products/otio-chair-01_360x.jpg?v=1547200243"
+    // img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkFaV38mK_0RFiI8r_AqZKWL9qxehxvwJoOg&usqp=CAU "
   },
   {
     id : 'afg163fs',
