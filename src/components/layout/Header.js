@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { useCartContext } from '../../context/cart';
-import { Box, Stack, Badge, IconButton, } from '@mui/material';
+import { Box, Stack, Badge, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import NavDrawer from './NavDrawer'
@@ -24,9 +24,17 @@ const Header = () => {
         setCurrentNavItemHovered(e.target.textContent)
     }
 
+    const links = [
+        { text: 'Home', path: '/' },
+        { text: 'Shop', path: '/shop' },
+        { text: 'Men', path: '/men' },
+        { text: 'Women', path: '/women' },
+        { text: 'About', path: 'About' },
+    ]
+
     return (
 
-        <Box bgcolor={currentLocation === '/' ? '#eeeeee' : 'white'} py={5} px={{ xs: 2, sm: 4, md: 8, lg: 10 }}>
+        <Box bgcolor={currentLocation === '/' ? '#eeeeee' : 'white'} py={5} px={{ lg: 12, md: 8, sm: 4, xs: 3 }}>
 
             <NavDrawer open={open} toggleDrawer={toggleDrawer} />
 
@@ -39,10 +47,7 @@ const Header = () => {
                     color="inherit"
                     aria-label="menu"
                     onClick={toggleDrawer}
-                    sx={{
-                        display: { md: 'none', sm: 'none' },
-                        mr: 2,
-                    }}>
+                    sx={{ display: { md: 'none', sm: 'none' }, }}>
 
                     <MenuIcon />
 
@@ -50,21 +55,31 @@ const Header = () => {
 
                 <Logo />
 
-                <Stack direction='row' sx={{
-                    justifyContent: 'space-between',
-                    display: { xs: 'none', sm: 'flex' },
-                    width: { sm: '50%', md: '30%', lg: '30%' },
-                    height: 30
-                }}>
+                <Stack direction='row'
+                    sx={{
+                        justifyContent: 'space-between',
+                        display: { sm: 'flex', xs: 'none', },
 
-                    <NavLink to='/' style={isHovered && currentNavItemHovered === 'Home' && navActiveItem !== "Home" ? hoverStyled : style} onClick={() => setNavActiveItem('Home')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Home</NavLink>
-                    <NavLink to='/brands' style={isHovered && currentNavItemHovered === 'Brand' && navActiveItem !== "Brand" ? hoverStyled : style} onClick={() => setNavActiveItem('Brand')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>Brand</NavLink>
-                    <NavLink to='/about' style={isHovered && currentNavItemHovered === 'About' && navActiveItem !== "About" ? hoverStyled : style} onClick={() => setNavActiveItem('About')} onMouseEnter={setCurrentItemHoveredEffect} onMouseLeave={() => setHovered(false)}>About</NavLink>
+                    }}>
+
+                    {links.map(link => {
+
+                        return (
+                            <ListItem sx={{ '&:hover': { color: 'cyan' } }}>
+                                <NavLink
+                                    to={link.path} style={isHovered && currentNavItemHovered === link.text && navActiveItem !== link.text ? hoverStyled : style}
+                                    onClick={() => setNavActiveItem(link.text)} onMouseEnter={setCurrentItemHoveredEffect}
+                                    onMouseLeave={() => setHovered(false)}>
+                                    {link.text}
+                                </NavLink>
+                            </ListItem>
+                        )
+                    })}
 
                 </Stack>
 
-                <Box maxWidth='13%'>
-                    <NavLink style={{ color: 'black' }} to='/cart' onClick={() => setNavActiveItem('cart')}>
+                <Box>
+                    <NavLink style={{ color: 'black', }} to='/cart' onClick={() => setNavActiveItem('cart')}>
 
                         <Badge badgeContent={item.length || '0'} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
 
@@ -80,19 +95,21 @@ const Header = () => {
 }
 const style = ({ isActive }) => {
     return {
-        fontWieght: 500,
-        fontSize: '1.2rem',
+        fontWieght: 700,
+        fontSize: 18,
         textDecoration: 'none',
-        color: 'black',
-        borderBottom: isActive ? '2px solid black' : ''
+        color: isActive ? '#ff7800' : 'black',
+        borderBottom: isActive ? '2px solid black' : '',
+
+
     }
 }
 const hoverStyled = {
-
-    fontWieght: 500,
-    fontSize: '1.2rem',
+    fontWieght: 700,
+    fontSize: 18,
     textDecoration: 'none',
     color: '#ff7800',
+
 }
 
 export default Header;
