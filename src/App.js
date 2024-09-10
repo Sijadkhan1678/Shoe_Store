@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Home from './components/pages/Home';
-import Brand from './components/pages/Brand'
+import {Shop} from './components/pages/Shop'
 import About from './components/pages/About'
 import Checkout from './components/pages/Checkout'
 import Cart from './components/pages/Cart'
@@ -35,7 +35,7 @@ const App = () => {
 
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="brands" element={<Brand />} />
+                    <Route path="shop" element={<Shop />} />
                     <Route path="about" element={<About />} />
                     <Route path="cart" element={<Cart />} />
                     <Route path='/cart/checkout' element={<Checkout />} />
