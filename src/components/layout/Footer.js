@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 const Footer = () => {
 
-    const navLinks = [{link:'Home',path:'/'},{link:'Brand',path:'brands'},{link:'Shopping Cart',path:'cart'},{link:'Contact Us',path:'contact'},{link:'About us',path:'about'}];
+    const navLinks = [{link:'Home',path:'/'},{link:'Shop',path:'shop'},{link:'Shopping Cart',path:'cart'},{link:'Contact Us',path:'contact'},{link:'About us',path:'about'}];
     const socialLinks = [{link:'Facebook',path:'/facebook'},{link:'twitter',path:'/twitter'},{link:'Linkdin',path:'/linkdin'},{link:'Instagram',path:'/instagram'},{link:'Tiktok',path:'/tiktok'}]
    
     return (
