@@ -1,5 +1,8 @@
 import {useState} from 'react'
 import {ListItem,Checkbox, ListItemText,ListItemIcon} from '@mui/material' 
+import { yellow,pink } from '@mui/material/colors';
+
+
 
 export const BrandList = () => {
     const [brand,setBrand] = useState('')
@@ -16,18 +19,23 @@ export const BrandList = () => {
     //     setValue(newValue);
 
     // };
-    const handleChange = () => {
+    const handleChange = (e,value) => {
+        console.log(e.target.checked)
+        console.log(value)
 
     }
     
     return (
         brandList.map( brand => (
         <ListItem key={brand} disablePadding>
-            
-            <Checkbox edge="start" size='small' color='secondary' onChange={handleChange}/>
-            
-            
-            <ListItemText  primary={brand} 
+            <Checkbox edge="start" size='small' sx={{
+        //   color: pink[400],
+          '&.Mui-checked': {
+            color: '#0F0F0F',
+          },
+        }} onChange={(e)=>handleChange(e,brand)}/> 
+            <ListItemText  
+            primary={brand} 
             primaryTypographyProps={{
                 fontSize:14,
                 fontWeight:'medium',

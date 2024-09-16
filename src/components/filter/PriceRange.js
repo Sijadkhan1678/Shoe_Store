@@ -1,10 +1,10 @@
 import React from 'react'
 import Slider, { SliderThumb } from '@mui/material/Slider';
-import { ListItem,Box,ListItemText,Typography } from '@mui/material'
+import { ListItem, Box, Stack, ListItemText, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles';
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
-    color: '#707070f7',
+    color: '#0F0F0F',
     height: 3,
     padding: '13px 0',
     '& .MuiSlider-thumb': {
@@ -40,48 +40,48 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
 function AirbnbThumbComponent(props) {
     const { children, ...other } = props;
     return (
-      <SliderThumb {...other}>
-        {children}
-        <span className="airbnb-bar" />
-        <span className="airbnb-bar" />
-        <span className="airbnb-bar" />
-      </SliderThumb>
+        <SliderThumb {...other}>
+            {children}
+            <span className="airbnb-bar" />
+            <span className="airbnb-bar" />
+            <span className="airbnb-bar" />
+        </SliderThumb>
     );
-  }
-  
+}
+
 
 export const PriceRange = () => {
-const handleChange = (e) => {
 
-    const [min,max] = e.target.value;
-    console.log('min:',min,'max:',max)
-}
+    const [value, setValue] = React.useState([1, 130])
+    const [min, max] = value
+    const handleChange = (e) => {
+
+        const [min, max] = e.target.value;
+
+        setValue([Math.floor(min * 1.3), Math.floor(max * 1.3)]);
+
+    }
     return (
-        <Box>
-            <ListItem disablePadding>
-            <ListItemText primary="$20"/>
-            <ListItemText primaryTypographyProps={ 
-            <React.Fragment>
-              <Typography
-                component="p"
-                variant="h1"
-                sx={{ color:'black',textAlign:'right' }}
-              >
-                222
-              </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
-            </React.Fragment>} />
+        <React.Fragment>
+            <Stack flexDirection="row" justifyContent='space-between'>
+                <Typography variant="body2"
+                    sx={{ cursor: 'pointer' }}>
+                    {min} min
+                </Typography>
+                <Typography variant="body2"
+                    sx={{ cursor: 'pointer' }}>
+                    {max} max
+                </Typography>
+            </Stack>
+
+            <ListItem>
+                <AirbnbSlider
+                    slots={{ thumb: AirbnbThumbComponent }}
+                    onChange={handleChange}
+                    getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
+                    defaultValue={[0, 100]}
+                />
             </ListItem>
-            
-        <ListItem px={1}>
-            
-            <AirbnbSlider
-                slots={{ thumb: AirbnbThumbComponent }}
-                onChange={handleChange}
-                getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
-                defaultValue={[0, 200]}
-            />
-        </ListItem>
-        </Box>
+        </React.Fragment>
     )
 }

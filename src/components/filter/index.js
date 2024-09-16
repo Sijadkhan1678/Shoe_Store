@@ -1,17 +1,19 @@
 import React from 'react'
-import { Box,List,ListItemText,Divider } from '@mui/material'
+import { Box,List,ListItemText,Divider, Typography } from '@mui/material'
 import {BrandList} from './BrandList'
 import {PriceRange} from './PriceRange'
 
 export const ProductFilter = () => {
 
     return (
-        <Box width="20%" pl={2} border="1px solid whitesmoke">
+        <Box /*width="20%"*/  /*border="1px solid whitesmoke"*/ pr={4} display={{lg:'block',xs:'none'}}>
+         <Typography variant='h1' fontSize={20} fontWeight={700}>Filter</Typography>   
         <List>
-          <ListItemText primary="Brand" primaryTypographyProps={{fontSize:18,fontWeight:'medium'}}/>
+          <ListItemText primary="BRAND" primaryTypographyProps={{fontSize:14,fontWeight:700,}}/>
             <BrandList />
+            <Box mb={1} />
             <Divider />
-            <ListItemText primary="Price" primaryTypographyProps={{my:2,fontSize:18,fontWeight:'medium'}}/>
+            <ListItemText primary="PRICE" primaryTypographyProps={{my:2,fontSize:14,fontWeight:700,}}/>
             <PriceRange />
         </List>
         </Box>
