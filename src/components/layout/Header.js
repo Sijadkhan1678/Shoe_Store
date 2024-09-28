@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NavDrawer from './NavDrawer'
 import Logo from './Logo'
 
-
 const Header = () => {
 
     const [currentNavItemHovered, setCurrentNavItemHovered] = useState(undefined)
@@ -15,7 +14,7 @@ const Header = () => {
     const currentLocation = useLocation().pathname
     const [isHovered, setHovered] = useState(false)
     const [open, setOpen] = useState(false)
-    const { item } = useCartContext();
+    const { items } = useCartContext();
 
     const toggleDrawer = () => { setOpen(!open) }
 
@@ -81,7 +80,7 @@ const Header = () => {
                 <Box>
                     <NavLink style={{ color: 'black', }} to='/cart' onClick={() => setNavActiveItem('cart')}>
 
-                        <Badge badgeContent={item.length || '0'} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
+                        <Badge badgeContent={items.length || '0'} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
 
                     </NavLink>
 

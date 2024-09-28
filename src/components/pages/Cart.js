@@ -7,7 +7,7 @@ import CartSummary from '../CartSummary'
 
 const Cart = () => {
 
-  const { item } = useCartContext()
+  const { items } = useCartContext()
   let column_Heading = ['Image', 'Name', 'Price', 'Quantity', 'Total', 'Action']
 
   return (
@@ -32,7 +32,7 @@ const Cart = () => {
 
               <TableBody>
 
-                {item && item.map((item, index) => (<CartItem key={index} item={item} />))}
+                {items&& items.map((item, index) => (<CartItem key={index} item={item} />))}
 
               </TableBody>
 

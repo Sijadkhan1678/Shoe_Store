@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useLayoutEffect } from 'react'
 import { Box, Stack, SwipeableDrawer, Divider, List, ListItem, ListItemText, Typography, Button, IconButton, darkScrollbar } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
@@ -77,22 +77,19 @@ const CartItem = ({ cartItem }) => {
     )
 }
 const MiniCart = () => {
-    const { item, subTotalPrice } = useCartContext()
-    console.log('minicart items', item)
-    const [open, setOpen] = useState(true)
+    const { items, subTotalPrice,open,calculateSubTotal,openDrawer,closeDrawer } = useCartContext()
+    useLayoutEffect(() => {
 
-    const toggleCartDrawer = () => {
-        // setOpen(!open)
-    }
+        calculateSubTotal()
 
+    }, [])
     return (
         <Fragment>
-            <SwipeableDrawer open={open} anchor="right" onOpen={toggleCartDrawer} onClose={toggleCartDrawer} sx={{ '.MuiPaper-root::-webkit-scrollbar': { width: '0px' } }}>
+            <SwipeableDrawer open={open} anchor="right" onOpen={openDrawer} onClose={closeDrawer} sx={{ '.MuiPaper-root::-webkit-scrollbar': { width: '0px' } }}>
 
                 <Box
                     sx={{ width: 400, }}
-                    role="presentation"
-                    onClick={toggleCartDrawer}>
+                    role="presentation">
                     <Stack sx={{ px: 3, py: 3, position: 'relative', }}>
                         <Box pb={3}>
                             <Typography components="h3" sx={{
@@ -105,7 +102,7 @@ const MiniCart = () => {
 
                         <Box mt={3}>
 
-                            {item.map((item) => <CartItem key={item.id} cartItem={item} />)}
+                            {items.map((item) => <CartItem key={item.id} cartItem={item} />)}
 
                         </Box>
                     </Stack>

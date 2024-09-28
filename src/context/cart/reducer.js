@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL } from './types';
+import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL, OPEN_DRAWER, CLOSE_DRAWER } from './types';
 
 const AppReducer = (state, action) => {
 
@@ -6,11 +6,11 @@ const AppReducer = (state, action) => {
 
         case ADD_TO_CART:
 
-            const product = state.item.find(product => product.id === action.payload.id);
+            const product = state.items.find(product => product.id === action.payload.id);
 
             if (!product) {
 
-                return { ...state, item: [...state.item, { ...action.payload }] }
+                return { ...state, items: [...state.items, { ...action.payload }] }
             }
 
             else {
@@ -21,13 +21,13 @@ const AppReducer = (state, action) => {
 
         case REMOVE_FROM_CART:
 
-            return { ...state, item: state.item.filter(item => item.id !== action.payload) }
+            return { ...state, items: state.items.filter(item => item.id !== action.payload) }
 
         case INCREASE_QUANTITY:
 
             return {
                 ...state,
-                item: state.item.map(product => product.id !== action.payload ? product : { ...product, quantity: product.quantity + 1 })
+                items: state.items.map(product => product.id !== action.payload ? product : { ...product, quantity: product.quantity + 1 })
             }
         case DECREASE_QUANTITY:
 
@@ -36,7 +36,7 @@ const AppReducer = (state, action) => {
                 return {
 
                     ...state,
-                    item: state.item.map(product => product.id !== action.payload.id ? product : { ...product, quantity: action.payload.quantity - 1 })
+                    items: state.items.map(product => product.id !== action.payload.id ? product : { ...product, quantity: action.payload.quantity - 1 })
                 }
             return state
 
@@ -44,18 +44,27 @@ const AppReducer = (state, action) => {
             return {
 
                 ...state,
-                subTotalPrice: state.item.reduce((total, item) => (item.price * item.quantity) + total, 0)
+                subTotalPrice: state.items.reduce((total, item) => (item.price * item.quantity) + total, 0)
             }
         case CALCULATE_TOTAL:
             return {
                 ...state,
-                totalPrice: state.item.reduce((total, product) => {
+                totalPrice: state.items.reduce((total, product) => {
 
                     return (product.price * product.quantity) + (product.quantity * state.shippingPrice) + total;
 
                 }, 0)
             }
-
+        case OPEN_DRAWER:
+            return { 
+                ...state,
+                open:true
+            }
+            case CLOSE_DRAWER:
+                return {
+                    ...state,
+                    open:false
+                }
         default:
             return state
     }

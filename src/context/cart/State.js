@@ -1,24 +1,25 @@
 import React, { useEffect, useReducer } from 'react';
 import reducer from './reducer';
 import context from './context';
-import { ADD_TO_CART, REMOVE_FROM_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL, INCREASE_QUANTITY, DECREASE_QUANTITY } from './types';
+import { ADD_TO_CART, REMOVE_FROM_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL, INCREASE_QUANTITY, DECREASE_QUANTITY, OPEN_DRAWER, CLOSE_DRAWER } from './types';
 
 const State = ({ children }) => {
 
     const initialState = {
-        item: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
+        items: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
         subTotalPrice: 0,
         totalPrice: 0,
-        shippingPrice: 4.00
+        shippingPrice: 4.00,
+        open: true
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
 
-        localStorage.setItem('cart', JSON.stringify(state.item))
+        localStorage.setItem('cart', JSON.stringify(state.items))
 
-    }, [state.item])
+    }, [state.items])
 
 
     // function add to cart product
@@ -62,14 +63,24 @@ const State = ({ children }) => {
         dispatch({ type: CALCULATE_TOTAL })
     }
 
-    console.log('cart state', JSON.parse(localStorage.getItem('cart')))
+    const openDrawer = () => {
+        dispatch({ type: OPEN_DRAWER })
+    }
+    const closeDrawer = () => {
+        // console.log('close Drawer')
+        dispatch({ type: CLOSE_DRAWER })
+    }
+    console.log('open', state.open)
     return (
         <context.Provider value={{
-            item: state.item,
+            open:state.open,
+            items: state.items,
             subTotalPrice: state.subTotalPrice,
             totalPrice: state.totalPrice,
             shippingPrice: state.shippingPrice,
             addToCart,
+            openDrawer,
+            closeDrawer,
             removeFromCart,
             increaseQuantity,
             decreaseQuantity,
