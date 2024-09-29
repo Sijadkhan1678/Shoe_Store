@@ -10,7 +10,7 @@ const State = ({ children }) => {
         subTotalPrice: 0,
         totalPrice: 0,
         shippingPrice: 4.00,
-        open: true
+        open: false
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);

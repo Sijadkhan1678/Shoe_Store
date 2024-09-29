@@ -1,10 +1,12 @@
 import React, { Fragment, useLayoutEffect } from 'react'
-import { Box, Stack, SwipeableDrawer, Divider, List, ListItem, ListItemText, Typography, Button, IconButton, darkScrollbar } from '@mui/material'
+import { Box, Stack, SwipeableDrawer, Divider, List, ListItem, ListItemText, Typography, Button, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveCircleIcon from '@mui/icons-material/Remove'
+import CloseIcon from '@mui/icons-material/Close'
 import { useCartContext } from '../context/cart'
 import { Link } from 'react-router-dom'
+
 
 const CartItem = ({ cartItem }) => {
 
@@ -91,13 +93,15 @@ const MiniCart = () => {
                     sx={{ width: 400, }}
                     role="presentation">
                     <Stack sx={{ px: 3, py: 3, position: 'relative', }}>
-                        <Box pb={3}>
-                            <Typography components="h3" sx={{
+                        <Stack direction="row" sx={{pb:3,justifyContent:'space-between',alignItems:'center'}}>
+                            <Typography component="h3" sx={{
                                 fontSize: 22,
                                 fontWeight: 700,
-                                // textAlign:'center'
                             }}>Shopping Cart</Typography>
-                        </Box>
+                            <IconButton onClick={()=>closeDrawer()} sx={{'&:hover':{color:'#ff7800'}}}>
+                                <CloseIcon />
+                            </IconButton>
+                        </Stack>
                         <Divider />
 
                         <Box mt={3}>
@@ -134,7 +138,7 @@ const MiniCart = () => {
 
                         </Stack>
                         <Box px={3}>
-                            <Button fullWidth component={Link} to='/cart' variant="contained" size="large"
+                            <Button fullWidth onClick={()=> closeDrawer()} component={Link} to='/cart' variant="contained" size="large"
                                 sx={{
                                     py: 1.5,
                                     mb: 2,
@@ -143,7 +147,7 @@ const MiniCart = () => {
                                     '&:hover': { bgcolor: '#ff7800' }
                                 }}
                             > View Cart </Button>
-                            <Button fullWidth component={Link} to='/cart/checkout' variant="contained" size="large"
+                            <Button fullWidth component={Link} onClick={()=> closeDrawer()} to='/cart/checkout' variant="contained" size="large"
                                 sx={{
                                     py: 1.5,
                                     fontSize: 14,

@@ -14,7 +14,7 @@ const Header = () => {
     const currentLocation = useLocation().pathname
     const [isHovered, setHovered] = useState(false)
     const [open, setOpen] = useState(false)
-    const { items } = useCartContext();
+    const { items,openDrawer } = useCartContext();
 
     const toggleDrawer = () => { setOpen(!open) }
 
@@ -78,11 +78,11 @@ const Header = () => {
                 </Stack>
 
                 <Box>
-                    <NavLink style={{ color: 'black', }} to='/cart' onClick={() => setNavActiveItem('cart')}>
+                    <IconButton sx={{color:'#1c1c1c',transition:'all 250ms ease-in','&:hover':{color:'#ff7800',transform:'scale(1.1)'}}} onClick={()=>openDrawer()}>
 
-                        <Badge badgeContent={items.length || '0'} color='primary'> <ShoppingCartOutlinedIcon /> </Badge>
+                        <Badge badgeContent={items.length || '0'} color='warning'> <ShoppingCartOutlinedIcon /> </Badge>
 
-                    </NavLink>
+                    </IconButton>
 
                 </Box>
 
