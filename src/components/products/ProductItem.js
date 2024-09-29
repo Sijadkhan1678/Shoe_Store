@@ -7,19 +7,17 @@ import { Link } from 'react-router-dom'
 const ProductItem = ({ product }) => {
 
     const [isHovered, setHovered] = useState(false)
-    const { id, name, img, price, rating,} = product
+    const { id, name, img, price, rating, } = product
 
     function handleHover() { setHovered(!isHovered) }
 
 
     return (
-
         <Grid item lg={3} md={4} sm={4} xs={6} onMouseEnter={handleHover} onMouseLeave={handleHover}>
 
-
-            <Box sx={{ position: 'relative', overflow: 'hidden', height: {md:215,xs:170}, }} >
-            <Link to={`/product/${id}`} style={linkStyle} >
-                    <img src={img} alt='shoe' style={{
+            <Box sx={{ position: 'relative', overflow: 'hidden', height: { md: 215, xs: 170 }, }} >
+                <Link to={`/product/${id}`} style={linkStyle} >
+                    <img src={img} alt={name} style={{
                         width: '100%',
                         height: '100%',
                         borderTopLeftRadius: '0.8rem',
@@ -31,31 +29,25 @@ const ProductItem = ({ product }) => {
 
                 </Link>
                 <ProductActionButton product={product} isHovered={isHovered} />
-
             </Box>
 
             <Stack direction='column' justifyContent='space-evenly' mt={2}>
-
                 <Link to={`/product/${id}`} style={linkStyle} >
                     <Box px={0.5}>
-
-                        <Typography variant='h5' color="#1c1c1c" fontWeight={700} fontSize={{md:20,sm:18,xs:16}} mb={0.5}>
+                        <Typography component="h5" sx={{ color: "#1c1c1c", fontSize: { sm: 18, xs: 16 }, fontWeight: 700, mb: 0.5 }}   >
                             {name}
                         </Typography>
 
-                        <Rating value={rating} readOnly sx={{ fontSize:16,color: 'orange' }} />
+                        <Rating value={rating} readOnly sx={{ fontSize: 16, color: 'orange' }} />
 
-                        <Typography variant='h6' color='#c50215' fontSize={{xs:18}} fontWeight={700}>
+                        <Typography component='h6' sx={{ color: '#1c1c1c', fontSize: { xs: 20 }, fontWeight: 700 }}>
                             ${price}
                         </Typography>
-
                     </Box>
-
                 </Link>
             </Stack>
 
         </Grid>
-
     )
 }
 const linkStyle = {
