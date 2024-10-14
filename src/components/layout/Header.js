@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { useCartContext } from '../../context/cart';
 import { Box, Stack, Badge, IconButton, List, ListItem, ListItemText } from '@mui/material';
@@ -7,14 +7,38 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NavDrawer from './NavDrawer'
 import Logo from './Logo'
 
-const Header = () => {
 
+const Header = () => {
+    
+
+    useLayoutEffect(() => {
+        
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            
+            if (currentScrollY > 70) {
+                setVisible(true);
+            } else if(currentScrollY < 30){
+                
+                setVisible(false);
+            }
+            
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+
+    },  [])
+    
     const [currentNavItemHovered, setCurrentNavItemHovered] = useState(undefined)
     const [navActiveItem, setNavActiveItem] = useState('Home')
     const currentLocation = useLocation().pathname
     const [isHovered, setHovered] = useState(false)
     const [open, setOpen] = useState(false)
-    const { items,openDrawer } = useCartContext();
+    const [visible, setVisible] = useState(false);
+    const { items, openDrawer } = useCartContext();
 
     const toggleDrawer = () => { setOpen(!open) }
 
@@ -33,7 +57,31 @@ const Header = () => {
 
     return (
 
-        <Box bgcolor={currentLocation === '/' ? '#eeeeee' : 'white'} py={5} px={{ lg: 12, md: 8, sm: 4, xs: 3 }}>
+        <Box sx={{
+            backgroundColor: currentLocation === '/' ? '#eeeeee' : 'white',
+            transition: 'all 1s cubic-bezier(0.25, 0.8, 0.25, 1)',
+            boxShadow: visible
+              ? 'rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px'
+              : 'none',
+            position: visible ? 'fixed' : 'static',
+            top: 0,
+            right: 0,
+            left: 0,
+            zIndex: 1200,
+            py: 2.5,
+            px: { lg: 12, md: 8, sm: 4, xs: 3 },
+            animation: visible && 'slideDown 1s ease', 
+            '@keyframes slideDown': {
+              '0%': {
+
+                transform: 'translateY(-100%)',
+
+              },
+              '100%': {
+                transform: 'translateY(0%)',
+              },
+            },
+          }}>
 
             <NavDrawer open={open} toggleDrawer={toggleDrawer} />
 
@@ -58,7 +106,6 @@ const Header = () => {
                     sx={{
                         justifyContent: 'space-between',
                         display: { sm: 'flex', xs: 'none', },
-
                     }}>
 
                     {links.map(link => {
@@ -78,7 +125,7 @@ const Header = () => {
                 </Stack>
 
                 <Box>
-                    <IconButton sx={{color:'#1c1c1c',transition:'all 250ms ease-in','&:hover':{color:'#ff7800',transform:'scale(1.1)'}}} onClick={()=>openDrawer()}>
+                    <IconButton sx={{ color: '#1c1c1c', transition: 'all 250ms ease-in', '&:hover': { color: '#ff7800', transform: 'scale(1.1)' } }} onClick={() => openDrawer()}>
 
                         <Badge badgeContent={items.length || '0'} color='warning'> <ShoppingCartOutlinedIcon /> </Badge>
 
@@ -88,9 +135,7 @@ const Header = () => {
 
             </Stack>
         </Box>
-
     )
-
 }
 const style = ({ isActive }) => {
     return {
@@ -112,3 +157,4 @@ const hoverStyled = {
 }
 
 export default Header;
+
