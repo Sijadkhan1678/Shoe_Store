@@ -2,6 +2,7 @@ import React from 'react'
 import { Box,List,ListItemText,Divider, Typography } from '@mui/material'
 import {BrandList} from './BrandList'
 import {PriceRange} from './PriceRange'
+import Size from './Size'
 
 export const ProductFilter = () => {
 
@@ -11,8 +12,10 @@ export const ProductFilter = () => {
         <List>
           <ListItemText primary="BRAND" primaryTypographyProps={{fontSize:14,fontWeight:700,}}/>
             <BrandList />
-            <Box mb={1} />
-            <Divider />
+            <Divider sx={{my:2}} />            
+            <ListItemText primary="SIZE" primaryTypographyProps={{fontSize:14,fontWeight:700,}}/>
+            <Size />
+             <Divider sx={{my:2}} />
             <ListItemText primary="PRICE" primaryTypographyProps={{my:2,fontSize:14,fontWeight:700,}}/>
             <PriceRange />
         </List>
