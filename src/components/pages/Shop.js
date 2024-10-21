@@ -1,84 +1,106 @@
 import React from 'react';
-import { useProductContext } from '../../context/product'
+import { Box, Stack, Grid, Typography, Button, Chip, Breadcrumbs } from '@mui/material'
+import { Link } from 'react-router-dom'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useProductContext } from '../../context/product'
+import ProductSort from '../ProductSort'
 import ProductItem from '../products/ProductItem'
-import { Container, Box, Stack, Grid, Typography, Select, MenuItem, FormControl, Button, Chip } from '@mui/material'
+import shopBg from './bg-shop.webp'
+
 import { ProductFilter } from '../filter'
 
+const ShopPageHeader = () => {
+
+  const breadcrumbs = [
+    <Link to="/" style={{
+      color:'white',
+      textDecoration:'none',
+      fontSize:16
+    }}>
+      Home
+    </Link>,
+    <Typography sx={{color:'white', cursor:'pointer'}}>Shop</Typography>,
+  ];
+
+  return (
+    <Box sx={{
+      backgroundImage: `url(${shopBg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      position: 'relative',
+      textAlign: "center",
+      height: 300,
+      mb: 6,
+    }}>
+      <Box sx={{ position: 'absolute', top: 40, left: 0, right: 0 }}>
+
+        <Typography component='h5' sx={{ fontSize: 52, color: 'whitesmoke', fontWeight: 700 }} >SHOP</Typography>
+
+        <Stack spcaing={1} direction="row" justifyContent="center">
+          <Breadcrumbs
+            separator={<NavigateNextIcon fontSize="small" sx={{ color: 'white' }} />}
+            aria-label="breadcrumb"
+          >
+            {breadcrumbs}
+          </Breadcrumbs>
+        </Stack>
+
+      </Box>
+
+    </Box>
+  )
+}
 export const Shop = () => {
 
-    const { products, filterProducts, currentBrand } = useProductContext();
-    const [sortProducts, setSortProducts] = React.useState('');
-    const sortOptions = [
-        "Best Selling",
-        "Alphabetically, A-Z",
-        "Alphabetically, Z-A",
-        "Price, low to high",
-        "Price, high to low",
-        "Date, old to new",
-        "Date, new to old"]
+  const { products, filterProducts, currentBrand } = useProductContext();
 
-    const handleChange = (event) => {
-        setSortProducts(event.target.value);
-    };
-    const handleDelete = () => {
-        console.info('You clicked the delete icon.');
-    };
+  const handleDelete = () => {
 
-    const selectedProducts = currentBrand === 'All' ? products : filterProducts
+    console.info('You clicked the delete icon.');
+  };
 
-    return (
-        <Box mt={6} px={{ lg: 6, md: 8, sm: 4, xs: 3 }}>
+  const selectedProducts = currentBrand === 'All' ? products : filterProducts
 
-            {/* <Typography variant='h5' fontSize="2rem" fontWeight="bold" >
-                    Brands
-                </Typography> */}
+  return (
+    <Box mt={2} px={{ lg: 6, md: 8, sm: 4, xs: 3 }}>
 
-            <Grid container>
-                <Grid item lg={2.5}> <ProductFilter /></Grid>
+      <ShopPageHeader />
 
-                <Grid item lg={9.5} md={12}>
-                    <Stack direction='row' justifyContent={{ xs: "space-between" }} alignItems='center' mb={5} px={0.5}>
+      <Grid container>
+        <Grid item lg={2.5}>
+          <ProductFilter /> {/* product filter component*/}
+        </Grid>
 
-                        <Button startIcon={<FilterAltIcon />}
-                            sx={{
-                                color: '#0F0F0F',
-                                p: 0,
-                                m: 0,
-                                display: { lg: 'none' }
+        <Grid item lg={9.5} md={12}>
+          <Stack direction='row' justifyContent={{ xs: "space-between" }} alignItems='center' mb={5} px={0.5}>
 
-                            }}
-                        >Filter</Button>
-                        <Typography component='h4' sx={{ display: { lg: 'block', xs: 'none' }, fontWeight: 700, }}>{40} ITEMS</Typography>
+            <Button startIcon={<FilterAltIcon />}
+              sx={{
+                color: '#0F0F0F',
+                p: 0,
+                m: 0,
+                display: { lg: 'none' }
 
-                        <FormControl sx={{ minWidth: 200, }} size="small" >
-                            <Select
-                                value={sortProducts}
-                                onChange={handleChange}
-                                // sx={{'& .MuiInputBase-input':{color:'red'}}}
-                                displayEmpty
-                                inputProps={{ 'aria-label': 'shoe sort' }}>
+              }}
+            >Filter</Button>
+            <Typography component='h4' sx={{ display: { lg: 'block', xs: 'none' }, fontWeight: 700, }}>{40} ITEMS</Typography>
 
-                                <MenuItem value=""> <em>Sort By</em></MenuItem>
-                                {sortOptions.map(option => <MenuItem >{option}</MenuItem>)}
+            <ProductSort />
+            
+          </Stack>
+          <Stack direction="row" alignItems="center" spacing={1} mb={5}>
+            {/* <Typography component="p" >Applied Filter: </Typography> */}
+            <Chip label="Addidas" onDelete={handleDelete} />
+            <Chip label="Nike" onDelete={handleDelete} />
+          </Stack>
+          <Grid container columnSpacing={1} rowSpacing={4}>
+            {selectedProducts.map(product => <ProductItem key={product.id} product={product} />)}
+          </Grid>
+        </Grid>
 
-                            </Select>
-                        </FormControl>
+      </Grid>
 
-                    </Stack>
-                    <Stack direction="row" alignItems="center" spacing={1} mb={5}>
-                        {/* <Typography component="p" >Applied Filter: </Typography> */}
-                        <Chip label="Addidas" onDelete={handleDelete} />
-                        <Chip label="Nike" onDelete={handleDelete} />
-                    </Stack>
-                    <Grid container columnSpacing={1} rowSpacing={4}>
-                        {selectedProducts.map(product => <ProductItem key={product.id} product={product} />)}
-                    </Grid>
-                </Grid>
-
-            </Grid>
-
-        </Box>
-    )
+    </Box>
+  )
 }
-
