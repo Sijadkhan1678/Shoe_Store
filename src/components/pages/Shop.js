@@ -6,61 +6,22 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useProductContext } from '../../context/product'
 import ProductSort from '../ProductSort'
 import ProductItem from '../products/ProductItem'
+import { ProductFilter } from '../filter'
 import shopBg from './bg-shop.webp'
 
-import { ProductFilter } from '../filter'
 
-const ShopPageHeader = () => {
-
-  const breadcrumbs = [
-    <Link to="/" style={{
-      color:'white',
-      textDecoration:'none',
-      fontSize:16
-    }}>
-      Home
-    </Link>,
-    <Typography sx={{color:'white', cursor:'pointer'}}>Shop</Typography>,
-  ];
-
-  return (
-    <Box sx={{
-      backgroundImage: `url(${shopBg})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      position: 'relative',
-      textAlign: "center",
-      height: 300,
-      mb: 6,
-    }}>
-      <Box sx={{ position: 'absolute', top: 40, left: 0, right: 0 }}>
-
-        <Typography component='h5' sx={{ fontSize: 52, color: 'whitesmoke', fontWeight: 700 }} >SHOP</Typography>
-
-        <Stack spcaing={1} direction="row" justifyContent="center">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" sx={{ color: 'white' }} />}
-            aria-label="breadcrumb"
-          >
-            {breadcrumbs}
-          </Breadcrumbs>
-        </Stack>
-
-      </Box>
-
-    </Box>
-  )
-}
 export const Shop = () => {
 
-  const { products, filterProducts, currentBrand } = useProductContext();
-
+  const { products, filterProducts, activeFilters } = useProductContext();
+  console.log('active:::', activeFilters)
+  const selectedProducts = !activeFilters.length ? products : filterProducts
+  console.log('slectedProdcuts', selectedProducts)
   const handleDelete = () => {
 
     console.info('You clicked the delete icon.');
   };
 
-  const selectedProducts = currentBrand === 'All' ? products : filterProducts
+
 
   return (
     <Box mt={2} px={{ lg: 6, md: 8, sm: 4, xs: 3 }}>
@@ -72,7 +33,7 @@ export const Shop = () => {
           <ProductFilter /> {/* product filter component*/}
         </Grid>
 
-        <Grid item lg={9.5} md={12}>
+        <Grid item lg={9.5} xs={12}>
           <Stack direction='row' justifyContent={{ xs: "space-between" }} alignItems='center' mb={5} px={0.5}>
 
             <Button startIcon={<FilterAltIcon />}
@@ -87,7 +48,7 @@ export const Shop = () => {
             <Typography component='h4' sx={{ display: { lg: 'block', xs: 'none' }, fontWeight: 700, }}>{40} ITEMS</Typography>
 
             <ProductSort />
-            
+
           </Stack>
           <Stack direction="row" alignItems="center" spacing={1} mb={5}>
             {/* <Typography component="p" >Applied Filter: </Typography> */}
@@ -100,6 +61,48 @@ export const Shop = () => {
         </Grid>
 
       </Grid>
+
+    </Box>
+  )
+}
+
+const ShopPageHeader = () => {
+
+  const breadcrumbs = [
+    <Link to="/" style={{
+      color: 'white',
+      textDecoration: 'none',
+      fontSize: 16
+    }}>
+      Home
+    </Link>,
+    <Typography sx={{ color: 'white', cursor: 'pointer' }}>Shop</Typography>,
+  ];
+
+  return (
+    <Box sx={{
+      backgroundImage: `url(${shopBg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      position: 'relative',
+      textAlign: "center",
+      height: { lg: 300, md: 240, sm: 220, xs: 180 },
+      mb: 6,
+    }}>
+      <Box sx={{ position: 'absolute', top: 40, left: 0, right: 0 }}>
+
+        <Typography component='h5' sx={{ fontSize: { lg: 52,md:46, sm: 42, xs: 36 }, color: 'whitesmoke', fontWeight: 700 }} >SHOP</Typography>
+
+        <Stack spcaing={1} direction="row" justifyContent="center">
+          <Breadcrumbs
+            separator={<NavigateNextIcon fontSize="small" sx={{ color: 'white' }} />}
+            aria-label="breadcrumb"
+          >
+            {breadcrumbs}
+          </Breadcrumbs>
+        </Stack>
+
+      </Box>
 
     </Box>
   )
