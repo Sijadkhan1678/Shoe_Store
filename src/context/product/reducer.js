@@ -1,10 +1,10 @@
-import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './types';
+import { FILTER_PRODUCTS, CHANGE_BRAND, OPEN_DRAWER, CLOSE_DRAWER } from './types';
 
 const reducer = (state, action) => {
 
     switch (action.type) {
 
-        case GET_BRAND_PRODUCTS:
+        case FILTER_PRODUCTS:
 
             return {
                 ...state,
@@ -14,8 +14,19 @@ const reducer = (state, action) => {
 
         case CHANGE_BRAND:
             return {
-                ...state, 
+                ...state,
                 currentBrand: action.payload
+            }
+        case OPEN_DRAWER:
+            return {
+                ...state,
+                open: true
+            }
+
+        case CLOSE_DRAWER:
+            return {
+                ...state,
+                open: false
             }
 
         default:

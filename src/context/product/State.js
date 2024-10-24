@@ -2,33 +2,39 @@ import React, { useReducer } from 'react';
 import reducer from './reducer';
 import context from './context';
 import shoesList from '../data'
-import { GET_BRAND_PRODUCTS, CHANGE_BRAND } from './types';
+import { FILTER_PRODUCTS, CHANGE_BRAND,OPEN_DRAWER,CLOSE_DRAWER } from './types';
 
 const State = ({ children }) => {
 
     const initialState = {
         products: shoesList,
+        activeFilters: [],
         filterProducts: [],
-        currentBrand: 'All',
+        open: false
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);
-
+    console.log('active state::', state.activeFilters)
     //function get Brand products 
-    const getBrandProducts = (brand) => { dispatch({ type: GET_BRAND_PRODUCTS, payload: brand }) }
+    const filterProducts = (filter) => { dispatch({ type: FILTER_PRODUCTS, payload: filter }) }
 
     // function to change brand name 
     const changeBrand = (brand) => { dispatch({ type: CHANGE_BRAND, payload: brand }) }
-
-    console.log('appState')
+    const openDrawer = () => {
+        dispatch({ type: OPEN_DRAWER })
+    }
+    const closeDrawer = () => {
+        dispatch({ type: CLOSE_DRAWER })
+    }
     return (
         <context.Provider value={{
             products: state.products,
-            currentBrand: state.currentBrand,
+            activeFilters: state.activeFilters,
             filterProducts: state.filterProducts,
-            getBrandProducts,
+            open:state.open,
             changeBrand,
-
+            openDrawer,
+            closeDrawer
         }}>
             {children}
         </context.Provider>

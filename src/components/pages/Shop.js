@@ -12,7 +12,7 @@ import shopBg from './bg-shop.webp'
 
 export const Shop = () => {
 
-  const { products, filterProducts, activeFilters } = useProductContext();
+  const { products, filterProducts, activeFilters,openDrawer } = useProductContext();
   console.log('active:::', activeFilters)
   const selectedProducts = !activeFilters.length ? products : filterProducts
   console.log('slectedProdcuts', selectedProducts)
@@ -36,7 +36,7 @@ export const Shop = () => {
         <Grid item lg={9.5} xs={12}>
           <Stack direction='row' justifyContent={{ xs: "space-between" }} alignItems='center' mb={5} px={0.5}>
 
-            <Button startIcon={<FilterAltIcon />}
+            <Button onClick={openDrawer} startIcon={<FilterAltIcon />}
               sx={{
                 color: '#0F0F0F',
                 p: 0,

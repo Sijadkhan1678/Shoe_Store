@@ -1,21 +1,22 @@
 import React, { Fragment, useState } from 'react'
-import { SwipeableDrawer } from '@mui/material'
-import { Box, List, ListItemText, Divider, Typography } from '@mui/material'
+import { SwipeableDrawer,Box, List, ListItemText, Divider, Typography } from '@mui/material'
 import { BrandList } from './BrandList'
 import { PriceRange } from './PriceRange'
+import {useProductContext} from '../../context/product'
+
 const FilterDrawer = () => {
-    const [open, setOpen] = useState(false)
+    // const [open, setOpen] = useState(false)
+    const {open,closeDrawer} = useProductContext()
     const toggleCartDrawer = () => {
         // setOpen(!open)
     }
     return (
         <Fragment>
-            <SwipeableDrawer open={open} anchor="left" onOpen={toggleCartDrawer} onClose={toggleCartDrawer}>
+            <SwipeableDrawer open={open} anchor="left" onClose={closeDrawer}>
 
                 <Box
                     sx={{ width: 300 }}
                     role="presentation"
-                    onClick={toggleCartDrawer}
                 >
                     <Box sx={{ px: 4, py: 3 }}>
                         <Box /*width="20%"*/  /*border="1px solid whitesmoke"*/  /*display={{ lg: 'block', xs: 'none' }}*/>
