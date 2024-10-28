@@ -1,22 +1,31 @@
-import { FILTER_PRODUCTS, CHANGE_BRAND, OPEN_DRAWER, CLOSE_DRAWER } from './types';
+import { FILTER_BRAND, FILTER_PRICE, FILTER_SIZE,REMOVE_FILTER, OPEN_DRAWER, CLOSE_DRAWER } from './types';
 
 const reducer = (state, action) => {
 
     switch (action.type) {
 
-        case FILTER_PRODUCTS:
-
+        case FILTER_BRAND:
             return {
                 ...state,
-                filterProducts: state.products.filter(product => product.brand === action.payload),
-                currentBrand: action.payload
+                filterProducts: [...state.filterProducts,...state.products.filter(product => product.brand === action.payload)],
+                activeFilters: [...state.activeFilters,action.payload]
             }
-
-        case CHANGE_BRAND:
+        case FILTER_PRICE:
+            return {      
+                 ...state,
+                 filterProducts: state.products.filter(filter => filter >= action.payload)
+            }
+        case FILTER_SIZE:
             return {
                 ...state,
-                currentBrand: action.payload
+                // filterProducts:
             }
+        case REMOVE_FILTER:
+            return {
+                ...state,
+                filterProducts: state.filterProducts.filter(product => product.brand !== action.payload),
+                activeFilters: state.activeFilters.filter(filter => filter !== action.payload)
+            }    
         case OPEN_DRAWER:
             return {
                 ...state,

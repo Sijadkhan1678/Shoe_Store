@@ -1,8 +1,8 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import reducer from './reducer';
 import context from './context';
 import shoesList from '../data'
-import { FILTER_PRODUCTS, CHANGE_BRAND,OPEN_DRAWER,CLOSE_DRAWER } from './types';
+import { FILTER_BRAND, FILTER_PRICE, FILTER_SIZE, OPEN_DRAWER, CLOSE_DRAWER, REMOVE_FILTER } from './types';
 
 const State = ({ children }) => {
 
@@ -13,26 +13,50 @@ const State = ({ children }) => {
         open: false
     }
 
-    const [state, dispatch] = useReducer(reducer, initialState);
-    console.log('active state::', state.activeFilters)
-    //function get Brand products 
-    const filterProducts = (filter) => { dispatch({ type: FILTER_PRODUCTS, payload: filter }) }
 
-    // function to change brand name 
-    const changeBrand = (brand) => { dispatch({ type: CHANGE_BRAND, payload: brand }) }
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const filterBrand = (brand) => {
+
+        dispatch({ type: FILTER_BRAND, payload: brand })
+    }
+
+    const filterPrice = (range) => {
+
+        dispatch({ type: FILTER_PRICE, payload: range })
+    }
+
+    const filterSize = (size) => {
+
+        dispatch({ type: FILTER_SIZE, payload: size })
+    }
+
+    const removeFilter = (filter) => {
+
+        dispatch({ type: REMOVE_FILTER, payload: filter })
+    }
+
     const openDrawer = () => {
+
         dispatch({ type: OPEN_DRAWER })
     }
+
     const closeDrawer = () => {
+        
         dispatch({ type: CLOSE_DRAWER })
     }
+    console.log('filterProduct:::', state.filterProducts, "activeFilters:::", state.activeFilters)
+    
     return (
         <context.Provider value={{
             products: state.products,
             activeFilters: state.activeFilters,
             filterProducts: state.filterProducts,
-            open:state.open,
-            changeBrand,
+            filterBrand,
+            filterPrice,
+            filterSize,
+            removeFilter,
+            open: state.open,
             openDrawer,
             closeDrawer
         }}>

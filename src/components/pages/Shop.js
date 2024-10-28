@@ -12,14 +12,11 @@ import shopBg from './bg-shop.webp'
 
 export const Shop = () => {
 
-  const { products, filterProducts, activeFilters,openDrawer } = useProductContext();
-  console.log('active:::', activeFilters)
+  const { products, filterProducts, activeFilters,removeFilter,openDrawer } = useProductContext();
+  // console.log('active:::', activeFilters)
   const selectedProducts = !activeFilters.length ? products : filterProducts
-  console.log('slectedProdcuts', selectedProducts)
-  const handleDelete = () => {
-
-    console.info('You clicked the delete icon.');
-  };
+  // console.log('slectedProdcuts:::', selectedProducts)
+  
 
 
 
@@ -52,8 +49,7 @@ export const Shop = () => {
           </Stack>
           <Stack direction="row" alignItems="center" spacing={1} mb={5}>
             {/* <Typography component="p" >Applied Filter: </Typography> */}
-            <Chip label="Addidas" onDelete={handleDelete} />
-            <Chip label="Nike" onDelete={handleDelete} />
+            {activeFilters && activeFilters.map((filter,index) => <Chip label={filter} key={index} onDelete={()=> removeFilter(filter)} />)}
           </Stack>
           <Grid container columnSpacing={1} rowSpacing={4}>
             {selectedProducts.map(product => <ProductItem key={product.id} product={product} />)}
