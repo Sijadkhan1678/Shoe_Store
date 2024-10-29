@@ -13,7 +13,8 @@ const reducer = (state, action) => {
         case FILTER_PRICE:
             return {      
                  ...state,
-                 filterProducts: state.products.filter(filter => filter >= action.payload)
+                 filterProducts: state.products.filter(product => product.price > action.payload.min && product.price <= action.payload.max),
+                 activeFilters: [...state.activeFilters,action.payload.min+" - "+action.payload.max]
             }
         case FILTER_SIZE:
             return {

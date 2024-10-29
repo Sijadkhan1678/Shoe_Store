@@ -22,7 +22,7 @@ const State = ({ children }) => {
     }
 
     const filterPrice = (range) => {
-
+        console.log('range::', range)
         dispatch({ type: FILTER_PRICE, payload: range })
     }
 
@@ -42,11 +42,11 @@ const State = ({ children }) => {
     }
 
     const closeDrawer = () => {
-        
+
         dispatch({ type: CLOSE_DRAWER })
     }
     console.log('filterProduct:::', state.filterProducts, "activeFilters:::", state.activeFilters)
-    
+
     return (
         <context.Provider value={{
             products: state.products,

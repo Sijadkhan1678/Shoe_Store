@@ -2,6 +2,7 @@ import React from 'react'
 import Slider, { SliderThumb } from '@mui/material/Slider';
 import { ListItem, Box, Stack, ListItemText, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles';
+import { useProductContext } from '../../context/product'
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
     color: '#0F0F0F',
@@ -52,13 +53,20 @@ function AirbnbThumbComponent(props) {
 
 export const PriceRange = () => {
 
+    const { filterPrice } = useProductContext()
     const [value, setValue] = React.useState([1, 130])
+
     const [min, max] = value
     const handleChange = (e) => {
 
-        const [min, max] = e.target.value;
+        // const [min, max] = e.target.value;
 
-        setValue([Math.floor(min * 1.3), Math.floor(max * 1.3)]);
+        setValue([Math.floor(e.target.value[0] * 1.3), Math.floor(e.target.value[1] * 1.3)]);
+        setTimeout(()=> {
+            filterPrice({ min, max })
+        },1200)
+        
+        console.log("min:", min, "max::", max)
 
     }
     return (
