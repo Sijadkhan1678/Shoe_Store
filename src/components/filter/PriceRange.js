@@ -55,20 +55,34 @@ export const PriceRange = () => {
 
     const { filterPrice } = useProductContext()
     const [value, setValue] = React.useState([1, 130])
-
+    const [debounceTimeout, setDebounceTimeout] = React.useState(null);
+    console.log("range in view", value)
     const [min, max] = value
     const handleChange = (e) => {
 
         // const [min, max] = e.target.value;
+        if (debounceTimeout) {
+            clearTimeout(debounceTimeout);
+        }
 
         setValue([Math.floor(e.target.value[0] * 1.3), Math.floor(e.target.value[1] * 1.3)]);
-        setTimeout(()=> {
-            filterPrice({ min, max })
-        },1200)
-        
-        console.log("min:", min, "max::", max)
+
+        const timeout = setTimeout(() => {
+            filterPrice({ min, max }); // Update final state after delay
+        }, 1200);
+
+        setDebounceTimeout(timeout);
 
     }
+    
+    React.useEffect(() => {
+        return () => {
+            if (debounceTimeout) {
+                clearTimeout(debounceTimeout);
+            }
+        };
+    }, [debounceTimeout])
+    
     return (
         <React.Fragment>
             <Stack flexDirection="row" justifyContent='space-between'>
