@@ -1,57 +1,67 @@
-import { useState } from 'react'
-import { ListItem, Checkbox, ListItemText, ListItemIcon } from '@mui/material'
-import { useProductContext } from '../../context/product'
-
-
+import { useState } from 'react';
+import { ListItem, Checkbox, ListItemText } from '@mui/material';
+import { useProductContext } from '../../context/product';
 
 export const BrandList = () => {
-    const [brand, setBrand] = useState('')
-    const { filterBrand, activeFilters,removeFilter } = useProductContext()
-    const brandList = ['All', 'Nike', 'Addidas', 'Fila', 'Puma', 'Reebok', 'Jordan']
+    const [brandsState, setBrandsState] = useState([
+        { name: 'All', isSelected: false },
+        { name: 'Nike', isSelected: false },
+        { name: 'Adidas', isSelected: false },
+        { name: 'Fila', isSelected: false },
+        { name: 'Puma', isSelected: false },
+        { name: 'Reebok', isSelected: false },
+        { name: 'Jordan', isSelected: false }
+    ]);
 
-    // const { currentBrand, getBrandProducts } = useProductContext()
+    const { filterBrand, activeFilters, removeFilter } = useProductContext();
 
-    // const [value, setValue] = useState(0);
+    const toggleBrandSelection = (checkboxEvent, brandIndex) => {
+        const updatedBrands = [...brandsState];
+        const selectedBrand = updatedBrands[brandIndex];
 
+        // Toggle the isSelected property based on the checkbox state
+        selectedBrand.isSelected = checkboxEvent.target.checked;
 
-    // const handleChange = (event, newValue) => {
+        // Update the brands state
+        setBrandsState(updatedBrands);
 
-    //     getBrandProducts(brandList[newValue])
-    //     setValue(newValue);
-
-    // };
-    const handleChange = (e, brand) => {
-        let filterActive = activeFilters.find(filter => filter === brand)
-        if (filterActive) {
-            removeFilter(filterActive)
+        // Handle filter logic
+        if (selectedBrand.isSelected) {
+            // If the brand is selected, add it to the filters
+            filterBrand(selectedBrand.name);
         } else {
-            filterBrand(brand)
-            console.log('Check::', e.target.checked)
-
-            console.log('Check value::', brand)
+            // If the brand is deselected, remove it from the filters
+            removeFilter(selectedBrand.name);
         }
-
-
-    }
+    };
 
     return (
-        brandList.map(brand => (
-            <ListItem key={brand} disablePadding>
-                <Checkbox edge="start" size='small' 
-                sx={{
-                    //   color: pink[400],
-                    '&.Mui-checked': {
-                        color: '#0F0F0F',
-                    },
-                }} onChange={(e) => handleChange(e, brand)} />
-                <ListItemText
-                    primary={brand}
-                    primaryTypographyProps={{
-                        fontSize: 14,
-                        fontWeight: 'medium',
-                        color: 'gray'
-                    }}
-                />
-            </ListItem>
-        )))
-}
+        <>
+            {brandsState.map((brand, brandIndex) => (
+                <ListItem key={brand.name} disablePadding>
+                    <Checkbox
+                        edge="start"
+                        size='small'
+                        checked={brand.isSelected}
+                        onChange={(checkboxEvent) => toggleBrandSelection(checkboxEvent, brandIndex)}
+                        sx={{
+                            '&.Mui-checked': {
+                                color: '#0F0F0F',
+                            },
+                        }}
+                    />
+                    <ListItemText
+                        primary={brand.name}
+                        primaryTypographyProps={{
+                            fontSize: 14,
+                            fontWeight: 'medium',
+                            color: 'gray'
+                        }}
+                    />
+                </ListItem>
+            ))}
+        </>
+    );
+};
+
+
