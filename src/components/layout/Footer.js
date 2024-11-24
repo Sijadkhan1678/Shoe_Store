@@ -6,9 +6,10 @@ import { Link, NavLink } from 'react-router-dom'
 
 const Footer = () => {
 
-    const navLinks = [{link:'Home',path:'/'},{link:'Shop',path:'shop'},{link:'Shopping Cart',path:'cart'},{link:'Contact Us',path:'contact'},{link:'About us',path:'about'}];
-    const socialLinks = [{link:'Facebook',path:'/facebook'},{link:'twitter',path:'/twitter'},{link:'Linkdin',path:'/linkdin'},{link:'Instagram',path:'/instagram'},{link:'Tiktok',path:'/tiktok'}]
-   
+    const navLinks = [{ link: 'Home', path: '/' }, { link: 'Shop', path: 'shop' }, { link: 'Shopping Cart', path: 'cart' }, { link: 'Contact Us', path: 'contact' }, { link: 'About us', path: 'about' }];
+    const socialLinks = [{ link: 'Facebook', path: '/facebook' }, { link: 'twitter', path: '/twitter' }, { link: 'Linkdin', path: '/linkdin' }, { link: 'Instagram', path: '/instagram' }, { link: 'Tiktok', path: '/tiktok' }]
+    const contactInfo = ['123 Street, New York, USA', 'info@example.com', '+012 345 67890']
+    
     return (
         <Box mt="3rem" pt="3rem" px="0.9rem" bgcolor="#f5f5f5">
             <Stack pt="3rem" px={{ lg: "3rem", md: '1.5rem' }} direction={{ lg: 'row', md: "row", sm: 'column' }} justifyContent="space-between">
@@ -18,9 +19,8 @@ const Footer = () => {
                     </Box>
 
                     <Box mt="1.5rem">
-                        <Typography variant='body1'>123 Street, New York, USA</Typography>
-                        <Typography variant='body1'>info@example.com</Typography>
-                        <Typography variant='body1'>+012 345 67890</Typography>
+                        {contactInfo.map((info) => <Typography variant='body1'>{info}</Typography>)}
+
                     </Box>
                 </Box>
                 <Stack direction={{ lg: 'row', sm: 'row', sx: 'column' }} flex='0 0 66%' justifyContent={{ lg: 'space-between', md: 'space-between', sm: 'space-around' }}>
@@ -28,8 +28,8 @@ const Footer = () => {
                         <Typography variant='h5' fontSize="1.25rem" color="#2c2c2c" fontWeight={700} marginBottom="1.5rem">
                             Quick Shop
                         </Typography>
-                        
-                        {navLinks.map((navLink,index)=> <NavLink key={index} to={navLink.path} fontWeight={400} style={navLinkStyle}> {navLink.link}  </NavLink> )}
+
+                        {navLinks.map((navLink, index) => <NavLink key={index} to={navLink.path} fontWeight={400} style={navLinkStyle}> {navLink.link}  </NavLink>)}
 
                     </Box>
 
@@ -37,9 +37,9 @@ const Footer = () => {
                         <Typography variant="h5" marginBottom="1.5rem" fontSize="1.25rem" fontWeight={700} color="#2c2c2c">
                             Social Links
                         </Typography>
-                    
-                        {socialLinks.map((socialLink,index) =>  <Link key={index} to={socialLink.path} style={linkStyle} fontWeight={400}> {socialLink.link} </Link>)}
-                        
+
+                        {socialLinks.map((socialLink, index) => <Link key={index} to={socialLink.path} style={linkStyle} fontWeight={400}> {socialLink.link} </Link>)}
+
                     </Box>
 
                     <Box pl={{ lg: '30px', md: '30px', sm: "30px", xs: '15px' }} pr={{ xs: "1rem" }} mb="3rem">
@@ -84,14 +84,14 @@ const navLinkStyle = ({ isActive }) => {
         fontSize: '1rem',
         marginBottom: '0.8rem',
         textDecoration: 'none',
-        color: isActive ? '#ff7800': '#1c1c1c',   
+        color: isActive ? '#ff7800' : '#1c1c1c',
     }
 }
 const linkStyle = {
-    display:'block',
-    textDecoration:'none',
-    marginBottom:'0.8rem',
-    color:'#1c1c1c',
+    display: 'block',
+    textDecoration: 'none',
+    marginBottom: '0.8rem',
+    color: '#1c1c1c',
 }
 
 export default Footer
