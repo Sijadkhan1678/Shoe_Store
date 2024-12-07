@@ -65,11 +65,34 @@ const reducer = (state, action) => {
                 // filterProducts:
             }
         case REMOVE_FILTER:
-            return {
-                ...state,
-                filterProducts: state.filterProducts.filter(product => product.brand !== action.payload),
-                activeFilters: state.activeFilters.filter(filter => filter !== action.payload)
+            const currentPriceFilter = state.activeFilters.find(filter => filter.includes(" - "))
+            const brandFilters = state.activeFilters.filter(filter => !filter.includes(" - "))
+            const updatedBrandFilter = brandFilters.filter(filter => filter !== action.payload)
+            if (brandFilters.length && currentPriceFilter) {
+                const [min, max] = currentPriceFilter.split(" - ").map(Number)
+
+                return {
+                    ...state,
+                    filterProducts: state.products.filter(product => {
+                        if (!action.payload.includes(" - ") && brandFilters.length === 1) {
+                            return product.price >= min && product.price <= max
+                        } else {
+                            const brandFilter = updatedBrandFilter.find(filter => filter === product.brand)
+                            return brandFilter && product.price >= min && product.price <= max
+                        }
+                    }),
+                    activeFilters: state.activeFilters.filter(filter => filter !== action.payload)
+                }
+
+            }else{
+
+        return {
+            ...state,
+            filterProducts: state.filterProducts.filter(product => product.brand !== action.payload),
+            activeFilters: state.activeFilters.filter(filter => filter !== action.payload)
+        }
             }
+
         case OPEN_DRAWER:
             return {
                 ...state,
