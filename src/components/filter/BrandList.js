@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { ListItem, Checkbox, ListItemText } from '@mui/material';
 import { useProductContext } from '../../context/product';
 
@@ -6,7 +6,7 @@ export const BrandList = () => {
     const [brandsState, setBrandsState] = useState([
         { name: 'All', isSelected: false },
         { name: 'Nike', isSelected: false },
-        { name: 'Adidas', isSelected: false },
+        { name: 'Addidas', isSelected: false },
         { name: 'Fila', isSelected: false },
         { name: 'Puma', isSelected: false },
         { name: 'Reebok', isSelected: false },
@@ -34,6 +34,27 @@ export const BrandList = () => {
             removeFilter(selectedBrand.name);
         }
     };
+    useEffect(() => {
+        if (activeFilters) {
+            const activeBrandFilters = activeFilters.filter(filter => !filter.includes(" - "))
+            const updatedBrands = brandsState.map((brandState) => {
+                const currentBrandFilter = activeBrandFilters.find((brandFilter) => brandFilter == brandState.name)
+                if (currentBrandFilter) {
+                    brandState.isSelected = true
+                    return brandState
+                } else {
+                    brandState.isSelected = false
+                    return brandState
+                }
+            })
+
+            setBrandsState(updatedBrands)
+            console.log("brandState====%%=>>>", updatedBrands)
+
+            
+
+        }
+    }, [activeFilters])
 
     return (
         <>
