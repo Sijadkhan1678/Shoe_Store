@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider, { SliderThumb } from '@mui/material/Slider';
-import { ListItem, Box, Stack, ListItemText, Typography } from '@mui/material'
+import { ListItem, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import { useProductContext } from '../../context/product'
 
@@ -53,19 +53,20 @@ function AirbnbThumbComponent(props) {
 
 export const PriceRange = () => {
 
-    const { filterPrice } = useProductContext()
-    const [value, setValue] = React.useState([1, 130])
     const [debounceTimeout, setDebounceTimeout] = React.useState(null);
-    console.log("range in view", value)
+    const [value, setValue] = React.useState([0, 130])
+    const { filterPrice, activeFilters } = useProductContext()
     const [min, max] = value
+
     const handleChange = (e) => {
 
         // const [min, max] = e.target.value;
         if (debounceTimeout) {
             clearTimeout(debounceTimeout);
         }
-
-        setValue([Math.floor(e.target.value[0] * 1.3), Math.floor(e.target.value[1] * 1.3)]);
+        console.log(e.target.value)
+        // setValue([Math.floor(e.target.value[0] * 1.3), Math.floor(e.target.value[1] * 1.3)]);
+        setValue([Math.floor(e.target.value[0]), Math.floor(e.target.value[1])])
 
         const timeout = setTimeout(() => {
             filterPrice({ min, max }); // Update final state after delay
@@ -74,7 +75,7 @@ export const PriceRange = () => {
         setDebounceTimeout(timeout);
 
     }
-    
+
     React.useEffect(() => {
         return () => {
             if (debounceTimeout) {
@@ -82,7 +83,19 @@ export const PriceRange = () => {
             }
         };
     }, [debounceTimeout])
-    
+
+    React.useEffect(() => {
+        // check priceFilter existence at initial rendering
+        const priceFilter = activeFilters.find(filter => filter.includes(" - "))
+
+        if (priceFilter) {
+            const [min, max] = priceFilter.split(" - ").map(Number)
+            setValue([min, max])
+        }
+
+    }, [])
+
+
     return (
         <React.Fragment>
             <Stack flexDirection="row" justifyContent='space-between'>
@@ -101,7 +114,10 @@ export const PriceRange = () => {
                     slots={{ thumb: AirbnbThumbComponent }}
                     onChange={handleChange}
                     getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
-                    defaultValue={[0, 100]}
+                    // defaultValue={[1, 130]}                    
+                    min={0}
+                    max={130}
+                    value={value}
                 />
             </ListItem>
         </React.Fragment>
